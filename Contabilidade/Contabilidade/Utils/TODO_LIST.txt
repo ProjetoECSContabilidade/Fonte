@@ -1,0 +1,18 @@
+﻿======================================= @TODO LIST =======================================
+
+Arrumar tela de edição de usuarios.
+Arrumar tela de cadastro de usuarios.
+Colocar combobox no campo de setor da tela usuario.
+
+
+
+
+
+
+
+
+Rubia Fazendo:
+Estuda a apostila.
+
+
+Lucas Fazendo:

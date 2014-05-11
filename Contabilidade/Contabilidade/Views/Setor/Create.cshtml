@@ -1,0 +1,31 @@
+﻿@model Contabilidade.Models.Setor
+@using BootstrapSupport
+
+@{
+    ViewBag.Title = "Create";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset class="form-horizontal">
+        <legend><small>Cadastro de </small>Setor</legend>
+
+        @Html.Label("Descricao", new { @class = "control-label" })
+        <div class="controls">
+            @Html.EditorFor(model => model.Descricao, new { @class = "input-xlarge" })
+            @Html.ValidationMessageFor(model => model.Descricao)
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Salvar</button>
+            @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn " })
+        </div>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Voltar para a Listagem", "Index")
+</div>
