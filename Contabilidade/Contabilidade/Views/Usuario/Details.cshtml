@@ -1,0 +1,57 @@
+﻿@model Contabilidade.Models.Usuario
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Usuario</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Nome)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Nome)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Cargo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Cargo)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Login)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Login)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Senha)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Senha)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.email)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.email)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Ativo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Ativo)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

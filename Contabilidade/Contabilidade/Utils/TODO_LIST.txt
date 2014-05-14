@@ -1,8 +1,6 @@
 ﻿======================================= @TODO LIST =======================================
 
-Arrumar tela de edição de usuarios.
-Arrumar tela de cadastro de usuarios.
-Colocar combobox no campo de setor da tela usuario.
+
 
 
 
@@ -16,3 +14,16 @@ Estuda a apostila.
 
 
 Lucas Fazendo:
+Telas de Usuario [Fazendo]
+
+
+
+
+
+
+
+
+
+
+[Lucas Feito]:
+- Telas de cadastro, editar, excluir, listagem de Setor. [DONE]

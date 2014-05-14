@@ -1,4 +1,7 @@
 --SCRIPT DE CARGA INICIAL DO BANCO DE DADOS. (DESENVOLVIMENTO)
+--Apaga o banco para criar novamente
+--drop database Contabilidde
+
 use Contabilidde
 go
 

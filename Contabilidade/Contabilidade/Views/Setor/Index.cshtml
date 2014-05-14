@@ -34,8 +34,8 @@
                     <ul class="dropdown-menu">
                         @{
                             @Html.TryPartial("_actions", setor)
-        var routevalues = setor.GetIdValue();
-        <li>@Html.ActionLink("Editar", "Edit", routevalues)</li>
+                            var routevalues = setor.GetIdValue();
+                            <li>@Html.ActionLink("Editar", "Edit", routevalues)</li>
                             <li class="divider"></li>
                             <li>@Html.ActionLink("Excluir", "Delete", routevalues)</li>
 

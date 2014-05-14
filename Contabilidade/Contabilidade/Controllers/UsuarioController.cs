@@ -8,7 +8,7 @@ using System.Web.Mvc;
 using Contabilidade.Models;
 using BootstrapMvcSample.Controllers;
 
-namespace MvcApplication1.Controllers
+namespace Contabilidade.Controllers
 {
     public class UsuarioController : BootstrapBaseController
     {
@@ -40,15 +40,14 @@ namespace MvcApplication1.Controllers
 
         public ActionResult Create()
         {
-            return View(new Usuario());
-    
+            return View(new Usuario);
         }
 
         //
         // POST: /Usuario/Create
 
         [HttpPost]
-       // [ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(Usuario usuario)
         {
             if (ModelState.IsValid)
@@ -71,15 +70,14 @@ namespace MvcApplication1.Controllers
             {
                 return HttpNotFound();
             }
-            return View("Create",usuario);
-
+            return View(usuario);
         }
 
         //
         // POST: /Usuario/Edit/5
 
         [HttpPost]
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public ActionResult Edit(Usuario usuario)
         {
             if (ModelState.IsValid)
@@ -97,18 +95,26 @@ namespace MvcApplication1.Controllers
         public ActionResult Delete(int id = 0)
         {
             Usuario usuario = db.Usuario.Find(id);
-            if (usuario != null)
+            if (usuario == null)
             {
-                db.Usuario.Remove(usuario);
-                db.SaveChanges();
-                Attention("Apagou caralho");
+                return HttpNotFound();
             }
-            return RedirectToAction("Index");
+            return View(usuario);
         }
 
         //
         // POST: /Usuario/Delete/5
-        
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            Usuario usuario = db.Usuario.Find(id);
+            db.Usuario.Remove(usuario);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
         protected override void Dispose(bool disposing)
         {
             db.Dispose();

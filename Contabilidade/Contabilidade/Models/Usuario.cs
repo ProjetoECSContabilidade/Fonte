@@ -11,13 +11,17 @@ namespace Contabilidade.Models
     public class Usuario
     {
         public int Id { get; set; }
-       [Required]
+       
+       [Required(ErrorMessage = "Digite o nome do usuario.")]
         public string Nome { get; set; }
 
-        public int Cargo { get; set; }
-
+       [DataType(DataType.EmailAddress)]
+        public String Email { get; set; }
+        [Required]
+        public String Cargo { get; set; }
+        
         public Setor Setor { get; set; }
-
+        [Required]
         public string Login { get; set; }
         [DataType(DataType.Password)]
         public string Senha { get; set; }
