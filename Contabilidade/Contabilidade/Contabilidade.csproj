@@ -43,6 +43,9 @@
     <Reference Include="Microsoft.Web.Mvc">
       <HintPath>..\packages\Mvc4Futures.4.0.20710.0\lib\net40\Microsoft.Web.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="MVC Foolproof Validation">
+      <HintPath>..\packages\foolproof.0.9.4517\lib\MVC Foolproof Validation.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
@@ -247,6 +250,9 @@
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\mvcfoolproof.unobtrusive.min.js" />
+    <Content Include="Scripts\MvcFoolproofJQueryValidation.min.js" />
+    <Content Include="Scripts\MvcFoolproofValidation.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Utils\Carga_DB.sql" />
     <Content Include="Utils\TODO_LIST.txt" />
@@ -277,7 +283,6 @@
     <Content Include="Views\Shared\_alerts.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Setor\Index.cshtml" />
-    <Content Include="Views\Setor\Details.cshtml" />
     <Content Include="Views\Setor\Create.cshtml" />
     <Content Include="Views\Setor\Delete.cshtml" />
     <Content Include="Views\Obrigacao\Index.cshtml" />
@@ -285,9 +290,16 @@
     <Content Include="Views\Obrigacao\Create.cshtml" />
     <Content Include="Views\Obrigacao\Edit.cshtml" />
     <Content Include="Views\Obrigacao\Delete.cshtml" />
+    <Content Include="Utils\Docs\diagrama de classes_alterado.vsd" />
+    <Content Include="Views\Usuario\Index.cshtml" />
+    <Content Include="Views\Usuario\Details.cshtml" />
+    <Content Include="Views\Usuario\Create.cshtml" />
+    <Content Include="Views\Usuario\Edit.cshtml" />
+    <Content Include="Views\Usuario\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\GeradosScafold-NaoUtilizar\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
