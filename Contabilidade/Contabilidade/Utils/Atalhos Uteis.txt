@@ -1,0 +1,11 @@
+﻿========================== Atalhos Uteis ===========================
+
+Ctrl + Shift + F – Buscar em toda a solução
+
+Ctrl+K+D = Identação e formatação Automática do texto
+
+Ctrl+K+C = comenta
+
+Ctrl+K+U = descomenta
+
+Ctrl+D, Q = QuickInspect
