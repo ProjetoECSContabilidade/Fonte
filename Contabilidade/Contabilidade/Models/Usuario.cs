@@ -22,7 +22,10 @@ namespace Contabilidade.Models
         [Required]
         public String Cargo { get; set; }
 
+        public Setor Setor { get; set; }
+
         public int SetorId { get; set; }
+        [NotMapped]
         public IEnumerable<SelectListItem> SetorList { get; set; }
         
         //public IEnumerable<SelectListItem> Setor { get; set; } 

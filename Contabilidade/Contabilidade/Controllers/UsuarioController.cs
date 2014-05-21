@@ -40,24 +40,22 @@ namespace Contabilidade.Controllers
 
         public ActionResult Create()
         {
-            //var query = db.Setor.Select(s => new SelectListItem
-            //{
-            //    Value = s.Id.ToString(),
-            //    Text = s.Descricao,
-            //    Selected = s.Id.Equals(1)
-            //});
+            var query = db.Setor.ToList().Select(s => new SelectListItem
+            {
+                Value = s.Id.ToString(),
+                Text = s.Descricao,
+            });
 
-            //var usuario = new Usuario
-            //{
-            //    ListSetor = query.AsEnumerable()
-            //};
+            var usuario = new Usuario
+            {
+                SetorList = query.AsEnumerable()
+            };
 
             //carrega todos os setores na viewbag
-            var query = db.Setor.Select(s => new { Id = s.Id, s.Descricao });
-            ViewBag.Setores = new SelectList(query.AsEnumerable(), "Id", "Descricao");
+            //var query = db.Setor.Select(s => new { Id = s.Id, s.Descricao });
+            //ViewBag.Setores = new SelectList(query.AsEnumerable(), "Id", "Descricao");
 
-
-            return View(new Usuario());
+            return View(usuario);
         }
 
         //
