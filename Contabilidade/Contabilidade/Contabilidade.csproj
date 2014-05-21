@@ -254,6 +254,7 @@
     <Content Include="Scripts\MvcFoolproofJQueryValidation.min.js" />
     <Content Include="Scripts\MvcFoolproofValidation.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Utils\Atalhos Uteis.txt" />
     <Content Include="Utils\Carga_DB.sql" />
     <Content Include="Utils\TODO_LIST.txt" />
     <Content Include="Web.config" />

@@ -13,40 +13,88 @@
     <fieldset class="form-horizontal">
         <legend><small>Cadastro de </small>Usuario</legend>
 
-        @Html.Label("Nome", new { @class = "control-label" })
-        <div class="controls">
-            @Html.EditorFor(model => model.Nome)
-            @Html.ValidationMessageFor(model => model.Nome)
+        <div class="control-group">
+            @Html.Label("Nome", new { @class = "control-label" })
+            <div class="controls">
+                @Html.EditorFor(model => model.Nome, new { @class = "input-xlarge" })
+                @Html.ValidationMessageFor(model => model.Nome)
+            </div>
         </div>
 
-        @Html.Label("Login", new { @class = "control-label" })
-        <div class="controls">
-            @Html.EditorFor(model => model.Login)
-            @Html.ValidationMessageFor(model => model.Login)
+        <div class="control-group">
+            @Html.Label("Login", new { @class = "control-label" })
+            <div class="controls">
+                @Html.EditorFor(model => model.Login, new { @class = "input-xlarge" })
+                @Html.ValidationMessageFor(model => model.Login)
+            </div>
         </div>
 
-        @Html.Label("Senha", new { @class = "control-label" })
-        <div class="controls">
-            @Html.EditorFor(model => model.Senha)
-            @Html.ValidationMessageFor(model => model.Senha)
+        <div class="control-group">
+            @Html.Label("Senha", new { @class = "control-label" })
+            <div class="controls">
+                @Html.EditorFor(model => model.Senha, new { @class = "input-xlarge" })
+                @Html.ValidationMessageFor(model => model.Senha)
+            </div>
         </div>
 
-        @Html.Label("Email", new { @class = "control-label" })
-        <div class="controls">
-            @Html.EditorFor(model => model.Email)
-            @Html.ValidationMessageFor(model => model.Email)
+        <div class="control-group">
+            @Html.Label("Email", new { @class = "control-label" })
+            <div class="controls">
+                @Html.EditorFor(model => model.Email, new { @class = "input-xlarge" })
+                @Html.ValidationMessageFor(model => model.Email)
+            </div>
         </div>
 
-        @Html.Label("Cargo", new { @class = "control-label" })
-        <div class="controls">
-            @Html.EditorFor(model => model.Cargo)
-            @Html.ValidationMessageFor(model => model.Cargo)
+        <div class="control-group">
+            @Html.Label("Cargo", new { @class = "control-label" })
+            <div class="controls">
+                @Html.DropDownListFor(model => model.Cargo, new SelectList(
+                  new List<Object>{
+                       new { value = "Analista de RH" , text = "Analista de RH"  },
+                       new { value = "Analista Fiscal" , text = "Analista Fiscal" },
+                       new { value = "Analista Contábil" , text = "Analista Contábil"}
+                    },
+                  "value",
+                  "text",
+                   2))
+                @*@Html.EditorFor(model => model.Cargo, new { @class = "input-xlarge" })*@
+                @Html.ValidationMessageFor(model => model.Cargo)
+            </div>
         </div>
 
-        @Html.Label("Ativo", new { @class = "control-label" })
-        <div class="controls">
-            @Html.EditorFor(model => model.Ativo)
-            @Html.ValidationMessageFor(model => model.Ativo)
+        <div class="control-group">
+            @Html.Label("Setor", new { @class = "control-label" })
+            <div class="controls">
+                @Html.DropDownListFor(model => model.SetorId, Model.SetorList, new { @class = "form-control" })
+                @*@Html.DropDownList("Id", (IEnumerable<SelectListItem>)ViewBag.Setores)*@
+                @Html.ValidationMessageFor(model => model.Setor)
+            </div>
+        </div>
+
+
+
+        @*<div class="control-group">
+                @Html.Label("Setor", new { @class = "control-label" })
+                <div class="controls">
+                    @Html.DropDownListFor(model => model.Setor.Id, new SelectList(
+                      new List<Object>{
+                           new { value = 1 , text = "Recursos Humanos"  },
+                           new { value = 2, text = "Fiscal" },
+                           new { value = 3 , text = "Contábil"}
+                        },
+                      "value",
+                      "text",
+                       2))
+                    @Html.ValidationMessageFor(model => model.Setor)
+                </div>
+            </div>*@
+
+        <div class="control-group">
+            @Html.Label("Ativo", new { @class = "control-label" })
+            <div class="controls">
+                @Html.EditorFor(model => model.Ativo)
+                @Html.ValidationMessageFor(model => model.Ativo)
+            </div>
         </div>
 
         <div class="form-actions">
@@ -64,79 +112,79 @@
 
 
 
-@model Contabilidade.Models.Usuario
+@*@model Contabilidade.Models.Usuario
 
-@{
-    ViewBag.Title = "Create";
-}
+    @{
+        ViewBag.Title = "Create";
+    }
 
-<h2>Create</h2>
+    <h2>Create</h2>
 
-@using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
 
-    <fieldset>
-        <legend>Usuario</legend>
+        <fieldset>
+            <legend>Usuario</legend>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Nome)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Nome)
-            @Html.ValidationMessageFor(model => model.Nome)
-        </div>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Nome)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Nome)
+                @Html.ValidationMessageFor(model => model.Nome)
+            </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Cargo)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Cargo)
-            @Html.ValidationMessageFor(model => model.Cargo)
-        </div>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Cargo)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Cargo)
+                @Html.ValidationMessageFor(model => model.Cargo)
+            </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Login)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Login)
-            @Html.ValidationMessageFor(model => model.Login)
-        </div>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Login)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Login)
+                @Html.ValidationMessageFor(model => model.Login)
+            </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Senha)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Senha)
-            @Html.ValidationMessageFor(model => model.Senha)
-        </div>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Senha)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Senha)
+                @Html.ValidationMessageFor(model => model.Senha)
+            </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Email)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Email)
-            @Html.ValidationMessageFor(model => model.Email)
-        </div>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Email)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Email)
+                @Html.ValidationMessageFor(model => model.Email)
+            </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Ativo)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Ativo)
-            @Html.ValidationMessageFor(model => model.Ativo)
-        </div>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Ativo)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Ativo)
+                @Html.ValidationMessageFor(model => model.Ativo)
+            </div>
 
-        <p>
-            <input type="submit" value="Create" />
-        </p>
-    </fieldset>
-}
+            <p>
+                <input type="submit" value="Create" />
+            </p>
+        </fieldset>
+    }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }*@

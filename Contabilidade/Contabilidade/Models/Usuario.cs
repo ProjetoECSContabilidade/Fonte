@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace Contabilidade.Models
 {
@@ -15,12 +16,18 @@ namespace Contabilidade.Models
        [Required(ErrorMessage = "Digite o nome do usuario.")]
         public string Nome { get; set; }
 
-       [DataType(DataType.EmailAddress)]
+       [DataType(DataType.EmailAddress, ErrorMessage="Informe um e-mail valido.")]
         public String Email { get; set; }
+
         [Required]
         public String Cargo { get; set; }
+
+        public int SetorId { get; set; }
+        public IEnumerable<SelectListItem> SetorList { get; set; }
         
-        public Setor Setor { get; set; }
+        //public IEnumerable<SelectListItem> Setor { get; set; } 
+
+
         [Required]
         public string Login { get; set; }
         [DataType(DataType.Password)]

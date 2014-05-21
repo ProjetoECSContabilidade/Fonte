@@ -10,7 +10,7 @@ using BootstrapMvcSample.Controllers;
 
 namespace Contabilidade.Controllers
 {
-    public class SetorController : BootstrapBaseController
+    public class SetorController : Controller
     {
         private ConexaoSQLServerContext db = new ConexaoSQLServerContext();
 
