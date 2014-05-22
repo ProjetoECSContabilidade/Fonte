@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -23,11 +24,12 @@ namespace Contabilidade.Models
         public String Cargo { get; set; }
         
         public int SetorId { get; set; }
-        
+
         [Required]
         public string Login { get; set; }
         [DataType(DataType.Password)]
         public string Senha { get; set; }
+        [DefaultValue(true)]
         public bool Ativo { get; set; }
 
         //campos não salvos no BD
@@ -38,5 +40,10 @@ namespace Contabilidade.Models
         public IEnumerable<SelectListItem> SetorList { get; set; }
 
 
+        //construtor padrão que ja seta os valores default
+        public Usuario()
+        {
+            Ativo = true;
+        }
     }
 }

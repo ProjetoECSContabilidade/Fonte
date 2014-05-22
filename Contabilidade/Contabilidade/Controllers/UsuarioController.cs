@@ -38,9 +38,8 @@ namespace Contabilidade.Controllers
             {
                 return HttpNotFound();
             }
-
-            var query = GetAllSetoresAsList();
-            usuario.SetorList = query.AsEnumerable();
+            
+            usuario.SetorList = GetAllSetoresAsList();
             
             return View("Create", usuario);
         }
@@ -50,11 +49,10 @@ namespace Contabilidade.Controllers
 
         public ActionResult Create()
         {
-            var query = GetAllSetoresAsList();
             //cria usuario sentando a lista de setor para ser apresentada no DropDownList
             var usuario = new Usuario
             {
-                SetorList = query.AsEnumerable()
+                SetorList = GetAllSetoresAsList()
             };
             //END carregou lista de setores
 
@@ -73,7 +71,7 @@ namespace Contabilidade.Controllers
                 Value = s.Id.ToString(),
                 Text = s.Descricao,
             });
-            return query;
+            return query.AsEnumerable();
         }
 
         //
@@ -83,6 +81,7 @@ namespace Contabilidade.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Usuario usuario)
         {
+            //TODO tratar exceção quando inclui usuario com username duplicado
             if (ModelState.IsValid)
             {
                 db.Usuario.Add(usuario);
@@ -104,8 +103,7 @@ namespace Contabilidade.Controllers
                 return HttpNotFound();
             }
 
-            var query = GetAllSetoresAsList();
-            usuario.SetorList = query.AsEnumerable();
+            usuario.SetorList = GetAllSetoresAsList();
 
             return View("Create", usuario);
         }
@@ -137,8 +135,7 @@ namespace Contabilidade.Controllers
                 return HttpNotFound();
             }
 
-            var query = GetAllSetoresAsList();
-            usuario.SetorList = query.AsEnumerable();
+            usuario.SetorList = GetAllSetoresAsList();
 
             return View(usuario);
         }

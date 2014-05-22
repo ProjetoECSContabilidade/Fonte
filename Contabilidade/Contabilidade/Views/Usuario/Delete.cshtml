@@ -74,7 +74,14 @@
         <div class="control-group">
             @Html.Label("Ativo", new { @class = "control-label" })
             <div class="controls">
-                @Html.EditorFor(model => model.Ativo)
+                @Html.DropDownListFor(model => model.Ativo, new SelectList(
+                  new List<Object>{
+                       new { value = true , text = "Ativado"  },
+                       new { value = false , text = "Desativado"  },
+                    },
+                  "value",
+                  "text",
+                   true))
                 @Html.ValidationMessageFor(model => model.Ativo)
             </div>
         </div>
