@@ -1,61 +1,91 @@
 ﻿@model Contabilidade.Models.Usuario
+@using BootstrapSupport
 
 @{
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
+<h3>Tem certeza que deseja excluir o Setor?</h3>
 
-<h3>Are you sure you want to delete this?</h3>
-<fieldset>
-    <legend>Usuario</legend>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Nome)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Nome)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Cargo)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Cargo)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Login)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Login)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Senha)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Senha)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.email)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.email)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Ativo)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Ativo)
-    </div>
-</fieldset>
-@using (Html.BeginForm()) {
+@using (Html.BeginForm())
+{
     @Html.AntiForgeryToken()
-    <p>
-        <input type="submit" value="Delete" /> |
-        @Html.ActionLink("Back to List", "Index")
-    </p>
+    @Html.ValidationSummary(true)
+
+    <fieldset class="form-horizontal">
+
+        <div class="control-group">
+            @Html.Label("Nome", new { @class = "control-label" })
+            <div class="controls">
+                @Html.TextBoxFor(model => model.Nome, new { @class = "input-xlarge", disabled = "disabled" })
+                @Html.ValidationMessageFor(model => model.Nome)
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.Label("Login", new { @class = "control-label" })
+            <div class="controls">
+                @Html.TextBoxFor(model => model.Login, new { @class = "input-xlarge", disabled = "disabled" })
+                @Html.ValidationMessageFor(model => model.Login)
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.Label("Senha", new { @class = "control-label" })
+            <div class="controls">
+                @Html.TextBoxFor(model => model.Senha, new { @class = "input-xlarge", disabled = "disabled" })
+                @Html.ValidationMessageFor(model => model.Senha)
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.Label("Email", new { @class = "control-label" })
+            <div class="controls">
+                @Html.TextBoxFor(model => model.Email, new { @class = "input-xlarge", disabled = "disabled" })
+                @Html.ValidationMessageFor(model => model.Email)
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.Label("Cargo", new { @class = "control-label" })
+            <div class="controls">
+                @Html.DropDownListFor(model => model.Cargo, new SelectList(
+                  new List<Object>{
+                       new { value = "Gerente" , text = "Gerente"  },
+                       new { value = "Coordenador" , text = "Coordenador"  },
+                       new { value = "Analista de RH" , text = "Analista de RH"  },
+                       new { value = "Analista Fiscal" , text = "Analista Fiscal" },
+                       new { value = "Analista Contábil" , text = "Analista Contábil"}
+                    },
+                  "value",
+                  "text",
+                   2))
+                @Html.ValidationMessageFor(model => model.Cargo)
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.Label("Setor", new { @class = "control-label" })
+            <div class="controls">
+                @Html.DropDownListFor(model => model.SetorId, new SelectList(Model.SetorList, "Value", "Text"))
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.Label("Ativo", new { @class = "control-label" })
+            <div class="controls">
+                @Html.EditorFor(model => model.Ativo)
+                @Html.ValidationMessageFor(model => model.Ativo)
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Salvar</button>
+            @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn " })
+        </div>
+    </fieldset>
 }
+
+<div>
+    @Html.ActionLink("Voltar para a Listagem", "Index")
+</div>

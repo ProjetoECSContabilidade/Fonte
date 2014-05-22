@@ -19,7 +19,13 @@ namespace Contabilidade.Controllers
 
         public ActionResult Index()
         {
-            return View(db.Usuario.ToList());
+            List<Usuario> listaDeUsuario = db.Usuario.ToList();
+            //@TODO refatorar para ficar mais performatico
+            foreach(Usuario usu in listaDeUsuario){
+                usu.Setor = db.Setor.Find(usu.SetorId);
+            }
+
+            return View(listaDeUsuario);
         }
 
         //
@@ -32,7 +38,11 @@ namespace Contabilidade.Controllers
             {
                 return HttpNotFound();
             }
-            return View(usuario);
+
+            var query = GetAllSetoresAsList();
+            usuario.SetorList = query.AsEnumerable();
+            
+            return View("Create", usuario);
         }
 
         //
@@ -40,22 +50,30 @@ namespace Contabilidade.Controllers
 
         public ActionResult Create()
         {
-            var query = db.Setor.ToList().Select(s => new SelectListItem
-            {
-                Value = s.Id.ToString(),
-                Text = s.Descricao,
-            });
-
+            var query = GetAllSetoresAsList();
+            //cria usuario sentando a lista de setor para ser apresentada no DropDownList
             var usuario = new Usuario
             {
                 SetorList = query.AsEnumerable()
             };
+            //END carregou lista de setores
 
             //carrega todos os setores na viewbag
             //var query = db.Setor.Select(s => new { Id = s.Id, s.Descricao });
             //ViewBag.Setores = new SelectList(query.AsEnumerable(), "Id", "Descricao");
 
             return View(usuario);
+        }
+
+        private IEnumerable<SelectListItem> GetAllSetoresAsList()
+        {
+            //BEGIN carregando a lista de setores
+            var query = db.Setor.ToList().Select(s => new SelectListItem
+            {
+                Value = s.Id.ToString(),
+                Text = s.Descricao,
+            });
+            return query;
         }
 
         //
@@ -85,7 +103,11 @@ namespace Contabilidade.Controllers
             {
                 return HttpNotFound();
             }
-            return View(usuario);
+
+            var query = GetAllSetoresAsList();
+            usuario.SetorList = query.AsEnumerable();
+
+            return View("Create", usuario);
         }
 
         //
@@ -114,6 +136,10 @@ namespace Contabilidade.Controllers
             {
                 return HttpNotFound();
             }
+
+            var query = GetAllSetoresAsList();
+            usuario.SetorList = query.AsEnumerable();
+
             return View(usuario);
         }
 

@@ -1,15 +1,87 @@
-﻿@model IEnumerable<Contabilidade.Models.Usuario>
+﻿@using BootstrapSupport
+@model IEnumerable<Contabilidade.Models.Usuario>
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h4><small>Listagem de </small>@Model.GetLabel() </h4>
 
+<table class="table table-striped">
+    <caption></caption>
+    <thead>
+        <tr>
+            <th>
+                Login
+            </th>
+            <th>
+                Nome
+            </th>
+            <th>
+                Cargo
+            </th>
+            <th>
+                Setor
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Ativo
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    @{ int index = 0; }
+    @foreach (var usuario in Model)
+    {
+        ViewData[index.ToString()] = usuario;
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => usuario.Login)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => usuario.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => usuario.Cargo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => usuario.Setor.Descricao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => usuario.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => usuario.Ativo)
+            </td>
+            <td>
+                <div class="btn-group">
+                    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                        Ações
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        @{
+                            @Html.TryPartial("_actions", usuario)
+                            var routevalues = usuario.GetIdValue();
+                            <li>@Html.ActionLink("Editar", "Edit", routevalues)</li>
+                            <li class="divider"></li>
+                            <li>@Html.ActionLink("Excluir", "Delete", routevalues)</li>
+
+                        }
+                    </ul>
+                </div>
+            </td>
+        </tr>
+        index++;
+    }
+</table>
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Incluir", "Create", null, new { @class = "btn" })
 </p>
-<table>
+
+@*<table>
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Nome)
@@ -24,7 +96,7 @@
             @Html.DisplayNameFor(model => model.Senha)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.email)
+            @Html.DisplayNameFor(model => model.Email)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Ativo)
@@ -47,7 +119,7 @@
             @Html.DisplayFor(modelItem => item.Senha)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.email)
+            @Html.DisplayFor(modelItem => item.Email)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Ativo)
@@ -60,4 +132,4 @@
     </tr>
 }
 
-</table>
+</table>*@

@@ -6,6 +6,7 @@ use Contabilidde
 go
 
 --insert setores
+INSERT INTO Setor (Descricao) VALUES ('Gerencia')
 INSERT INTO Setor (Descricao) VALUES ('Recursos Humanos')
 INSERT INTO Setor (Descricao) VALUES ('Fiscal')
 INSERT INTO Setor (Descricao) VALUES ('Contábil')
