@@ -5,7 +5,7 @@
     ViewBag.Title = "Delete";
 }
 
-<h3>Tem certeza que deseja excluir o Setor?</h3>
+<h3>Tem certeza que deseja excluir este Usuario?</h3>
 
 @using (Html.BeginForm())
 {
@@ -59,7 +59,7 @@
                     },
                   "value",
                   "text",
-                   2))
+            2), new { disabled = "disabled" })
                 @Html.ValidationMessageFor(model => model.Cargo)
             </div>
         </div>
@@ -67,7 +67,7 @@
         <div class="control-group">
             @Html.Label("Setor", new { @class = "control-label" })
             <div class="controls">
-                @Html.DropDownListFor(model => model.SetorId, new SelectList(Model.SetorList, "Value", "Text"))
+                @Html.DropDownListFor(model => model.SetorId, new SelectList(Model.SetorList, "Value", "Text"), new { disabled = "disabled" })
             </div>
         </div>
 
@@ -76,18 +76,18 @@
             <div class="controls">
                 @Html.DropDownListFor(model => model.Ativo, new SelectList(
                   new List<Object>{
-                       new { value = true , text = "Ativado"  },
-                       new { value = false , text = "Desativado"  },
-                    },
-                  "value",
-                  "text",
-                   true))
+                        new { value = true , text = "Ativado"  },
+                        new { value = false , text = "Desativado"  },
+                        },
+                        "value",
+                        "text",
+                        true), new { disabled = "disabled" })
                 @Html.ValidationMessageFor(model => model.Ativo)
             </div>
         </div>
 
         <div class="form-actions">
-            <button type="submit" class="btn btn-primary">Salvar</button>
+            <button type="submit" value="Delete" class="btn btn-primary">Excluir</button>
             @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn " })
         </div>
     </fieldset>

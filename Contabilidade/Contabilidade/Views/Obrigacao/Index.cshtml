@@ -1,0 +1,71 @@
+﻿@using BootstrapSupport
+@model IEnumerable<Contabilidade.Models.Obrigacao>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<h4><small>Listagem de </small>Obrigação</h4>
+
+<table class="table table-striped">
+    <caption></caption>
+    <thead>
+        <tr>
+            <th>
+                Descrição
+            </th>
+            <th>
+                Dia da Entrega
+            </th>
+            <th>
+                Data de Validade
+            </th>
+            <th>
+                Setor
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    @{ int index = 0; }
+    @foreach (var obrigacao in Model)
+    {
+        ViewData[index.ToString()] = obrigacao;
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => obrigacao.Descricao)
+            </td>
+            <td align="center">
+                @Html.DisplayFor(modelItem => obrigacao.DiaEntrega)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => obrigacao.DataValidade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => obrigacao.Setor.Descricao)
+            </td>
+            <td>
+                <div class="btn-group">
+                    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                        Ações
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        @{
+                            @Html.TryPartial("_actions", obrigacao)
+                            var routevalues = obrigacao.GetIdValue();
+                            <li>@Html.ActionLink("Editar", "Edit", routevalues)</li>
+                            <li class="divider"></li>
+                            <li>@Html.ActionLink("Excluir", "Delete", routevalues)</li>
+
+                        }
+                    </ul>
+                </div>
+            </td>
+        </tr>
+        index++;
+    }
+</table>
+<p>
+    @Html.ActionLink("Incluir", "Create", null, new { @class = "btn" })
+</p>

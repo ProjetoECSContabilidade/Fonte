@@ -10,107 +10,107 @@ using BootstrapMvcSample.Controllers;
 
 namespace Contabilidade.Controllers
 {
-    public class SetorController : BootstrapBaseController
+    public class ClienteController : BootstrapBaseController
     {
         private ConexaoSQLServerContext db = new ConexaoSQLServerContext();
 
         //
-        // GET: /Setor/
+        // GET: /Cliente/
 
         public ActionResult Index()
         {
-            return View(db.Setor.ToList());
+            return View(db.Cliente.ToList());
         }
 
         //
-        // GET: /Setor/Details/5
+        // GET: /Cliente/Details/5
 
         public ActionResult Details(int id = 0)
         {
-            Setor setor = db.Setor.Find(id);
-            if (setor == null)
+            Cliente cliente = db.Cliente.Find(id);
+            if (cliente == null)
             {
                 return HttpNotFound();
             }
-            return View(setor);
+            return View(cliente);
         }
 
         //
-        // GET: /Setor/Create
+        // GET: /Cliente/Create
 
         public ActionResult Create()
         {
-            return View(new Setor());
+            return View("CreatePrint");
         }
 
         //
-        // POST: /Setor/Create
+        // POST: /Cliente/Create
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Setor setor)
+        public ActionResult Create(Cliente cliente)
         {
             if (ModelState.IsValid)
             {
-                db.Setor.Add(setor);
+                db.Cliente.Add(cliente);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(setor);
+            return View(cliente);
         }
 
         //
-        // GET: /Setor/Edit/5
+        // GET: /Cliente/Edit/5
 
         public ActionResult Edit(int id = 0)
         {
-            Setor setor = db.Setor.Find(id);
-            if (setor == null)
+            Cliente cliente = db.Cliente.Find(id);
+            if (cliente == null)
             {
                 return HttpNotFound();
             }
-            return View("Create", setor);
+            return View(cliente);
         }
 
         //
-        // POST: /Setor/Edit/5
+        // POST: /Cliente/Edit/5
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Setor setor)
+        public ActionResult Edit(Cliente cliente)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(setor).State = EntityState.Modified;
+                db.Entry(cliente).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(setor);
+            return View(cliente);
         }
 
         //
-        // GET: /Setor/Delete/5
+        // GET: /Cliente/Delete/5
 
         public ActionResult Delete(int id = 0)
         {
-            Setor setor = db.Setor.Find(id);
-            if (setor == null)
+            Cliente cliente = db.Cliente.Find(id);
+            if (cliente == null)
             {
                 return HttpNotFound();
             }
-            return View(setor);
+            return View(cliente);
         }
 
         //
-        // POST: /Setor/Delete/5
+        // POST: /Cliente/Delete/5
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Setor setor = db.Setor.Find(id);
-            db.Setor.Remove(setor);
+            Cliente cliente = db.Cliente.Find(id);
+            db.Cliente.Remove(cliente);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -120,7 +120,6 @@ namespace Contabilidade.Controllers
             db.Dispose();
             base.Dispose(disposing);
         }
-
         public ActionResult Start()
         {
             return RedirectToAction("Index");

@@ -1,0 +1,80 @@
+﻿@model Contabilidade.Models.Etapa
+@using BootstrapSupport
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutBasicoProjeto.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset class="form-horizontal">
+        <legend><small>Cadastro de </small>Etapa</legend>
+
+        <div class="control-group">
+            @Html.Label("Obrigação", new { @class = "control-label" })
+            <div class="controls">
+                @*@Html.EditorFor(model => model.Obrigacao, new { @class = "input-xlarge" })*@
+                @Html.DropDownListFor(model => model.ObrigacaoId, new SelectList(
+                  new List<Object>{
+                       new { value = 1 , text = "DIME"  },
+                       new { value = 2 , text = "SPED CONTABIL"  },
+                    },
+                  "value",
+                  "text",
+                   true))
+                @Html.ValidationMessageFor(model => model.Obrigacao)
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.Label("Data de Entrega", new { @class = "control-label" })
+            <div class="controls">
+                @Html.EditorFor(model => model.DataEntrega, new { @class = "input-xlarge" })
+                @Html.ValidationMessageFor(model => model.DataEntrega)
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.Label("Status", new { @class = "control-label" })
+            <div class="controls">
+                @*@Html.EditorFor(model => model.Status, new { @class = "input-xlarge" })*@
+                @Html.DropDownListFor(model => model.Status, new SelectList(
+                  new List<Object>{
+                       new { value = 1 , text = "Concluido"  },
+                       new { value = 2 , text = "Pendente Cliente"  },
+                    },
+                  "value",
+                  "text",
+                   true))
+                @Html.ValidationMessageFor(model => model.Status)
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.Label("Descrição", new { @class = "control-label" })
+            <div class="controls">
+                @Html.TextAreaFor(model => model.Descricao, new { @class = "input-xlarge" })
+                @Html.ValidationMessageFor(model => model.Descricao)
+            </div>
+        </div>
+
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Salvar</button>
+            @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn " })
+        </div>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Voltar para a Listagem", "Index")
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

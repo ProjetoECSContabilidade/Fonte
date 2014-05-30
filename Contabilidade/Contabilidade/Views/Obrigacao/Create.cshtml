@@ -1,0 +1,58 @@
+﻿@model Contabilidade.Models.Obrigacao
+@using BootstrapSupport
+
+@{
+    ViewBag.Title = "Create";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset class="form-horizontal">
+        <legend><small>Cadastro de </small>Obrigação</legend>
+
+        <div class="control-group">
+            @Html.Label("Descrição", new { @class = "control-label" })
+            <div class="controls">
+                @Html.TextAreaFor(model => model.Descricao, 3, 25, new { @class = "input-xlarge" })
+                @Html.ValidationMessageFor(model => model.Descricao)
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.Label("Dia Entrega", new { @class = "control-label" })
+            <div class="controls">
+                @Html.EditorFor(model => model.DiaEntrega, new { @class = "input-xlarge" })
+                @Html.ValidationMessageFor(model => model.DiaEntrega)
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.Label("Data Validade", new { @class = "control-label" })
+            <div class="controls">
+                @Html.EditorFor(model => model.DataValidade, new { @class = "input-xlarge" })
+                @Html.ValidationMessageFor(model => model.DataValidade)
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.Label("Setor", new { @class = "control-label" })
+            <div class="controls">
+                @Html.DropDownListFor(model => model.SetorId, new SelectList(Model.SetorList, "Value", "Text"))
+                @Html.ValidationMessageFor(model => model.SetorId)
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Salvar</button>
+            @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn " })
+        </div>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Voltar para a Listagem", "Index")
+</div>
+

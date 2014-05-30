@@ -9,14 +9,14 @@ namespace BootstrapMvcSample.Controllers
 {
     public class HomeController : BootstrapBaseController
     {
-        private static List<HomeInputModel> _models = ModelIntializer.CreateHomeInputModels();
+        //private static List<HomeInputModel> _models = ModelIntializer.CreateHomeInputModels();
         public ActionResult Index()
         {
            
-            var homeInputModels = _models;                                      
-            return View(homeInputModels);
+            //var homeInputModels = _models;                                      
+            return View("Index");
         }
-
+        /*
         [HttpPost]
         public ActionResult Create(HomeInputModel model)
         {
@@ -70,6 +70,6 @@ namespace BootstrapMvcSample.Controllers
             var model = _models.Get(id);
             return View(model);
         }
-
+*/
     }
 }

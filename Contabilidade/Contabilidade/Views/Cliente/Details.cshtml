@@ -1,0 +1,86 @@
+﻿@model Contabilidade.Models.Cliente
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutBasicoProjeto.cshtml";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Cliente</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.RazaoSocial)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RazaoSocial)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Cnpj)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Cnpj)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Municipio)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Municipio)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Estado)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Estado)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.SetorEconomico)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SetorEconomico)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Natureza)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Natureza)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.RegimeApuracao)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RegimeApuracao)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ISSRetencao)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ISSRetencao)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.AtividadeEconomica)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AtividadeEconomica)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Ativo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Ativo)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

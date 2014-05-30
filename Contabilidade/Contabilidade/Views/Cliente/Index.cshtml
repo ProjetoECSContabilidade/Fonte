@@ -1,0 +1,130 @@
+﻿@using BootstrapSupport
+@model IEnumerable<Contabilidade.Models.Cliente>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutBasicoProjeto.cshtml";
+}
+
+
+<h4><small>Listagem de </small>@Model.GetLabel() </h4>
+
+<table class="table table-striped">
+    <caption></caption>
+    <thead>
+        <tr>
+            <th>
+                Razão Social
+            </th>
+            <th>
+                CNPJ
+            </th>
+            <th>
+                Municipio
+            </th>
+            <th>
+                Estado
+            </th>
+            <th>
+                Setor
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    @{ int index = 0; }
+    @foreach (var cliente in Model)
+    {
+        ViewData[index.ToString()] = cliente;
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => cliente.RazaoSocial)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => cliente.Cnpj)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => cliente.Municipio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => cliente.Estado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => cliente.SetorEconomico)
+            </td>
+
+            <td>
+                <div class="btn-group">
+                    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                        Ações
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        @{
+                            @Html.TryPartial("_actions", cliente)
+                            var routevalues = cliente.GetIdValue();
+                            <li>@Html.ActionLink("Editar", "Edit", routevalues)</li>
+                            <li class="divider"></li>
+                            <li>@Html.ActionLink("Excluir", "Delete", routevalues)</li>
+
+                        }
+                    </ul>
+                </div>
+            </td>
+        </tr>
+        index++;
+    }
+</table>
+
+
+
+<p>
+    @Html.ActionLink("Incluir", "Create", null, new { @class = "btn" })
+</p>
+
+
+@*<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.RazaoSocial)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cnpj)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Municipio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Estado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SetorEconomico)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.RazaoSocial)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cnpj)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Municipio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Estado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SetorEconomico)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>*@

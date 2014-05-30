@@ -1,0 +1,59 @@
+﻿@model Contabilidade.Models.Obrigacao
+@using BootstrapSupport
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+
+<h3>Tem certeza que deseja excluir este Usuario?</h3>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset class="form-horizontal">
+
+        <div class="control-group">
+            @Html.Label("Descrição", new { @class = "control-label" })
+            <div class="controls">
+                @Html.TextAreaFor(model => model.Descricao, 3, 25, new { @class = "input-xlarge", disabled = "disabled" })
+                @Html.ValidationMessageFor(model => model.Descricao)
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.Label("Dia Entrega", new { @class = "control-label" })
+            <div class="controls">
+                @Html.EditorFor(model => model.DiaEntrega, new { @class = "input-xlarge", disabled = "disabled" })
+                @Html.ValidationMessageFor(model => model.DiaEntrega)
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.Label("Data Validade", new { @class = "control-label" })
+            <div class="controls">
+                @Html.EditorFor(model => model.DataValidade, new { @class = "input-xlarge", disabled = "disabled" })
+                @Html.ValidationMessageFor(model => model.DataValidade)
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.Label("Setor", new { @class = "control-label" })
+            <div class="controls">
+                @Html.DropDownListFor(model => model.SetorId, new SelectList(Model.SetorList, "Value", "Text"), new { disabled = "disabled" })
+                @Html.ValidationMessageFor(model => model.SetorId)
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" value="Delete" class="btn btn-primary">Excluir</button>
+            @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn " })
+        </div>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Voltar para a Listagem", "Index")
+</div>

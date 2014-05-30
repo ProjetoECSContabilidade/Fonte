@@ -1,0 +1,37 @@
+﻿@model Contabilidade.Models.Etapa
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutBasicoProjeto.cshtml";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Etapa</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DataEntrega)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DataEntrega)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Status)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Status)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Descricao)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Descricao)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

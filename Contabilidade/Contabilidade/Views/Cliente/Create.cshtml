@@ -1,0 +1,109 @@
+﻿@model Contabilidade.Models.Cliente
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutBasicoProjeto.cshtml";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Cliente</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.RazaoSocial)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.RazaoSocial)
+            @Html.ValidationMessageFor(model => model.RazaoSocial)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Cnpj)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Cnpj)
+            @Html.ValidationMessageFor(model => model.Cnpj)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Municipio)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Municipio)
+            @Html.ValidationMessageFor(model => model.Municipio)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Estado)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Estado)
+            @Html.ValidationMessageFor(model => model.Estado)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SetorEconomico)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.SetorEconomico)
+            @Html.ValidationMessageFor(model => model.SetorEconomico)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Natureza)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Natureza)
+            @Html.ValidationMessageFor(model => model.Natureza)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.RegimeApuracao)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.RegimeApuracao)
+            @Html.ValidationMessageFor(model => model.RegimeApuracao)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ISSRetencao)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ISSRetencao)
+            @Html.ValidationMessageFor(model => model.ISSRetencao)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AtividadeEconomica)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.AtividadeEconomica)
+            @Html.ValidationMessageFor(model => model.AtividadeEconomica)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Ativo)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Ativo)
+            @Html.ValidationMessageFor(model => model.Ativo)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

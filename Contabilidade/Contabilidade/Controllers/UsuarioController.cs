@@ -158,5 +158,11 @@ namespace Contabilidade.Controllers
             db.Dispose();
             base.Dispose(disposing);
         }
+
+        public ActionResult Start()
+        {
+            return RedirectToAction("Index");
+        }
+
     }
 }

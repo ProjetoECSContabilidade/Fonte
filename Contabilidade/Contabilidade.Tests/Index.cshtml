@@ -1,0 +1,52 @@
+﻿@using BootstrapSupport
+@model IEnumerable<Contabilidade.Models.Setor>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h4><small>Listagem de </small>@Model.GetLabel() </h4>
+<table class="table table-striped">
+    <caption></caption>
+    <thead>
+        <tr>
+            <th>
+                Descricao
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    @{ int index = 0; }
+    @foreach (var setor in Model)
+    {
+        ViewData[index.ToString()] = setor;
+        <tr>
+            <td>
+                @*@Html.Display(setor.Descricao)*@
+                @Html.DisplayFor(modelItem => setor.Descricao)
+            </td>
+            <td>
+                <div class="btn-group">
+                    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                        Ações
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        @{
+                            @Html.TryPartial("_actions", setor)
+                            var routevalues = setor.GetIdValue();
+                            <li>@Html.ActionLink("Editar", "Edit", routevalues)</li>
+                            <li class="divider"></li>
+                            <li>@Html.ActionLink("Excluir", "Delete", routevalues)</li>
+
+                        }
+                    </ul>
+                </div>
+            </td>
+        </tr>
+        index++;
+    }
+</table>
+<p>
+    @Html.ActionLink("Incluir", "Create", null, new { @class = "btn" })
+</p>

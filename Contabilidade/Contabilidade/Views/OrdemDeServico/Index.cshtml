@@ -1,0 +1,90 @@
+﻿@using BootstrapSupport
+@model IEnumerable<Contabilidade.Models.OrdemDeServico>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutBasicoProjeto.cshtml";
+}
+
+<h4><small>Listagem de </small>@Model.GetLabel() </h4>
+
+
+<form class="form-actions">
+    Busca: 
+    <select class="selectpicker">
+        <option>Usuário</option>
+        <option>Rubia</option>
+        <option>Sandro</option>
+    </select>
+    <select class="selectpicker">
+        <option>Setor</option>
+        <option>Rubia</option>
+        <option>Sandro</option>
+    </select>
+    <input type="datetime" class="form-search" placeholder="-- Data Inicial --">
+    <input type="datetime" class="form-search" placeholder="-- Data Final --">
+    <button class="btn btn-primary" type="button">Buscar</button>
+</form>
+
+    <table class="table table-striped">
+        <caption></caption>
+        <thead>
+            <tr>
+                <th>
+                    Cliente
+                </th>
+                <th>
+                    Responsavel
+                </th>
+                <th>
+                    Data de Entrega
+                </th>
+                <th>
+                    Concluido
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        @{ int index = 0; }
+        @foreach (var os in Model)
+        {
+            ViewData[index.ToString()] = os;
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => os.Gcliente)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => os.Gresponsavel)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => os.DataEntrega)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => os.GStatus)
+                </td>
+
+                <td>
+                    <div class="btn-group">
+                        <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                            Ações
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            @{
+                                @Html.TryPartial("_actions", os)
+            var routevalues = os.GetIdValue();
+            <li>@Html.ActionLink("Editar", "Edit", routevalues)</li>
+                                <li class="divider"></li>
+                                <li>@Html.ActionLink("Excluir", "Delete", routevalues)</li>
+
+                            }
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+            index++;
+        }
+    </table>
+    <p>
+        @Html.ActionLink("Incluir", "Create", null, new { @class = "btn" })
+    </p>

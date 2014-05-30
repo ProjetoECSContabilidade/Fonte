@@ -139,15 +139,20 @@
     <Compile Include="BootstrapSupport\HtmlHelpers\Paging.cs" />
     <Compile Include="BootstrapSupport\ViewHelperExtensions.cs" />
     <Compile Include="Controllers\BootstrapBaseController.cs" />
+    <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\CrudController.cs" />
+    <Compile Include="Controllers\EtapaController.cs" />
     <Compile Include="Controllers\ExampleLayoutsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ObrigacaoController.cs" />
+    <Compile Include="Controllers\OrdemDeServicoController.cs" />
+    <Compile Include="Controllers\RelatorioOSController.cs" />
     <Compile Include="Controllers\SetorController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\RelatorioOS.cs" />
     <Compile Include="Models\Cliente.cs" />
     <Compile Include="Models\ConexaoSQLServerContext.cs" />
     <Compile Include="Models\Etapa.cs" />
@@ -170,6 +175,7 @@
     <Content Include="Content\bootstrap-responsive.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images\dunzer-logo.png" />
     <Content Include="Content\images\glyphicons-halflings-white.png" />
     <Content Include="Content\images\glyphicons-halflings.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -286,16 +292,33 @@
     <Content Include="Views\Setor\Index.cshtml" />
     <Content Include="Views\Setor\Create.cshtml" />
     <Content Include="Views\Setor\Delete.cshtml" />
-    <Content Include="Views\Obrigacao\Index.cshtml" />
-    <Content Include="Views\Obrigacao\Details.cshtml" />
-    <Content Include="Views\Obrigacao\Create.cshtml" />
-    <Content Include="Views\Obrigacao\Edit.cshtml" />
-    <Content Include="Views\Obrigacao\Delete.cshtml" />
     <Content Include="Utils\Docs\diagrama de classes_alterado.vsd" />
     <Content Include="Views\Usuario\Index.cshtml" />
     <Content Include="Views\Usuario\Details.cshtml" />
     <Content Include="Views\Usuario\Create.cshtml" />
     <Content Include="Views\Usuario\Delete.cshtml" />
+    <Content Include="Views\Shared\_LayoutBasicoProjeto.cshtml" />
+    <Content Include="Views\Obrigacao\Create.cshtml" />
+    <Content Include="Views\Obrigacao\Index.cshtml" />
+    <Content Include="Views\Obrigacao\Delete.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Cliente\Index.cshtml" />
+    <Content Include="Views\Cliente\Details.cshtml" />
+    <Content Include="Views\Cliente\Create.cshtml" />
+    <Content Include="Views\Cliente\Edit.cshtml" />
+    <Content Include="Views\Cliente\Delete.cshtml" />
+    <Content Include="Views\Cliente\CreatePrint.cshtml" />
+    <Content Include="Views\Etapa\Index.cshtml" />
+    <Content Include="Views\Etapa\Details.cshtml" />
+    <Content Include="Views\Etapa\Create.cshtml" />
+    <Content Include="Views\Etapa\Edit.cshtml" />
+    <Content Include="Views\Etapa\Delete.cshtml" />
+    <Content Include="Views\OrdemDeServico\Index.cshtml" />
+    <Content Include="Views\OrdemDeServico\Details.cshtml" />
+    <Content Include="Views\OrdemDeServico\Create.cshtml" />
+    <Content Include="Views\OrdemDeServico\Edit.cshtml" />
+    <Content Include="Views\OrdemDeServico\Delete.cshtml" />
+    <Content Include="Views\RelatorioOS\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

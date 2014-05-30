@@ -9,3 +9,5 @@ Ctrl+K+C = comenta
 Ctrl+K+U = descomenta
 
 Ctrl+D, Q = QuickInspect
+
+Ctrl + , = abre classe ou arquivo

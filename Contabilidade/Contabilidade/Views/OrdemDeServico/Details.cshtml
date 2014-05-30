@@ -1,0 +1,37 @@
+﻿@model Contabilidade.Models.OrdemDeServico
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutBasicoProjeto.cshtml";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>OrdemDeServico</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.status)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.status)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DataConclusao)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DataConclusao)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DataEntrega)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DataEntrega)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

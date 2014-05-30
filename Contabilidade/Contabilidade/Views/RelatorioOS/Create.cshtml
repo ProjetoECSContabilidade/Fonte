@@ -1,0 +1,123 @@
+﻿@model Contabilidade.Models.RelatorioOS
+@using BootstrapSupport
+
+@{
+    ViewBag.Title = "Create";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset class="form-horizontal">
+        <legend><small>Relatórios de </small>Ordem de Serviço</legend>
+
+        <div class="control-group">
+            @Html.Label("Periodo", new { @class = "control-label" })
+            <div class="controls">
+                @Html.EditorFor(model => model.DataInicio, new { @class = "input-xlarge" })  a  @Html.EditorFor(model => model.DataFim, new { @class = "input-xlarge" })
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.Label("Setor", new { @class = "control-label" })
+            <div class="controls">
+                @Html.DropDownListFor(model => model.Setor.Descricao, new SelectList(
+                  new List<Object>{
+                       new { value = "setor1" , text = "-- Setor --"  },
+                       new { value = "setor2" , text = "-- Setor --"  }
+                    },
+                  "value",
+                  "text",
+                   2))                
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.Label("Usuário", new { @class = "control-label" })
+            <div class="controls">
+               @Html.DropDownListFor(model => model.Usuario.Nome, new SelectList(
+                  new List<Object>{
+                       new { value = "setor1" , text = "-- Usuário --"  },
+                       new { value = "setor2" , text = "-- Usuário --"  }
+                    },
+                  "value",
+                  "text",
+                   2))
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.Label("Cliente", new { @class = "control-label" })
+            <div class="controls">
+                @Html.DropDownListFor(model => model.Cliente.RazaoSocial, new SelectList(
+                  new List<Object>{
+                       new { value = "setor1" , text = "-- Cliente --"  },
+                       new { value = "setor2" , text = "-- Cliente --"  }
+                    },
+                  "value",
+                  "text",
+                   2))
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.Label("Status", new { @class = "control-label" })
+            <div class="controls">
+                @Html.DropDownListFor(model => model.Status, new SelectList(
+                  new List<Object>{
+                       new { value = "setor1" , text = "-- Status --"  },
+                       new { value = "setor2" , text = "-- Status --"  }
+                    },
+                  "value",
+                  "text",
+                   2))
+            </div>
+        </div>
+
+        <div class="control-group">
+            <div class="controls">
+                <div class="btn-group" data-toggle="buttons">
+                    <label class="btn btn-default">
+                        <input type="radio" name="year" value="2011"> Abertas
+                    </label>
+                    <label class="btn btn-default">
+                        <input type="radio" name="year" value="2012"> Fechadas
+                    </label>
+                    <label class="btn btn-default active">
+                        <input type="radio" name="year" value="2013" checked=""> Ambas
+                    </label>
+                </div>
+            </div>
+        </div>
+
+
+       
+
+        @*<div class="control-group">
+            @Html.Label("Abertas", new { @class = "control-label" })
+            <div class="controls">
+                @Html.EditorFor(model => model.Abertas, new { @class = "input-xlarge" })
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.Label("Fechadas", new { @class = "control-label" })
+            <div class="controls">
+                @Html.EditorFor(model => model.Fechadas, new { @class = "input-xlarge" })
+            </div>
+        </div>
+        <div class="control-group">
+            @Html.Label("Ambas", new { @class = "control-label" })
+            <div class="controls">
+                @Html.EditorFor(model => model.Ambas, new { @class = "input-xlarge" })
+            </div>
+        </div>*@
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Gerar </button>
+            @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn " })
+        </div>
+    </fieldset>
+}

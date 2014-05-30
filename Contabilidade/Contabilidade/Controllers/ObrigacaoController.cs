@@ -19,28 +19,26 @@ namespace Contabilidade.Controllers
 
         public ActionResult Index()
         {
-            return View(db.Obrigacao.ToList());
-        }
-
-        //
-        // GET: /Obrigacao/Details/5
-
-        public ActionResult Details(int id = 0)
-        {
-            Obrigacao obrigacao = db.Obrigacao.Find(id);
-            if (obrigacao == null)
+            List<Obrigacao> listaDeObrigacao = db.Obrigacao.ToList();
+            //@TODO refatorar para ficar mais performatico
+            foreach (Obrigacao obrigacao in listaDeObrigacao)
             {
-                return HttpNotFound();
+                obrigacao.Setor = db.Setor.Find(obrigacao.SetorId);
             }
-            return View(obrigacao);
+
+            return View(listaDeObrigacao);
         }
 
-        //
+        
         // GET: /Obrigacao/Create
 
         public ActionResult Create()
         {
-            return View();
+            var obrigacao = new Obrigacao
+            {
+                SetorList = GetAllSetoresAsList()
+            };
+            return View(obrigacao);
         }
 
         //
@@ -70,7 +68,10 @@ namespace Contabilidade.Controllers
             {
                 return HttpNotFound();
             }
-            return View(obrigacao);
+
+            obrigacao.SetorList = GetAllSetoresAsList();
+
+            return View("Create", obrigacao);
         }
 
         //
@@ -99,6 +100,9 @@ namespace Contabilidade.Controllers
             {
                 return HttpNotFound();
             }
+
+            obrigacao.SetorList = GetAllSetoresAsList();
+
             return View(obrigacao);
         }
 
@@ -119,6 +123,22 @@ namespace Contabilidade.Controllers
         {
             db.Dispose();
             base.Dispose(disposing);
+        }
+
+        private IEnumerable<SelectListItem> GetAllSetoresAsList()
+        {
+            //BEGIN carregando a lista de setores
+            var query = db.Setor.ToList().Select(s => new SelectListItem
+            {
+                Value = s.Id.ToString(),
+                Text = s.Descricao,
+            });
+            return query.AsEnumerable();
+        }
+
+        public ActionResult Start()
+        {
+            return RedirectToAction("Index");
         }
     }
 }
