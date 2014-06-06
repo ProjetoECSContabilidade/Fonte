@@ -1,4 +1,11 @@
 ﻿======================================= @TODO LIST =======================================
+[Por ordem de prioridade]
+ - Implementar as telas de listagem. (Detalhe de Etapa, listagem de etapa é dentro da OS/detalhamento da OS) Tirar do menu principal
+ - Concertar as telas de Ordem de Serviço.
+ - Fazer a ordem de serviço ser gerada automaticamente cada mes.
+ - Criar sessoes de usuario no sistema. (Alterando menu superior)
+ - Criar permissões de usuario, alterando as telas. (Ordem de servico a principio)
+ - Implementar relatorio de OS. Funcionalidade e tela.
 
 
 
@@ -8,16 +15,24 @@
 
 
 
-
-Rubia Fazendo:
+ Rubia Fazendo:
 Estuda a apostila.
+1- Fazer a busca nas telas de listagem. 
+	- Usando um componente colapsavel para mostrar o campo de busca
+	- Tentar fazendo busca por palavra chave. usando like em todos os campos (pode ser feito diferente)
+
+2- Arrumar a tela de cliente, campos natureza etc...
+
 
 
 Lucas Fazendo:
-Telas de Usuario [Fazendo]
+	- Ver para coloar setorId como fk, se precisar.
+	
 
 
 
+	[Prioridade baixa]
+	- paginação
 
 
 
