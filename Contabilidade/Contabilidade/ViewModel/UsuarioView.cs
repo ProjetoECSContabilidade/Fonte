@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Contabilidade.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -7,11 +8,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Contabilidade.Models
+namespace Contabilidade.ViewModel
 {
-    [Table("Usuario")]
-    public class Usuario
-    {   
+    
+    public class UsuarioView
+    {
         public int Id { get; set; }
        
        [Required(ErrorMessage = "Digite o nome do usuario.")]
@@ -32,23 +33,27 @@ namespace Contabilidade.Models
         [DefaultValue(true)]
         public bool Ativo { get; set; }
 
+        //campos não salvos no BD
+                
+        public Setor Setor { get; set; }
+        public IEnumerable<SelectListItem> SetorList { get; set; }
 
-        public Usuario()
+
+     
+        public UsuarioView()
         {
-            Ativo = true;
+           Ativo = true;
         }
-
-        public Usuario(int id, string nome, string email, string cargo, int setorId, string login, string senha, bool ativo)
+        public UsuarioView(Usuario u)
         {
-            this.Id = id;
-            this.Nome = nome;
-            this.Email = email;
-            this.Cargo = cargo;
-            this.SetorId = setorId;
-            this.Login = login;
-            this.Senha = senha;
-            this.Ativo = ativo;
+            this.Id = u.Id;
+            this.Nome = u.Nome;
+            this.Email = u.Email;
+            this.Cargo = u.Cargo;
+            this.SetorId = u.SetorId;
+            this.Login = u.Login;
+            this.Senha = u.Senha;
+            this.Ativo = u.Ativo;
         }
     }
-
 }

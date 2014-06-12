@@ -148,7 +148,9 @@
     <Compile Include="Controllers\OrdemDeServicoController.cs" />
     <Compile Include="Controllers\RelatorioOSController.cs" />
     <Compile Include="Controllers\SetorController.cs" />
-    <Compile Include="Controllers\UsuarioController.cs" />
+    <Compile Include="Controllers\UsuarioViewController.cs" />
+    <Compile Include="DAO\SetorDAO.cs" />
+    <Compile Include="DAO\UsuarioDAO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -167,6 +169,9 @@
     <Compile Include="NavigationRoutes\NavigationRouteConfigurationExtensions.cs" />
     <Compile Include="NavigationRoutes\NavigationRouteFilter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\SetorService.cs" />
+    <Compile Include="Service\UsuarioService.cs" />
+    <Compile Include="ViewModel\UsuarioView.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\body.css" />
@@ -293,10 +298,10 @@
     <Content Include="Views\Setor\Create.cshtml" />
     <Content Include="Views\Setor\Delete.cshtml" />
     <Content Include="Utils\Docs\diagrama de classes_alterado.vsd" />
-    <Content Include="Views\Usuario\Index.cshtml" />
-    <Content Include="Views\Usuario\Details.cshtml" />
-    <Content Include="Views\Usuario\Create.cshtml" />
-    <Content Include="Views\Usuario\Delete.cshtml" />
+    <Content Include="Views\UsuarioView\Index.cshtml" />
+    <Content Include="Views\UsuarioView\Details.cshtml" />
+    <Content Include="Views\UsuarioView\Create.cshtml" />
+    <Content Include="Views\UsuarioView\Delete.cshtml" />
     <Content Include="Views\Shared\_LayoutBasicoProjeto.cshtml" />
     <Content Include="Views\Obrigacao\Create.cshtml" />
     <Content Include="Views\Obrigacao\Index.cshtml" />

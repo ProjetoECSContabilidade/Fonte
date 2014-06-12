@@ -22,9 +22,9 @@ namespace Contabilidade
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
 
-            routes.MapNavigationRoute<UsuarioController>("Usuario", r => r.Start())
-                .AddChildRoute<UsuarioController>("Listagem", r => r.Index())
-                .AddChildRoute<UsuarioController>("Incluir", r => r.Create());
+            routes.MapNavigationRoute<UsuarioViewController>("Usuario", r => r.Start())
+                .AddChildRoute<UsuarioViewController>("Listagem", r => r.Index())
+                .AddChildRoute<UsuarioViewController>("Incluir", r => r.Create());
 
             routes.MapNavigationRoute<SetorController>("Setor", r => r.Start())
                 .AddChildRoute<SetorController>("Listagem", r => r.Index())
