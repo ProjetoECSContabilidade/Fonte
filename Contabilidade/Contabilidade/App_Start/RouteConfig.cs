@@ -26,9 +26,9 @@ namespace Contabilidade
                 .AddChildRoute<UsuarioViewController>("Listagem", r => r.Index())
                 .AddChildRoute<UsuarioViewController>("Incluir", r => r.Create());
 
-            routes.MapNavigationRoute<SetorController>("Setor", r => r.Start())
-                .AddChildRoute<SetorController>("Listagem", r => r.Index())
-                .AddChildRoute<SetorController>("Incluir", r => r.Create());
+            routes.MapNavigationRoute<SetorViewController>("Setor", r => r.Start())
+                .AddChildRoute<SetorViewController>("Listagem", r => r.Index())
+                .AddChildRoute<SetorViewController>("Incluir", r => r.Create());
 
             routes.MapNavigationRoute<ObrigacaoController>("Obrigacao", r => r.Start())
                 .AddChildRoute<ObrigacaoController>("Listagem", r => r.Index())

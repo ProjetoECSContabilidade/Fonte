@@ -44,7 +44,7 @@ namespace Contabilidade.Controllers
         {
             var usuarioView = new UsuarioView
             {
-                SetorList = setorService.getAllSetores()
+                SetorList = setorService.getAllSetoresAsList()
             };
 
             return View(usuarioView);
@@ -102,6 +102,7 @@ namespace Contabilidade.Controllers
             {
                 return HttpNotFound();
             }
+
             return View(usuarioView);
         }
 

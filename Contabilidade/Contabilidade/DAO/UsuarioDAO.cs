@@ -23,7 +23,7 @@ namespace Contabilidade.DAO
                return db.Usuario.Find(id);
         }
 
-        public void atualizaUsuario(Usuario usuario)
+        public void updateUsuario(Usuario usuario)
         {
             db.Entry(usuario).State = EntityState.Modified;
             db.SaveChanges();

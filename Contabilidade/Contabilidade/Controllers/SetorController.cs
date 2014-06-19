@@ -7,32 +7,32 @@ using System.Web;
 using System.Web.Mvc;
 using Contabilidade.Models;
 using BootstrapMvcSample.Controllers;
+using Contabilidade.ViewModel;
+using Contabilidade.Service;
 
 namespace Contabilidade.Controllers
 {
-    public class SetorController : BootstrapBaseController
+    public class SetorViewController : BootstrapBaseController
     {
         private ConexaoSQLServerContext db = new ConexaoSQLServerContext();
+        private SetorService setorService = new SetorService();
 
-        //
+
         // GET: /Setor/
-
         public ActionResult Index()
         {
-            return View(db.Setor.ToList());
+            return View(setorService.getAllSetores());
         }
 
-        //
         // GET: /Setor/Details/5
-
         public ActionResult Details(int id = 0)
         {
-            Setor setor = db.Setor.Find(id);
-            if (setor == null)
+            SetorView sView = setorService.getSetorViewBySetorId(id);
+            if (sView == null)
             {
                 return HttpNotFound();
             }
-            return View(setor);
+            return View(sView);
         }
 
         //
@@ -40,37 +40,32 @@ namespace Contabilidade.Controllers
 
         public ActionResult Create()
         {
-            return View(new Setor());
+            return View(new SetorView());
         }
 
-        //
         // POST: /Setor/Create
-
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Setor setor)
+        public ActionResult Create(SetorView setorView)
         {
             if (ModelState.IsValid)
             {
-                db.Setor.Add(setor);
-                db.SaveChanges();
+                setorService.saveSetor(setorView);
                 return RedirectToAction("Index");
             }
 
-            return View(setor);
+            return View(setorView);
         }
 
-        //
         // GET: /Setor/Edit/5
-
         public ActionResult Edit(int id = 0)
         {
-            Setor setor = db.Setor.Find(id);
-            if (setor == null)
+            SetorView setorView = setorService.getSetorViewBySetorId(id);
+            if (setorView == null)
             {
                 return HttpNotFound();
             }
-            return View("Create", setor);
+            return View("Create", setorView);
         }
 
         //
@@ -78,15 +73,14 @@ namespace Contabilidade.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Setor setor)
+        public ActionResult Edit(SetorView setorView)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(setor).State = EntityState.Modified;
-                db.SaveChanges();
+                setorService.atualizaUsuario(setorView);
                 return RedirectToAction("Index");
             }
-            return View(setor);
+            return View(setorView);
         }
 
         //
@@ -94,12 +88,12 @@ namespace Contabilidade.Controllers
 
         public ActionResult Delete(int id = 0)
         {
-            Setor setor = db.Setor.Find(id);
-            if (setor == null)
+            SetorView setorView = setorService.getSetorViewBySetorId(id);
+            if (setorView == null)
             {
                 return HttpNotFound();
             }
-            return View(setor);
+            return View(setorView);
         }
 
         //
@@ -109,9 +103,7 @@ namespace Contabilidade.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Setor setor = db.Setor.Find(id);
-            db.Setor.Remove(setor);
-            db.SaveChanges();
+            setorService.deleteSetor(id);
             return RedirectToAction("Index");
         }
 

@@ -171,6 +171,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\SetorService.cs" />
     <Compile Include="Service\UsuarioService.cs" />
+    <Compile Include="ViewModel\SetorView.cs" />
     <Compile Include="ViewModel\UsuarioView.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -294,9 +295,9 @@
     <Content Include="Views\Shared\_BootstrapLayout.basic.cshtml" />
     <Content Include="Views\Shared\_alerts.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Setor\Index.cshtml" />
-    <Content Include="Views\Setor\Create.cshtml" />
-    <Content Include="Views\Setor\Delete.cshtml" />
+    <Content Include="Views\SetorView\Index.cshtml" />
+    <Content Include="Views\SetorView\Create.cshtml" />
+    <Content Include="Views\SetorView\Delete.cshtml" />
     <Content Include="Utils\Docs\diagrama de classes_alterado.vsd" />
     <Content Include="Views\UsuarioView\Index.cshtml" />
     <Content Include="Views\UsuarioView\Details.cshtml" />

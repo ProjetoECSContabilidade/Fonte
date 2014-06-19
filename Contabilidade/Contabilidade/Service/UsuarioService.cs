@@ -42,7 +42,7 @@ namespace Contabilidade.Service
         public UsuarioView transformUsuarioInUsuarioView(Usuario usuario)
         {
             UsuarioView usuView = new UsuarioView(usuario);
-            usuView.SetorList = setorService.getAllSetores();
+            usuView.SetorList = setorService.getAllSetoresAsList();
             usuView.Setor = setorService.findById(usuario.SetorId);
 
             return usuView;
@@ -66,7 +66,7 @@ namespace Contabilidade.Service
 
         public void atualizaUsuario(UsuarioView usuarioView)
         {
-            usuarioDAO.atualizaUsuario(transformUsuarioViewInUsuario(usuarioView));
+            usuarioDAO.updateUsuario(transformUsuarioViewInUsuario(usuarioView));
         }
 
         public void deleteUsuario(int id)
