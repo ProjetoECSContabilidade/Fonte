@@ -7,108 +7,99 @@ using System.Web;
 using System.Web.Mvc;
 using Contabilidade.Models;
 using BootstrapMvcSample.Controllers;
-using Contabilidade.DAO;
-using Contabilidade.ViewModel;
 using Contabilidade.Service;
+using Contabilidade.ViewModel;
 
 namespace Contabilidade.Controllers
 {
-    public class UsuarioViewController : BootstrapBaseController
+    public class ObrigacaoViewController : BootstrapBaseController
     {
         private ConexaoSQLServerContext db = new ConexaoSQLServerContext();
-        private UsuarioService usuarioService = new UsuarioService();
+        private ObrigacaoService obrigacaoService = new ObrigacaoService();
         private SetorService setorService = new SetorService();
-
-         // GET: /Usuario/
+        
+        // GET: /Obrigacao/
         public ActionResult Index()
         {
-            return View(usuarioService.getAllUsuarios());
+            return View(obrigacaoService.getAllObrigacoes());
+            //List<Obrigacao> listaDeObrigacao = db.Obrigacao.ToList();
+            ////@TODO refatorar para ficar mais performatico
+            //foreach (Obrigacao obrigacao in listaDeObrigacao)
+            //{
+            //    obrigacao.Setor = db.Setor.Find(obrigacao.SetorId);
+            //}
+
+            //return View(listaDeObrigacao);
         }
 
-        // GET: /Usuario/Details/5
-
-        public ActionResult Details(int id = 0)
-        {
-            UsuarioView usuarioView = usuarioService.getUsuarioViewByUsuarioId(id);
-            if (usuarioView == null)
-            {
-                return HttpNotFound();
-            }
-            return View("Create", usuarioView);
-        }
-
-        // GET: /Usuario/Create
+        
+        // GET: /Obrigacao/Create
         public ActionResult Create()
         {
-            var usuarioView = new UsuarioView
+            var obrigacaoView = new ObrigacaoView
             {
                 SetorList = setorService.getAllSetoresAsList()
             };
-
-            return View(usuarioView);
+            return View(obrigacaoView);
         }
-        
-        
-        // POST: /Usuario/Create
+
+        // POST: /Obrigacao/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(UsuarioView usuarioView)
+        public ActionResult Create(ObrigacaoView obrigacaoView)
         {
-            //TODO tratar exceção quando inclui usuario com username duplicado
             if (ModelState.IsValid)
             {
-                usuarioService.saveUsuario(usuarioView);
+                obrigacaoService.saveObrigacao(obrigacaoView);
                 return RedirectToAction("Index");
             }
 
-            return View(usuarioView);
+            return View(obrigacaoView);
         }
 
-        
-        // GET: /Usuario/Edit/5
+        // GET: /Obrigacao/Edit/5
         public ActionResult Edit(int id = 0)
         {
-            UsuarioView usuarioView = usuarioService.getUsuarioViewByUsuarioId(id);
-            if (usuarioView == null)
+            ObrigacaoView obrigacaoView = obrigacaoService.getObrigacaoViewByObrigacaoId(id);
+            if (obrigacaoView == null)
             {
                 return HttpNotFound();
             }
-            return View("Create", usuarioView);
+            return View("Create", obrigacaoView);
         }
 
-        
-        // POST: /Usuario/Edit/5
+        // POST: /Obrigacao/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(UsuarioView usuarioView)
+        public ActionResult Edit(ObrigacaoView obrigacaoView)
         {
             if (ModelState.IsValid)
             {
-                usuarioService.atualizaUsuario(usuarioView);
+                obrigacaoService.atualizaObrigacao(obrigacaoView);
                 return RedirectToAction("Index");
             }
-            return View(usuarioView);
+            return View(obrigacaoView);
         }
 
-        // GET: /Usuario/Delete/5
+
+        // GET: /Obrigacao/Delete/5
         public ActionResult Delete(int id = 0)
         {
-            UsuarioView usuarioView = usuarioService.getUsuarioViewByUsuarioId(id);
-            if (usuarioView == null)
+            ObrigacaoView obrigacaoView = obrigacaoService.getObrigacaoViewByObrigacaoId(id);
+            if (obrigacaoView == null)
             {
                 return HttpNotFound();
             }
 
-            return View(usuarioView);
+            return View(obrigacaoView);
         }
 
-
-        // POST: /Usuario/Delete/5
+        // POST: /Obrigacao/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            usuarioService.deleteUsuario(id);
+            obrigacaoService.deleteObrigacao(id);
             return RedirectToAction("Index");
         }
 
@@ -122,6 +113,5 @@ namespace Contabilidade.Controllers
         {
             return RedirectToAction("Index");
         }
-
     }
 }

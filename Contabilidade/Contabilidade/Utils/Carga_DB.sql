@@ -14,11 +14,11 @@ INSERT INTO Setor (Descricao) VALUES ('Gerencia')
 select * from Setor
 
 --insert usuarios
-INSERT INTO Usuario (Nome,Email,Cargo,SetorId,Login,Senha,Ativo) VALUES ('Rubia','rubia@outlook.com', 'Coordenador', 2, 'rubia.cv', 'ecs2014', 1)
+INSERT INTO Usuario (Nome,Email,Cargo,SetorId,Login,Senha,Ativo) VALUES ('Rubia Vieira','rubia@outlook.com', 'Coordenador', 2, 'rubia.cv', 'ecs2014', 1)
+INSERT INTO Usuario (Nome,Email,Cargo,SetorId,Login,Senha,Ativo) VALUES ('Elisabeth Dvorak','elisabeth.dvorak@thomsonreuters.com', 'Analista Contábil', 4, 'elisabeth', 'q1w2e3r4', 1)
+INSERT INTO Usuario (Nome,Email,Cargo,SetorId,Login,Senha,Ativo) VALUES ('Jessica Amorim','jessica.am@ibest.com', 'Analista Contábil', 4, 'jessi.a', 'etchalele', 1)
 INSERT INTO Usuario (Nome,Email,Cargo,SetorId,Login,Senha,Ativo) VALUES ('Lucas','lucas@gmail.com', 'Gerente', 1, 'lucas.ger', 'lord421', 1)
-INSERT INTO Usuario (Nome,Email,Cargo,SetorId,Login,Senha,Ativo) VALUES ('Sansa Stark','sansa@winterfel.com', 'Analista de RH', 3, 'sansa.sansa', 'diejofrey', 0)
-INSERT INTO Usuario (Nome,Email,Cargo,SetorId,Login,Senha,Ativo) VALUES ('Cersei Lannister','cersei@laniesters.com', 'Analista Contábil', 4, 'cersei.lannister', 'dontkilljofrey', 1)
-INSERT INTO Usuario (Nome,Email,Cargo,SetorId,Login,Senha,Ativo) VALUES ('Tyrion Lannister','tyrion@jackass.com', 'Analista Contábil', 4, 'tyrionrocks', 'shea', 1)
+INSERT INTO Usuario (Nome,Email,Cargo,SetorId,Login,Senha,Ativo) VALUES ('Fabiana Siqueira','fabiana@tr.com', 'Analista de RH', 3, 'fabi.s', '123456', 0)
 select * from Usuario
 
 

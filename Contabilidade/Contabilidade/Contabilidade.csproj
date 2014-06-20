@@ -144,12 +144,13 @@
     <Compile Include="Controllers\EtapaController.cs" />
     <Compile Include="Controllers\ExampleLayoutsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ObrigacaoController.cs" />
+    <Compile Include="Controllers\ObrigacaoViewController.cs" />
     <Compile Include="Controllers\OrdemDeServicoController.cs" />
     <Compile Include="Controllers\RelatorioOSController.cs" />
     <Compile Include="Controllers\SetorController.cs" />
     <Compile Include="Controllers\UsuarioViewController.cs" />
     <Compile Include="DAO\SetorDAO.cs" />
+    <Compile Include="DAO\ObrigacaoDAO.cs" />
     <Compile Include="DAO\UsuarioDAO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -170,7 +171,9 @@
     <Compile Include="NavigationRoutes\NavigationRouteFilter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\SetorService.cs" />
+    <Compile Include="Service\ObrigacaoService.cs" />
     <Compile Include="Service\UsuarioService.cs" />
+    <Compile Include="ViewModel\ObrigacaoView.cs" />
     <Compile Include="ViewModel\SetorView.cs" />
     <Compile Include="ViewModel\UsuarioView.cs" />
   </ItemGroup>
@@ -304,9 +307,9 @@
     <Content Include="Views\UsuarioView\Create.cshtml" />
     <Content Include="Views\UsuarioView\Delete.cshtml" />
     <Content Include="Views\Shared\_LayoutBasicoProjeto.cshtml" />
-    <Content Include="Views\Obrigacao\Create.cshtml" />
-    <Content Include="Views\Obrigacao\Index.cshtml" />
-    <Content Include="Views\Obrigacao\Delete.cshtml" />
+    <Content Include="Views\ObrigacaoView\Create.cshtml" />
+    <Content Include="Views\ObrigacaoView\Index.cshtml" />
+    <Content Include="Views\ObrigacaoView\Delete.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Cliente\Index.cshtml" />
     <Content Include="Views\Cliente\Details.cshtml" />

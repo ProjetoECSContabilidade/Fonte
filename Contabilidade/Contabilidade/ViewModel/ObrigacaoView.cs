@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Contabilidade.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -6,10 +7,10 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Contabilidade.Models
+namespace Contabilidade.ViewModel
 {
     [Table("Obrigacao")]
-    public class Obrigacao
+    public class ObrigacaoView
     {
         public int Id { get; set; }
 
@@ -27,17 +28,22 @@ namespace Contabilidade.Models
         [Required]
         public int SetorId { get; set; }
 
+        //campos não salvos no BD
 
-        public Obrigacao(int id, string descricao, int diaEntrega, DateTime dataValidade, int setorId)
+        [NotMapped]
+        public Setor Setor { get; set; }
+        [NotMapped]
+        public IEnumerable<SelectListItem> SetorList { get; set; }
+
+        public ObrigacaoView(Obrigacao o)
         {
-            this.Id = id;
-            this.Descricao = descricao;
-            this.DiaEntrega = diaEntrega;
-            this.DataValidade = dataValidade;
-            this.SetorId = setorId;
+            this.Id = o.Id;
+            this.Descricao = o.Descricao;
+            this.DiaEntrega = o.DiaEntrega;
+            this.DataValidade = o.DataValidade;
+            this.SetorId = o.SetorId;
         }
-
-        public Obrigacao()
+        public ObrigacaoView()
         {
 
         }
