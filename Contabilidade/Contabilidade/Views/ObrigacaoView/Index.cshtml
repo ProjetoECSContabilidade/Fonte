@@ -8,6 +8,35 @@
 
 <h4><small>Listagem de </small>Obrigação</h4>
 
+<div class="panel-group" id="accordion">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                    Busca
+                </a>
+            </h4>
+        </div>
+        <div id="collapseOne" class="panel-collapse collapse">
+            <div class="panel-body">
+                @using (Html.BeginForm())
+                {
+                    <p>
+                        Busca por: @Html.TextBox("SearchDesc",null, new { placeholder = "Descrição" })
+                        @Html.TextBox("SearchSetor", null, new { placeholder = "Setor" })
+                        @Html.TextBox("SearchDia", null, new { placeholder = "Dia da Entrega" })
+                        <input type="submit" value="Buscar" />
+                    </p>
+                }
+                @*<form class="navbar-form pull-left">
+                    <input type="text" class="span2">
+                    <button type="submit" class="btn">Enviar</button>
+                </form>*@
+            </div>
+        </div>
+    </div>
+</div>
+
 <table class="table table-striped">
     <caption></caption>
     <thead>

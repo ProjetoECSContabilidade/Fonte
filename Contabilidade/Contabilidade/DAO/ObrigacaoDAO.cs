@@ -13,6 +13,7 @@ namespace Contabilidade.DAO
     public class ObrigacaoDAO
     {
         private ConexaoSQLServerContext db = new ConexaoSQLServerContext();
+        private SetorService setorService = new SetorService();
 
         public void saveObrigacao(Obrigacao obrigacao)
         {
@@ -41,5 +42,39 @@ namespace Contabilidade.DAO
         {
             return db.Obrigacao.ToList();
         }
+
+        public List<Obrigacao> selectObrigacoesPorFiltro(string filtroDesc, string filtroSetor, int? filtroDia)
+        {
+            var query = from o in db.Obrigacao
+                        select o;
+
+            int setorId=0;
+
+            if (!String.IsNullOrEmpty(filtroSetor)){
+                 setorId = setorService.getSetorIdBySetorDesc(filtroSetor);
+            }
+
+            if (!String.IsNullOrEmpty(filtroDesc)){
+                query = query.Where(o => o.Descricao.Contains(filtroDesc));
+            }
+            if (setorId != null && setorId != 0){
+                query = query.Where(s => s.SetorId == setorId);
+            }
+            if (filtroDia != null && filtroDia != 0){
+                query = query.Where(s => s.DiaEntrega == filtroDia);
+            }
+
+            query.Select(o => new Obrigacao
+            {   
+                Id = o.Id,
+                Descricao = o.Descricao,
+                DiaEntrega = o.DiaEntrega,
+                DataValidade = o.DataValidade,
+                SetorId = o.SetorId
+            });
+
+            return query.ToList();
+        }
+
     }
 }

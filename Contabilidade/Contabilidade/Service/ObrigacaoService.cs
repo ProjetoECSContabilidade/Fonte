@@ -72,5 +72,15 @@ namespace Contabilidade.Service
             obrigacaoDAO.deleteObrigacao(id);
         }
 
+        public List<ObrigacaoView> searchObrigacaoComFiltro(string filtroDesc, string filtroSetor, int? filtroDia)
+        {
+            List<ObrigacaoView> listaDeView = new List<ObrigacaoView>();
+            foreach (Obrigacao ob in obrigacaoDAO.selectObrigacoesPorFiltro(filtroDesc, filtroSetor, filtroDia))
+            {
+                listaDeView.Add(transformObrigacaoInObrigacaoView(ob));
+            }
+            return listaDeView;
+        }
+
     }
 }

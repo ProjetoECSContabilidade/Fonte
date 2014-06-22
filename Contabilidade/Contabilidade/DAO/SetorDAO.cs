@@ -51,5 +51,14 @@ namespace Contabilidade.DAO
             db.SaveChanges();
         }
 
+
+        public int getSetorIdBySetorDesc(string desc)
+        {
+            var query = from s in db.Setor
+                        where s.Descricao.Equals(desc)
+                        select s.Id;
+
+            return query.FirstOrDefault();
+        }
     }
 }

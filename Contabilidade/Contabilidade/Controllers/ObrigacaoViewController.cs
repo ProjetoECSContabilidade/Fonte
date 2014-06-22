@@ -19,18 +19,24 @@ namespace Contabilidade.Controllers
         private SetorService setorService = new SetorService();
         
         // GET: /Obrigacao/
-        public ActionResult Index()
+        public ActionResult Index(string searchDesc,string searchSetor, int? searchDia)
         {
-            return View(obrigacaoService.getAllObrigacoes());
-            //List<Obrigacao> listaDeObrigacao = db.Obrigacao.ToList();
-            ////@TODO refatorar para ficar mais performatico
-            //foreach (Obrigacao obrigacao in listaDeObrigacao)
-            //{
-            //    obrigacao.Setor = db.Setor.Find(obrigacao.SetorId);
-            //}
-
-            //return View(listaDeObrigacao);
+            if (!String.IsNullOrEmpty(searchDesc) || !String.IsNullOrEmpty(searchSetor) || (searchDia != null && searchDia !=0) )
+            {
+                return View(obrigacaoService.searchObrigacaoComFiltro(searchDesc, searchSetor,searchDia));
+            }
+            else
+            {
+                return View(obrigacaoService.getAllObrigacoes());
+            }
+            
         }
+
+        //public ActionResult Index()
+        //{
+        //    return View(obrigacaoService.getAllObrigacoes());
+        //}
+
 
         
         // GET: /Obrigacao/Create

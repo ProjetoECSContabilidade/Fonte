@@ -68,5 +68,10 @@ namespace Contabilidade.Service
         {
             setorDAO.deleteSetor(id);
         }
+
+        public int getSetorIdBySetorDesc(string desc)
+        {
+            return setorDAO.getSetorIdBySetorDesc(desc);
+        }
     }
 }
