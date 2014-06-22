@@ -22,7 +22,8 @@ namespace Contabilidade.ViewModel
         [Range(1, 31, ErrorMessage = "Informe um dia válido"), Required]
         public int DiaEntrega { get; set; }
 
-        [DataType(DataType.Date), Required]
+        [DataType(DataType.Date)]
+        //[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DataValidade { get; set; }
 
         [Required]

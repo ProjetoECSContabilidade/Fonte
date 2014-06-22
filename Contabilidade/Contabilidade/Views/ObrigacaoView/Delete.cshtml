@@ -26,7 +26,7 @@
         <div class="control-group">
             @Html.Label("Dia Entrega", new { @class = "control-label" })
             <div class="controls">
-                @Html.EditorFor(model => model.DiaEntrega, new { @class = "input-xlarge", disabled = "disabled" })
+                @Html.TextBoxFor(model => model.DiaEntrega, new { @class = "input-xlarge", disabled = "disabled" })
                 @Html.ValidationMessageFor(model => model.DiaEntrega)
             </div>
         </div>
@@ -34,7 +34,8 @@
         <div class="control-group">
             @Html.Label("Data Validade", new { @class = "control-label" })
             <div class="controls">
-                @Html.EditorFor(model => model.DataValidade, new { @class = "input-xlarge", disabled = "disabled" })
+                @*@Html.EditorFor(model => model.DataValidade, new { @class = "input-xlarge", disabled = "disabled" })*@
+                @Html.TextBoxFor(m => m.DataValidade, new { @Value = Model.DataValidade.ToString("dd/MM/yyyy"), disabled = "disabled"})
                 @Html.ValidationMessageFor(model => model.DataValidade)
             </div>
         </div>
