@@ -9,6 +9,12 @@ using System.Web.Mvc;
 
 namespace Contabilidade.Service
 {
+    /* SERVICE
+      A função das classes Service é armazenar metodos que podem ser reaproveitados pelo controller ou por outras classes em geral,
+      Geralmente mediando a chamada de metodos entre controller e DAO.
+      Normalmente contem a parte mais tecnica do projeto, como manipulação de objetos, listas, classes etc..
+    */
+
     public class SetorService
     {
         private SetorDAO setorDAO = new SetorDAO();

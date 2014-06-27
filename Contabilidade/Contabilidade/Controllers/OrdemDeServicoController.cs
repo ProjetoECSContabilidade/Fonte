@@ -9,6 +9,12 @@ using Contabilidade.Models;
 
 namespace Contabilidade.Controllers
 {
+    /*	CONTROLLER
+      A função das classes Controller é armazenas a logica de negocio e de apresentação,
+      é a primeira classe que é chamada por uma tela, seja ela de cadastro ou somente apresentação de dados.
+      Normalmente utiliza os metodos do Service para manipular os dados.
+    */
+ 
     public class OrdemDeServicoController : Controller
     {
         private ConexaoSQLServerContext db = new ConexaoSQLServerContext();

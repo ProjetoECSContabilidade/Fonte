@@ -9,7 +9,7 @@ using Contabilidade.Models;
 using BootstrapMvcSample.Controllers;
 
 namespace MvcApplication1.Controllers
-{
+{ 
     public class CrudController<Model> : BootstrapBaseController
     {
         private ConexaoSQLServerContext db = new ConexaoSQLServerContext();

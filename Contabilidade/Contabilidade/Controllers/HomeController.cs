@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using Models;
 
 namespace BootstrapMvcSample.Controllers
-{
+{ 
     public class HomeController : BootstrapBaseController
     {
         //private static List<HomeInputModel> _models = ModelIntializer.CreateHomeInputModels();

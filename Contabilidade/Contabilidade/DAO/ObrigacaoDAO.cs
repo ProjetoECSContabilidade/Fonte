@@ -10,6 +10,11 @@ using System.Data;
 
 namespace Contabilidade.DAO
 {
+    /* DAO
+      A Função das classes DAO é armazenar as logicas de acesso ao banco de dados,
+      como consultas e scripts sql e logica de persistencia de classes(model).
+      Os metodos do DAO normalmente são acessados via classe Service.
+   */
     public class ObrigacaoDAO
     {
         private ConexaoSQLServerContext db = new ConexaoSQLServerContext();
