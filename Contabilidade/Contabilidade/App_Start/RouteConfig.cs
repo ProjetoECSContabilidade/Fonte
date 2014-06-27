@@ -34,20 +34,20 @@ namespace Contabilidade
                 .AddChildRoute<ObrigacaoViewController>("Listagem", r => r.Index("","",0))
                 .AddChildRoute<ObrigacaoViewController>("Incluir", r => r.Create());
 
-            routes.MapNavigationRoute<ClienteController>("Cliente", r => r.Start())
-                .AddChildRoute<ClienteController>("Listagem", r => r.Index())
-                .AddChildRoute<ClienteController>("Incluir", r => r.Create());
+            routes.MapNavigationRoute<ClienteViewController>("Cliente", r => r.Start())
+                .AddChildRoute<ClienteViewController>("Listagem", r => r.Index())
+                .AddChildRoute<ClienteViewController>("Incluir", r => r.Create());
 
-            routes.MapNavigationRoute<EtapaController>("Etapa", r => r.Start())
-                .AddChildRoute<EtapaController>("Listagem", r => r.Index())
-                .AddChildRoute<EtapaController>("Incluir", r => r.Create());
+            routes.MapNavigationRoute<EtapaViewController>("Etapa", r => r.Start())
+                .AddChildRoute<EtapaViewController>("Listagem", r => r.Index())
+                .AddChildRoute<EtapaViewController>("Incluir", r => r.Create());
 
-            routes.MapNavigationRoute<OrdemDeServicoController>("Ordem de Serviço", r => r.Start())
-                .AddChildRoute<OrdemDeServicoController>("Listagem", r => r.Index())
-                .AddChildRoute<OrdemDeServicoController>("Incluir", r => r.Create());
+            routes.MapNavigationRoute<OrdemDeServicoViewController>("Ordem de Serviço", r => r.Start())
+                .AddChildRoute<OrdemDeServicoViewController>("Listagem", r => r.Index())
+                .AddChildRoute<OrdemDeServicoViewController>("Incluir", r => r.Create());
 
-            routes.MapNavigationRoute<RelatorioOSController>("Relatório de OS", r => r.Start())
-                .AddChildRoute<RelatorioOSController>("Relatório", r => r.Create());
+            routes.MapNavigationRoute<RelatorioOSViewController>("Relatório de OS", r => r.Start())
+                .AddChildRoute<RelatorioOSViewController>("Relatório", r => r.Create());
 
             //routes.MapNavigationRoute<HomeController>("Automatic Scaffolding", c => c.Index());
 

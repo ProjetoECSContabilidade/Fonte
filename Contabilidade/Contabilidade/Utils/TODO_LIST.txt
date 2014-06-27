@@ -27,7 +27,7 @@ Estuda a apostila.
 
 Lucas Fazendo:
 	- Ver para coloar setorId como fk, se precisar.
-	
+	- popular DAO, Service e arrumar as classes model e controller de Cliente, Etapa, OS,Relatorio.
 
 
 

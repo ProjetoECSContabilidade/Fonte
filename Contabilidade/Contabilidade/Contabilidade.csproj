@@ -139,23 +139,32 @@
     <Compile Include="BootstrapSupport\HtmlHelpers\Paging.cs" />
     <Compile Include="BootstrapSupport\ViewHelperExtensions.cs" />
     <Compile Include="Controllers\BootstrapBaseController.cs" />
-    <Compile Include="Controllers\ClienteController.cs" />
+    <Compile Include="Controllers\ClienteViewController.cs" />
     <Compile Include="Controllers\CrudController.cs" />
-    <Compile Include="Controllers\EtapaController.cs" />
+    <Compile Include="Controllers\EtapaViewController.cs" />
     <Compile Include="Controllers\ExampleLayoutsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ObrigacaoViewController.cs" />
     <Compile Include="Controllers\OrdemDeServicoController.cs" />
-    <Compile Include="Controllers\RelatorioOSController.cs" />
-    <Compile Include="Controllers\SetorController.cs" />
+    <Compile Include="Controllers\RelatorioOSViewController.cs" />
+    <Compile Include="Controllers\SetorViewController.cs" />
     <Compile Include="Controllers\UsuarioViewController.cs" />
+    <Compile Include="DAO\OrdemDeServicoDAO.cs" />
+    <Compile Include="DAO\ClienteDAO.cs" />
+    <Compile Include="DAO\EtapaDAO.cs" />
     <Compile Include="DAO\SetorDAO.cs" />
     <Compile Include="DAO\ObrigacaoDAO.cs" />
     <Compile Include="DAO\UsuarioDAO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\RelatorioOS.cs" />
+    <Compile Include="Service\OrdemDeServicoService.cs" />
+    <Compile Include="Service\EtapaService.cs" />
+    <Compile Include="Service\ClienteService.cs" />
+    <Compile Include="ViewModel\ClienteView.cs" />
+    <Compile Include="ViewModel\EtapaView.cs" />
+    <Compile Include="ViewModel\OrdemDeServicoView.cs" />
+    <Compile Include="ViewModel\RelatorioOSView.cs" />
     <Compile Include="Models\Cliente.cs" />
     <Compile Include="Models\ConexaoSQLServerContext.cs" />
     <Compile Include="Models\Etapa.cs" />

@@ -15,7 +15,7 @@ namespace Contabilidade.Controllers
       Normalmente utiliza os metodos do Service para manipular os dados.
     */
  
-    public class OrdemDeServicoController : Controller
+    public class OrdemDeServicoViewController : Controller
     {
         private ConexaoSQLServerContext db = new ConexaoSQLServerContext();
 

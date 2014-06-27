@@ -1,12 +1,13 @@
-﻿using System;
+﻿using Contabilidade.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace Contabilidade.Models
+namespace Contabilidade.ViewModel
 {
-    public class RelatorioOS
+    public class RelatorioOSView
     {
         [DataType(DataType.Date)]
         public DateTime DataInicio { get; set; }

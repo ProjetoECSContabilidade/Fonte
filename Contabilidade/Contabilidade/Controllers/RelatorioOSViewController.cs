@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using Contabilidade.Models;
 using BootstrapMvcSample.Controllers;
+using Contabilidade.ViewModel;
 
 namespace Contabilidade.Controllers
 {
@@ -16,16 +17,14 @@ namespace Contabilidade.Controllers
       Normalmente utiliza os metodos do Service para manipular os dados.
     */
  
-    public class RelatorioOSController : BootstrapBaseController
+    public class RelatorioOSViewController : BootstrapBaseController
     {
         private ConexaoSQLServerContext db = new ConexaoSQLServerContext();
 
-        //
         // GET: /RelatorioOS/
-
         public ActionResult Create()
         {
-            return View(new RelatorioOS());
+            return View(new RelatorioOSView());
         }
 
         protected override void Dispose(bool disposing)
