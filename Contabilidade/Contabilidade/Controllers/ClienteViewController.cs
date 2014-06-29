@@ -7,6 +7,8 @@ using System.Web;
 using System.Web.Mvc;
 using Contabilidade.Models;
 using BootstrapMvcSample.Controllers;
+using Contabilidade.Service;
+using Contabilidade.ViewModel;
 
 namespace Contabilidade.Controllers
 {
@@ -19,13 +21,14 @@ namespace Contabilidade.Controllers
     public class ClienteViewController : BootstrapBaseController
     {
         private ConexaoSQLServerContext db = new ConexaoSQLServerContext();
+        private ClienteService clienteService = new ClienteService();
 
         //
         // GET: /Cliente/
 
         public ActionResult Index()
         {
-            return View(db.Cliente.ToList());
+            return View(clienteService.getAllClientes());
         }
 
         //
@@ -33,7 +36,7 @@ namespace Contabilidade.Controllers
 
         public ActionResult Details(int id = 0)
         {
-            Cliente cliente = db.Cliente.Find(id);
+            ClienteView cliente = clienteService.findViewById(id);
             if (cliente == null)
             {
                 return HttpNotFound();
@@ -54,12 +57,11 @@ namespace Contabilidade.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Cliente cliente)
+        public ActionResult Create(ClienteView cliente)
         {
             if (ModelState.IsValid)
             {
-                db.Cliente.Add(cliente);
-                db.SaveChanges();
+                clienteService.saveCliente(cliente);
                 return RedirectToAction("Index");
             }
 
@@ -71,7 +73,7 @@ namespace Contabilidade.Controllers
 
         public ActionResult Edit(int id = 0)
         {
-            Cliente cliente = db.Cliente.Find(id);
+            ClienteView cliente = clienteService.findViewById(id);
             if (cliente == null)
             {
                 return HttpNotFound();
@@ -84,12 +86,11 @@ namespace Contabilidade.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Cliente cliente)
+        public ActionResult Edit(ClienteView cliente)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(cliente).State = EntityState.Modified;
-                db.SaveChanges();
+                clienteService.atualizaCliente(cliente);
                 return RedirectToAction("Index");
             }
             return View(cliente);
@@ -100,7 +101,7 @@ namespace Contabilidade.Controllers
 
         public ActionResult Delete(int id = 0)
         {
-            Cliente cliente = db.Cliente.Find(id);
+            ClienteView cliente = clienteService.findViewById(id);
             if (cliente == null)
             {
                 return HttpNotFound();
@@ -115,9 +116,7 @@ namespace Contabilidade.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Cliente cliente = db.Cliente.Find(id);
-            db.Cliente.Remove(cliente);
-            db.SaveChanges();
+            clienteService.deleteCliente(id);
             return RedirectToAction("Index");
         }
 

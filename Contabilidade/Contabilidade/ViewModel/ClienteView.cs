@@ -25,6 +25,28 @@ namespace Contabilidade.ViewModel
         public Usuario ResponsavelFiscal { get; set; }
         public Usuario ResponsavelContabil { get; set; }
         public Usuario ResponsavelRH { get; set; }
+
+        public ClienteView(Cliente c)
+        {
+            this.Id = c.Id;
+            this.RazaoSocial = c.RazaoSocial;
+            this.Cnpj = c.Cnpj;
+            this.Municipio = c.Municipio;   
+            this.Estado = c.Estado;   
+            this.SetorEconomico = c.SetorEconomico;   
+            this.Natureza = c.Natureza;   
+            this.RegimeApuracao = c.RegimeApuracao;   
+            this.ISSRetencao = c.ISSRetencao;   
+            this.AtividadeEconomica = c.AtividadeEconomica;
+            this.Ativo = c.Ativo;
+            this.Obrigacoes = c.Obrigacoes;
+            this.ResponsavelFiscal = c.ResponsavelFiscal;
+            this.ResponsavelContabil = c.ResponsavelContabil;
+            this.ResponsavelRH = c.ResponsavelRH;
+        }
+        public ClienteView()
+        {
+        }
     
     }
 }

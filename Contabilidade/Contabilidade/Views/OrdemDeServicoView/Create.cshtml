@@ -1,11 +1,11 @@
-﻿@model Contabilidade.Models.OrdemDeServico
+﻿@model Contabilidade.ViewModel.OrdemDeServicoView
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_LayoutBasicoProjeto.cshtml";
 }
 
-<h2>Edit</h2>
+<h2>Create</h2>
 
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
@@ -14,14 +14,12 @@
     <fieldset>
         <legend>OrdemDeServico</legend>
 
-        @Html.HiddenFor(model => model.Id)
-
         <div class="editor-label">
-            @Html.LabelFor(model => model.status)
+            @Html.LabelFor(model => model.Status)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.status)
-            @Html.ValidationMessageFor(model => model.status)
+            @Html.EditorFor(model => model.Status)
+            @Html.ValidationMessageFor(model => model.Status)
         </div>
 
         <div class="editor-label">
@@ -41,7 +39,7 @@
         </div>
 
         <p>
-            <input type="submit" value="Save" />
+            <input type="submit" value="Create" />
         </p>
     </fieldset>
 }

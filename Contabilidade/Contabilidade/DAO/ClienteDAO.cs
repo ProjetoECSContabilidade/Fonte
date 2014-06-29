@@ -39,5 +39,9 @@ namespace Contabilidade.DAO
             db.Cliente.Remove(findById(id));
             db.SaveChanges();
         }
+        public List<Cliente> getAllClientes()
+        {
+            return db.Cliente.ToList();
+        }
     }
 }

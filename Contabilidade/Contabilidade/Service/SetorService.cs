@@ -65,7 +65,7 @@ namespace Contabilidade.Service
             setorDAO.saveSetor(setor);
         }
 
-        public void atualizaUsuario(SetorView sView)
+        public void atualizaSetor(SetorView sView)
         {
             setorDAO.updateSetor(transformSetorViewInSetor(sView));
         }

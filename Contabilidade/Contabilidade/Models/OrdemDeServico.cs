@@ -16,20 +16,26 @@ namespace Contabilidade.Models
         public Setor Setor { get; set; }
         public Cliente Cliente { get; set; }
         public ICollection<Etapa> Etapas { get; set; }
-        public string status { get; set; }
+        public string Status { get; set; }
         [DataType(DataType.Date)]
         public DateTime DataConclusao { get; set; }
         [DataType(DataType.Date)]
         public DateTime DataEntrega { get; set; }
 
+        public OrdemDeServico(int id, Usuario responsavel, Setor setor, Cliente cliente, ICollection<Etapa> etapas, string status, DateTime dataConclusao, DateTime dataEntrega)
+        {
+            this.Id = id;
+            this.Responsavel = responsavel;
+            this.Setor = setor;
+            this.Etapas = etapas;
+            this.Status = status;
+            this.DataConclusao = dataConclusao;
+            this.DataEntrega = dataEntrega;
+        }
 
-        //apagar
-        [NotMapped]
-        public String Gcliente { get; set; }
-        [NotMapped]
-        public String Gresponsavel { get; set; }
-        [NotMapped]
-        public bool GStatus { get; set; }
+        public OrdemDeServico()
+        {
+        }
 
 
     }

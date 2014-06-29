@@ -320,22 +320,22 @@
     <Content Include="Views\ObrigacaoView\Index.cshtml" />
     <Content Include="Views\ObrigacaoView\Delete.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Cliente\Index.cshtml" />
-    <Content Include="Views\Cliente\Details.cshtml" />
-    <Content Include="Views\Cliente\Create.cshtml" />
-    <Content Include="Views\Cliente\Edit.cshtml" />
-    <Content Include="Views\Cliente\Delete.cshtml" />
-    <Content Include="Views\Cliente\CreatePrint.cshtml" />
+    <Content Include="Views\ClienteView\Index.cshtml" />
+    <Content Include="Views\ClienteView\Details.cshtml" />
+    <Content Include="Views\ClienteView\Create.cshtml" />
+    <Content Include="Views\ClienteView\Edit.cshtml" />
+    <Content Include="Views\ClienteView\Delete.cshtml" />
+    <Content Include="Views\ClienteView\CreatePrint.cshtml" />
     <Content Include="Views\Etapa\Index.cshtml" />
     <Content Include="Views\Etapa\Details.cshtml" />
     <Content Include="Views\Etapa\Create.cshtml" />
     <Content Include="Views\Etapa\Edit.cshtml" />
     <Content Include="Views\Etapa\Delete.cshtml" />
-    <Content Include="Views\OrdemDeServico\Index.cshtml" />
-    <Content Include="Views\OrdemDeServico\Details.cshtml" />
-    <Content Include="Views\OrdemDeServico\Create.cshtml" />
-    <Content Include="Views\OrdemDeServico\Edit.cshtml" />
-    <Content Include="Views\OrdemDeServico\Delete.cshtml" />
+    <Content Include="Views\OrdemDeServicoView\Index.cshtml" />
+    <Content Include="Views\OrdemDeServicoView\Details.cshtml" />
+    <Content Include="Views\OrdemDeServicoView\Create.cshtml" />
+    <Content Include="Views\OrdemDeServicoView\Edit.cshtml" />
+    <Content Include="Views\OrdemDeServicoView\Delete.cshtml" />
     <Content Include="Views\RelatorioOS\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>

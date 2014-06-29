@@ -25,6 +25,31 @@ namespace Contabilidade.Models
         public Usuario ResponsavelFiscal { get; set; }
         public Usuario ResponsavelContabil { get; set; }
         public Usuario ResponsavelRH { get; set; }
+
+        public Cliente(int id, string razaoSocial, string cnpj, string municipio, string estado, string setorEconomico, 
+            string natureza, string regimaApuracao, string issRetencao, string atividadeEconomica, bool ativo, ICollection<Obrigacao> obrigacoes, 
+            Usuario responsavelFiscal, Usuario responsavelContabil, Usuario responseRH)
+        {
+            this.Id = id;
+            this.RazaoSocial = razaoSocial;
+            this.Cnpj = cnpj;
+            this.Municipio = municipio;
+            this.Estado = estado;
+            this.SetorEconomico = setorEconomico;
+            this.Natureza = natureza;
+            this.RegimeApuracao = regimaApuracao;
+            this.ISSRetencao = issRetencao;
+            this.AtividadeEconomica = atividadeEconomica;
+            this.Ativo = ativo;
+            this.Obrigacoes = obrigacoes;
+            this.ResponsavelFiscal = responsavelFiscal;
+            this.ResponsavelContabil = responsavelContabil;
+            this.ResponsavelRH = ResponsavelRH;
+        }
+
+        public Cliente()
+        {
+        }
     
     }
 }

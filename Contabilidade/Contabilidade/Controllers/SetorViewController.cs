@@ -82,7 +82,7 @@ namespace Contabilidade.Controllers
         {
             if (ModelState.IsValid)
             {
-                setorService.atualizaUsuario(setorView);
+                setorService.atualizaSetor(setorView);
                 return RedirectToAction("Index");
             }
             return View(setorView);

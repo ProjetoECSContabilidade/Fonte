@@ -6,6 +6,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Contabilidade.Models;
+using Contabilidade.ViewModel;
+using Contabilidade.Service;
 
 namespace Contabilidade.Controllers
 {
@@ -18,6 +20,7 @@ namespace Contabilidade.Controllers
     public class OrdemDeServicoViewController : Controller
     {
         private ConexaoSQLServerContext db = new ConexaoSQLServerContext();
+        private OrdemDeServicoService osService = new OrdemDeServicoService();
 
         //
         // GET: /OrdemDeServico/
@@ -29,40 +32,40 @@ namespace Contabilidade.Controllers
             DateTime MyDateTime3 = Convert.ToDateTime("11/07/2014");
             //MyDateTime = DateTime.Now;
             //MyDateTime = Convert.ToDateTime("01/05/2014");
-            List<OrdemDeServico> listaDeOrdemDeServico = new List<OrdemDeServico>();
+            List<OrdemDeServicoView> listaDeOrdemDeServicoView = new List<OrdemDeServicoView>();
 
-            OrdemDeServico os1 = new OrdemDeServico
+            OrdemDeServicoView os1 = new OrdemDeServicoView
             {
                 Gcliente = "Dunzer Contabilidade",
                 Gresponsavel = "Rubia",
                 DataEntrega = MyDateTime,
-                status = "Concluido",
+                Status = "Concluido",
                 GStatus = true
             };
 
-            OrdemDeServico os2 = new OrdemDeServico
+            OrdemDeServicoView os2 = new OrdemDeServicoView
             {
                 Gcliente = "Dunzer Contabilidade",
                 Gresponsavel = "Rubia",
                 DataEntrega = MyDateTime2,
-                status = "Não Concluido",
+                Status = "Não Concluido",
                 GStatus = false
             };
 
-            OrdemDeServico os3 = new OrdemDeServico
+            OrdemDeServicoView os3 = new OrdemDeServicoView
             {
                 Gcliente = "Romaço",
                 Gresponsavel = "Sandro",
                 DataEntrega = MyDateTime3,
-                status = "Não Concluido",
+                Status = "Não Concluido",
                 GStatus = false
             };
 
-            listaDeOrdemDeServico.Add(os1);
-            listaDeOrdemDeServico.Add(os2);
-            listaDeOrdemDeServico.Add(os3);
+            listaDeOrdemDeServicoView.Add(os1);
+            listaDeOrdemDeServicoView.Add(os2);
+            listaDeOrdemDeServicoView.Add(os3);
 
-            return View(listaDeOrdemDeServico);
+            return View(listaDeOrdemDeServicoView);
         }
 
         //
@@ -70,7 +73,8 @@ namespace Contabilidade.Controllers
 
         public ActionResult Details(int id = 0)
         {
-            OrdemDeServico ordemdeservico = db.OrdemDeServico.Find(id);
+            OrdemDeServicoView ordemdeservico = osService.findViewById(id);
+                
             if (ordemdeservico == null)
             {
                 return HttpNotFound();
@@ -91,16 +95,15 @@ namespace Contabilidade.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(OrdemDeServico ordemdeservico)
+        public ActionResult Create(OrdemDeServicoView ordemdeservicoView)
         {
             if (ModelState.IsValid)
             {
-                db.OrdemDeServico.Add(ordemdeservico);
-                db.SaveChanges();
+                osService.saveOrdemDeServico(ordemdeservicoView);
                 return RedirectToAction("Index");
             }
 
-            return View(ordemdeservico);
+            return View(ordemdeservicoView);
         }
 
         //
@@ -108,12 +111,12 @@ namespace Contabilidade.Controllers
 
         public ActionResult Edit(int id = 0)
         {
-            OrdemDeServico ordemdeservico = db.OrdemDeServico.Find(id);
-            if (ordemdeservico == null)
+            OrdemDeServicoView osView = osService.findViewById(id);
+            if (osView == null)
             {
                 return HttpNotFound();
             }
-            return View(ordemdeservico);
+            return View(osView);
         }
 
         //
@@ -121,15 +124,14 @@ namespace Contabilidade.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(OrdemDeServico ordemdeservico)
+        public ActionResult Edit(OrdemDeServicoView osView)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(ordemdeservico).State = EntityState.Modified;
-                db.SaveChanges();
+                osService.atualizaOrdemDeServico(osView);
                 return RedirectToAction("Index");
             }
-            return View(ordemdeservico);
+            return View(osView);
         }
 
         //
@@ -137,12 +139,12 @@ namespace Contabilidade.Controllers
 
         public ActionResult Delete(int id = 0)
         {
-            OrdemDeServico ordemdeservico = db.OrdemDeServico.Find(id);
-            if (ordemdeservico == null)
+            OrdemDeServicoView osView= osService.findViewById(id);
+            if (osView == null)
             {
                 return HttpNotFound();
             }
-            return View(ordemdeservico);
+            return View(osView);
         }
 
         //
@@ -152,9 +154,7 @@ namespace Contabilidade.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            OrdemDeServico ordemdeservico = db.OrdemDeServico.Find(id);
-            db.OrdemDeServico.Remove(ordemdeservico);
-            db.SaveChanges();
+            osService.deleteOrdemDeServico(id);
             return RedirectToAction("Index");
         }
 
