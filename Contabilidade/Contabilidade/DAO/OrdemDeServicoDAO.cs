@@ -17,5 +17,28 @@ namespace Contabilidade.DAO
     {
         private ConexaoSQLServerContext db = new ConexaoSQLServerContext();
 
+        public OrdemDeServico findById(int id)
+        {
+            return db.OrdemDeServico.Find(id);
+        }
+
+        public void saveOrdemDeServico(OrdemDeServico os)
+        {
+            db.OrdemDeServico.Add(os);
+            db.SaveChanges();
+        }
+
+        public void updateOrdemDeServico(OrdemDeServico os)
+        {
+            db.Entry(os).State = EntityState.Modified;
+            db.SaveChanges();
+        }
+
+        public void deleteOrdemDeServico(int id)
+        {
+            db.OrdemDeServico.Remove(findById(id));
+            db.SaveChanges();
+        }
+
     }
 }

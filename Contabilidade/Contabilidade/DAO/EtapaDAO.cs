@@ -17,5 +17,27 @@ namespace Contabilidade.DAO
     {
         private ConexaoSQLServerContext db = new ConexaoSQLServerContext();
 
+        public Etapa findById(int id)
+        {
+            return db.Etapa.Find(id);
+        }
+
+        public void saveEtapa(Etapa etapa)
+        {
+            db.Etapa.Add(etapa);
+            db.SaveChanges();
+        }
+
+        public void updateEtapa(Etapa etapa)
+        {
+            db.Entry(etapa).State = EntityState.Modified;
+            db.SaveChanges();
+        }
+
+        public void deleteEtapa(int id)
+        {
+            db.Etapa.Remove(findById(id));
+            db.SaveChanges();
+        }
     }
 }
