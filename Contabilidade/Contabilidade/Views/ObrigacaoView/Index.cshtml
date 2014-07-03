@@ -68,7 +68,7 @@
                 @Html.DisplayFor(modelItem => obrigacao.DiaEntrega)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => obrigacao.DataValidade)
+                @String.Format("{0:d}", obrigacao.DataValidade)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => obrigacao.Setor.Descricao)

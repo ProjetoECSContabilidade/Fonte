@@ -34,7 +34,8 @@
             <div class="controls">
                 @*@Html.EditorFor(model => model.DataValidade,new { @class = "input-xlarge" })*@
                 @*@Html.TextBoxFor(model => model.DataValidade, "{0:dd/MM/yyyy}", new { @class = "datefield", type = "date" })*@
-                @Html.TextBoxFor(m => m.DataValidade, new { @Value = Model.DataValidade.ToString("dd/MM/yyyy") })
+                @*@Html.TextBoxFor(m => m.DataValidade, new { @Value = Model.DataValidade.ToString("dd/MM/yyyy") })*@
+                @Html.EditorFor(model => model.DataValidade, new { @class = "input-xlarge" })
                 @Html.ValidationMessageFor(model => model.DataValidade)
             </div>
         </div>

@@ -23,8 +23,9 @@ namespace Contabilidade.ViewModel
         public int DiaEntrega { get; set; }
 
         [DataType(DataType.Date)]
-        //[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
-        public DateTime DataValidade { get; set; }
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public Nullable<System.DateTime> DataValidade { get; set; }
+        
 
         [Required]
         public int SetorId { get; set; }

@@ -34,8 +34,7 @@
         <div class="control-group">
             @Html.Label("Data Validade", new { @class = "control-label" })
             <div class="controls">
-                @*@Html.EditorFor(model => model.DataValidade, new { @class = "input-xlarge", disabled = "disabled" })*@
-                @Html.TextBoxFor(m => m.DataValidade, new { @Value = Model.DataValidade.ToString("dd/MM/yyyy"), disabled = "disabled"})
+                @Html.TextBoxFor(m => m.DataValidade, "{0:dd/MM/yyyy}", new { disabled = "disabled" })
                 @Html.ValidationMessageFor(model => model.DataValidade)
             </div>
         </div>

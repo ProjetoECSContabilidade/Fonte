@@ -21,14 +21,13 @@ namespace Contabilidade.Models
         [Range(1, 31, ErrorMessage = "Informe um dia válido"), Required]
         public int DiaEntrega { get; set; }
 
-        [DataType(DataType.Date), Required]
-        public DateTime DataValidade { get; set; }
+        public Nullable<System.DateTime> DataValidade { get; set; }
 
         [Required]
         public int SetorId { get; set; }
 
 
-        public Obrigacao(int id, string descricao, int diaEntrega, DateTime dataValidade, int setorId)
+        public Obrigacao(int id, string descricao, int diaEntrega, Nullable<System.DateTime> dataValidade, int setorId)
         {
             this.Id = id;
             this.Descricao = descricao;
