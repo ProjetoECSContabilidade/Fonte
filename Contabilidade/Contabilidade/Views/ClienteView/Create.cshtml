@@ -1,107 +1,257 @@
 ﻿@model Contabilidade.ViewModel.ClienteView
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "CreatePrint";
     Layout = "~/Views/Shared/_LayoutBasicoProjeto.cshtml";
 }
 
-<h2>Create</h2>
+<h3><small>Cadastro de </small>Cliente</h3>
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm())
+{
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
-    <fieldset>
-        <legend>Cliente</legend>
+    <div class="tabbable">
+        <!-- Only required for left/right tabs -->
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#tab1" data-toggle="tab">Cliente</a></li>
+            <li><a href="#tab2" data-toggle="tab">Perfil</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="tab1">tab
+                <p>
+                    <fieldset class="form-horizontal">
+                        <div class="control-group">
+                            @Html.Label("Razão Social", new { @class = "control-label" })
+                            <div class="controls">
+                                @Html.EditorFor(model => model.RazaoSocial, new { @class = "input-xlarge" })
+                                @Html.ValidationMessageFor(model => model.RazaoSocial)
+                            </div>
+                        </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.RazaoSocial)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.RazaoSocial)
-            @Html.ValidationMessageFor(model => model.RazaoSocial)
-        </div>
+                        <div class="control-group">
+                            @Html.Label("CNPJ", new { @class = "control-label" })
+                            <div class="controls">
+                                @Html.EditorFor(model => model.Cnpj, new { @class = "input-xlarge" })
+                                @Html.ValidationMessageFor(model => model.Cnpj)
+                            </div>
+                        </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Cnpj)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Cnpj)
-            @Html.ValidationMessageFor(model => model.Cnpj)
-        </div>
+                        <div class="control-group">
+                            @Html.Label("Município", new { @class = "control-label" })
+                            <div class="controls">
+                                @Html.EditorFor(model => model.Municipio, new { @class = "input-xlarge" })
+                                @Html.ValidationMessageFor(model => model.Municipio)
+                            </div>
+                        </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Municipio)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Municipio)
-            @Html.ValidationMessageFor(model => model.Municipio)
-        </div>
+                        <div class="control-group">
+                            @Html.Label("Estado", new { @class = "control-label" })
+                            <div class="controls">
+                                @*@Html.EditorFor(model => model.Estado, new { @class = "input-xlarge" })*@
+                                @Html.DropDownListFor(model => model.SetorEconomico, new SelectList(
+                                                       new List<Object>{
+                                                           new { value = true , text = "SC"  },
+                                                           new { value = false , text = "PR"  },
+                                                           new { value = false , text = "RS"  },
+                                                       },
+                                                       "value",
+                                                       "text",
+                                                     true))
+                                @Html.ValidationMessageFor(model => model.Estado)
+                            </div>
+                        </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Estado)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Estado)
-            @Html.ValidationMessageFor(model => model.Estado)
-        </div>
+                        <div class="control-group">
+                            @Html.Label("Setor Econômico", new { @class = "control-label" })
+                            <div class="controls">
+                                @*@Html.EditorFor(model => model.SetorEconomico, new { @class = "input-xlarge" })*@
+                                @Html.DropDownListFor(model => model.SetorEconomico, new SelectList(
+                                                       new List<Object>{
+                                                           new { value = true , text = "Comercio"  },
+                                                           new { value = false , text = "Industria"  },
+                                                       },
+                                                       "value",
+                                                       "text",
+                                                     true))
+                                @Html.ValidationMessageFor(model => model.SetorEconomico)
+                            </div>
+                        </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.SetorEconomico)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.SetorEconomico)
-            @Html.ValidationMessageFor(model => model.SetorEconomico)
-        </div>
+                        <div class="control-group">
+                            @Html.Label("Natureza PJ", new { @class = "control-label" })
+                            <div class="controls">
+                                @*@Html.EditorFor(model => model.Natureza, new { @class = "input-xlarge" })*@
+                                @Html.DropDownListFor(model => model.Natureza, new SelectList(
+                                                       new List<Object>{
+                                                           new { value = true , text = "Natureza PJ"  },
+                                                           new { value = false , text = "Natureza PJ2"  },
+                                                       },
+                                                       "value",
+                                                       "text",
+                                                     true))
+                                @Html.ValidationMessageFor(model => model.Natureza)
+                            </div>
+                        </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Natureza)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Natureza)
-            @Html.ValidationMessageFor(model => model.Natureza)
-        </div>
+                        <div class="control-group">
+                            @Html.Label("Regime Apuração PJ", new { @class = "control-label" })
+                            <div class="controls">
+                                @*@Html.EditorFor(model => model.RegimeApuracao, new { @class = "input-xlarge" })*@
+                                @Html.DropDownListFor(model => model.RegimeApuracao, new SelectList(
+                                                       new List<Object>{
+                                                           new { value = true , text = "Apuração"  },
+                                                           new { value = false , text = "Apuração 2"  },
+                                                       },
+                                                       "value",
+                                                       "text",
+                                                     true))
+                                @Html.ValidationMessageFor(model => model.RegimeApuracao)
+                            </div>
+                        </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.RegimeApuracao)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.RegimeApuracao)
-            @Html.ValidationMessageFor(model => model.RegimeApuracao)
-        </div>
+                        <div class="control-group">
+                            @Html.Label("Ind Resp. Retenção ISS", new { @class = "control-label" })
+                            <div class="controls">
+                                @*@Html.EditorFor(model => model.ISSRetencao, new { @class = "input-xlarge" })*@
+                                @Html.DropDownListFor(model => model.ISSRetencao, new SelectList(
+                                                       new List<Object>{
+                                                           new { value = true , text = "Indicador"  },
+                                                           new { value = false , text = "Inicador 2"  },
+                                                       },
+                                                       "value",
+                                                       "text",
+                                                     true))
+                                @Html.ValidationMessageFor(model => model.ISSRetencao)
+                            </div>
+                        </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.ISSRetencao)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.ISSRetencao)
-            @Html.ValidationMessageFor(model => model.ISSRetencao)
-        </div>
+                        <div class="control-group">
+                            @Html.Label("Atividade Econômica", new { @class = "control-label" })
+                            <div class="controls">
+                                @Html.EditorFor(model => model.AtividadeEconomica, new { @class = "input-xlarge" })
+                                @Html.ValidationMessageFor(model => model.AtividadeEconomica)
+                            </div>
+                        </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.AtividadeEconomica)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.AtividadeEconomica)
-            @Html.ValidationMessageFor(model => model.AtividadeEconomica)
-        </div>
+                        <div class="control-group">
+                            @Html.Label("Ativo", new { @class = "control-label" })
+                            <div class="controls">
+                                @Html.DropDownListFor(model => model.Ativo, new SelectList(
+                                                       new List<Object>{
+                                                           new { value = true , text = "Sim"  },
+                                                           new { value = false , text = "Não"  },
+                                                       },
+                                                       "value",
+                                                       "text",
+                                                     true))
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Ativo)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Ativo)
-            @Html.ValidationMessageFor(model => model.Ativo)
-        </div>
+                                @Html.ValidationMessageFor(model => model.Ativo)
+                            </div>
+                        </div>
+                    </fieldset>
+                </p>
+            </div>
 
-        <p>
-            <input type="submit" value="Create" />
-        </p>
-    </fieldset>
+
+            <div class="tab-pane" id="tab2">
+                <p>
+                    @Html.ListBoxFor(m => m.SelectedCars, Model.AllCars, new { @class = "chosen-select", multiple = "multiple"})
+                    @Html.ListBoxFor(m => m.SelectedCars, Model.AllCars, new { @class = "chzn-select", data_placeholder = "Choose a Country..." })
+                    <script type="text/javascript">
+                        $(".chosen").chosen({ max_selected_options: 2 });
+                        $(".chosen-deselect").chosen({ allow_single_deselect: true });
+                        $(".chosen").chosen().change();
+                        $(".chosen").trigger('liszt:updated');
+                    </script>
+
+                    @*@Html.ListBox("Name", ViewBag.Setores as MultiSelectList,
+              new { @class = "chzn-select" })*@
+                    @*@Html.Label("Obrigações fiscais", new { @class = "control-label" })
+                    <textarea rows="3">SPED FISCAL&#10;GIA SP&#10;DAPI</textarea>
+                    <a class="btn btn-small" href="#"><i class="icon-arrow-left"></i></a>
+                    <a class="btn btn-small" href="#"><i class="icon-arrow-right"></i></a>
+                    <textarea rows="3">DIME</textarea>*@
+
+
+                </p>
+                <div class="control-group">
+                    @Html.Label("Responsável Fiscal", new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.DropDownListFor(model => model.ResponsavelContabil.Nome, new SelectList(
+                                                       new List<Object>{
+                                                           new { value = true , text = "-- Selecione Responsável --"  },
+                                                           new { value = false , text = "Fulano"  },
+                                                       },
+                                                       "value",
+                                                       "text",
+                                                     true))
+                    </div>
+                </div>
+
+                <p>
+                    @*@Html.ListBox(
+                                    "Countries",
+                                    ViewBag.Obrigacoes as MultiSelectList,
+                                    new { @class = "chzn-select", data_placeholder = "Selecione as Obrigações..." }
+                                )*@
+                    @*@Html.Label("Obrigações Contabeis", new { @class = "control-label" })
+                    <textarea rows="3">Sped Contabil</textarea>
+                    <a class="btn btn-small" href="#"><i class="icon-arrow-left"></i></a>
+                    <a class="btn btn-small" href="#"><i class="icon-arrow-right"></i></a>
+                    <textarea rows="3"></textarea>*@
+                </p>
+                <div class="control-group">
+                    @Html.Label("Responsável Contábil", new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.DropDownListFor(model => model.ResponsavelContabil.Nome, new SelectList(
+                                                       new List<Object>{
+                                                           new { value = true , text = "-- Selecione Responsável --"  },
+                                                           new { value = false , text = "Fulano2"  },
+                                                       },
+                                                       "value",
+                                                       "text",
+                                                     true))
+                    </div>
+                </div>
+
+                <p>
+                    @Html.Label("Obrigações de Recursos Humanos", new { @class = "control-label" })
+                    <textarea rows="3">Fechamento de Empresa&#10;Abertura de Empresa</textarea>
+                    <a class="btn btn-small" href="#"><i class="icon-arrow-left"></i></a>
+                    <a class="btn btn-small" href="#"><i class="icon-arrow-right"></i></a>
+                    <textarea rows="3">Folha de pagamento</textarea>
+                </p>
+                <div class="control-group">
+                    @Html.Label("Responsável RH", new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.DropDownListFor(model => model.ResponsavelContabil.Nome, new SelectList(
+                                                       new List<Object>{
+                                                           new { value = true , text = "-- Selecione Responsável --"  },
+                                                           new { value = false , text = "Fulano3"  },
+                                                       },
+                                                       "value",
+                                                       "text",
+                                                     true))
+                    </div>
+                </div>
+
+
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Salvar</button>
+        @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn " })
+    </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Voltar para a Listagem", "Index")
 </div>
 
 @section Scripts {

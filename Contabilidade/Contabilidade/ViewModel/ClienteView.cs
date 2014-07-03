@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace Contabilidade.ViewModel
 {
@@ -25,6 +26,9 @@ namespace Contabilidade.ViewModel
         public Usuario ResponsavelFiscal { get; set; }
         public Usuario ResponsavelContabil { get; set; }
         public Usuario ResponsavelRH { get; set; }
+
+        public IEnumerable<SelectListItem> AllCars { get; set; }
+        public string[] SelectedCars { get; set; }
 
         public ClienteView(Cliente c)
         {
