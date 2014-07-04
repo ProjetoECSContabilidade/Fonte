@@ -25,10 +25,25 @@ namespace Contabilidade.Controllers
         private SetorService setorService = new SetorService();
 
          // GET: /Usuario/
-        public ActionResult Index()
+
+        public ActionResult Index(string searchNome, string searchSetor, string searchCargo)
         {
-            return View(usuarioService.getAllUsuarios());
+            if (!String.IsNullOrEmpty(searchNome) || !String.IsNullOrEmpty(searchSetor) || !String.IsNullOrEmpty(searchCargo))
+            {
+                return View(usuarioService.searchUsuarioComFiltro(searchNome, searchSetor, searchCargo));
+            }
+            else
+            {
+                return View(usuarioService.getAllUsuarios());
+            }
+
         }
+
+
+        //public ActionResult Index()
+        //{
+        //    return View(usuarioService.getAllUsuarios());
+        //}
 
         // GET: /Usuario/Details/5
 

@@ -69,8 +69,10 @@
                                 @*@Html.EditorFor(model => model.SetorEconomico, new { @class = "input-xlarge" })*@
                                 @Html.DropDownListFor(model => model.SetorEconomico, new SelectList(
                                                        new List<Object>{
-                                                           new { value = true , text = "Comercio"  },
-                                                           new { value = false , text = "Industria"  },
+                                                            new { value = "Indústria" , text = "Industria"  },
+                                                            new { value = "Comércio" , text = "Comercio"  },
+                                                            new { value = "Cooperativa" , text = "Cooperativa"  },
+                                                            new { value = "Distribuição" , text = "Distribuicao"  },
                                                        },
                                                        "value",
                                                        "text",
@@ -85,8 +87,9 @@
                                 @*@Html.EditorFor(model => model.Natureza, new { @class = "input-xlarge" })*@
                                 @Html.DropDownListFor(model => model.Natureza, new SelectList(
                                                        new List<Object>{
-                                                           new { value = true , text = "Natureza PJ"  },
-                                                           new { value = false , text = "Natureza PJ2"  },
+                                                        new { value = "Sociedade Empresária Geral" , text = "Sociedade Empresária Geral"  },
+                                                        new { value = "Sociedade Cooperativa" , text = "Sociedade Cooperativa"  },
+                                                        new { value = "PIS/PASEP sobre Folha de Pagto" , text = "PIS/PASEP sobre Folha de Pagto"  },
                                                        },
                                                        "value",
                                                        "text",
@@ -101,8 +104,9 @@
                                 @*@Html.EditorFor(model => model.RegimeApuracao, new { @class = "input-xlarge" })*@
                                 @Html.DropDownListFor(model => model.RegimeApuracao, new SelectList(
                                                        new List<Object>{
-                                                           new { value = true , text = "Apuração"  },
-                                                           new { value = false , text = "Apuração 2"  },
+                                                           new { value = "Cumulativo" , text = "Cumulativo"  },
+                                                           new { value = "Não-Cumulativo" , text = "Não-Cumulativo"  },
+                                                           new { value = "Cumulativo e Não-Cumulativo" , text = "Cumulativo e Não-Cumulativo"  },
                                                        },
                                                        "value",
                                                        "text",
@@ -117,8 +121,8 @@
                                 @*@Html.EditorFor(model => model.ISSRetencao, new { @class = "input-xlarge" })*@
                                 @Html.DropDownListFor(model => model.ISSRetencao, new SelectList(
                                                        new List<Object>{
-                                                           new { value = true , text = "Indicador"  },
-                                                           new { value = false , text = "Inicador 2"  },
+                                                           new { value = true , text = "Nao"  },
+                                                           new { value = false , text = "Sim"  },
                                                        },
                                                        "value",
                                                        "text",
@@ -130,10 +134,30 @@
                         <div class="control-group">
                             @Html.Label("Atividade Econômica", new { @class = "control-label" })
                             <div class="controls">
-                                @Html.EditorFor(model => model.AtividadeEconomica, new { @class = "input-xlarge" })
+                                @*@Html.EditorFor(model => model.AtividadeEconomica, new { @class = "input-xlarge" })*@
+                                @Html.DropDownListFor(model => model.AtividadeEconomica, new SelectList(
+                                                       new List<Object>{
+                                                       new { value = "Indústria" , text = "Industria"  }, 
+                                                       new { value = "Agricultura" , text = "Agricultura"  },
+                                                       new { value = "Comércio" , text = "Comercio"  },
+                                                       new { value = "Saúde" , text = "Saude"  },
+                                                       },
+                                                       "value",
+                                                       "text",
+                                                     true))
                                 @Html.ValidationMessageFor(model => model.AtividadeEconomica)
                             </div>
                         </div>
+
+
+
+                       @* <div class="control-group">
+        @Html.Label("Atividade Econômica", new { @class = "control-label" })
+        <div class="controls">
+            @Html.EditorFor(model => model.AtividadeEconomica, new { @class = "input-xlarge" })
+            @Html.ValidationMessageFor(model => model.AtividadeEconomica)
+        </div>
+    </div>*@
 
                         <div class="control-group">
                             @Html.Label("Ativo", new { @class = "control-label" })

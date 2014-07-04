@@ -4,34 +4,42 @@
 @{
     ViewBag.Title = "Index";
 }
+@*  <div class="panel-group" id="questions">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <a class="accordion-toggle btn" data-toggle="collapse" data-parent="questions"
+                   href="#who">Buscar</a>
+            </div>
+            <div class="accordion-inner">
+
+            </div>
+        </div>
+    </div>*@
 
 
 <h4><small>Listagem de </small>Obrigação</h4>
 
 <div class="panel-group" id="accordion">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                    Busca
-                </a>
-            </h4>
+    <div class="accordion-group">
+        <div class="accordion-heading">
+            <a class="accordion-toggle btn" data-toggle="collapse" data-parent="questions"
+               href="#who"><b>Buscar</b></a>
         </div>
-        <div id="collapseOne" class="panel-collapse collapse">
-            <div class="panel-body">
+        <div id="who" class="accordion-body collapse">
+            <div class="accordion-inner">
                 @using (Html.BeginForm())
                 {
                     <p>
-                        Busca por: @Html.TextBox("SearchDesc",null, new { placeholder = "Descrição" })
+                        Busca por: @Html.TextBox("SearchDesc", null, new { placeholder = "Descrição" })
                         @Html.TextBox("SearchSetor", null, new { placeholder = "Setor" })
                         @Html.TextBox("SearchDia", null, new { placeholder = "Dia da Entrega" })
                         <input type="submit" value="Buscar" />
                     </p>
                 }
                 @*<form class="navbar-form pull-left">
-                    <input type="text" class="span2">
-                    <button type="submit" class="btn">Enviar</button>
-                </form>*@
+                        <input type="text" class="span2">
+                        <button type="submit" class="btn">Enviar</button>
+                    </form>*@
             </div>
         </div>
     </div>

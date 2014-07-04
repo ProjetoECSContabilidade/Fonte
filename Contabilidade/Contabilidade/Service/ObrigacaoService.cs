@@ -24,9 +24,9 @@ namespace Contabilidade.Service
             List<ObrigacaoView> listaDeObrigacaoView = new List<ObrigacaoView>();
             List<Obrigacao> listaDeObrigacao = obrigacaoDAO.getAllObrigacoes();
 
-            foreach (Obrigacao usu in listaDeObrigacao)
+            foreach (Obrigacao ob in listaDeObrigacao)
             {
-                listaDeObrigacaoView.Add(transformObrigacaoInObrigacaoView(usu));
+                listaDeObrigacaoView.Add(transformObrigacaoInObrigacaoView(ob));
             }
 
             return listaDeObrigacaoView;
@@ -34,13 +34,13 @@ namespace Contabilidade.Service
 
         private Obrigacao transformObrigacaoViewInObrigacao(ObrigacaoView oView)
         {
-            Obrigacao usuario = new Obrigacao(oView.Id,
+            Obrigacao obrigacao = new Obrigacao(oView.Id,
                 oView.Descricao,
                 oView.DiaEntrega,
                 oView.DataValidade,
                 oView.SetorId);
 
-            return usuario;
+            return obrigacao;
         }
 
         public ObrigacaoView transformObrigacaoInObrigacaoView(Obrigacao obrigacao)
@@ -64,8 +64,8 @@ namespace Contabilidade.Service
 
         public void saveObrigacao(ObrigacaoView obView)
         {
-            Obrigacao usuario = transformObrigacaoViewInObrigacao(obView);
-            obrigacaoDAO.saveObrigacao(usuario);
+            Obrigacao obrigacao = transformObrigacaoViewInObrigacao(obView);
+            obrigacaoDAO.saveObrigacao(obrigacao);
         }
 
         public void atualizaObrigacao(ObrigacaoView obView)

@@ -7,6 +7,30 @@
 
 <h4><small>Listagem de </small>Usuário </h4>
 
+<div class="panel-group" id="accordion">
+    <div class="accordion-group">
+        <div class="accordion-heading">
+            <a class="accordion-toggle btn" data-toggle="collapse" data-parent="questions"
+               href="#who"><b>Buscar</b></a>
+        </div>
+        <div id="who" class="accordion-body collapse">
+            <div class="accordion-inner">
+                @using (Html.BeginForm())
+                {
+                    <p>
+                        Busca por: @Html.TextBox("SearchNome", null, new { placeholder = "Nome" })
+                        @Html.TextBox("SearchSetor", null, new { placeholder = "Setor" })
+                        @Html.TextBox("SearchCargo", null, new { placeholder = "Cargo" })
+                        <input type="submit" value="Buscar" />
+                    </p>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 <table class="table table-striped">
     <caption></caption>
     <thead>
@@ -64,8 +88,8 @@
                     <ul class="dropdown-menu">
                         @{
                             @Html.TryPartial("_actions", usuario)
-                            var routevalues = usuario.GetIdValue();
-                            <li>@Html.ActionLink("Editar", "Edit", routevalues)</li>
+        var routevalues = usuario.GetIdValue();
+        <li>@Html.ActionLink("Editar", "Edit", routevalues)</li>
                             <li class="divider"></li>
                             <li>@Html.ActionLink("Excluir", "Delete", routevalues)</li>
 
@@ -82,54 +106,54 @@
 </p>
 
 @*<table>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Nome)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Cargo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Login)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Senha)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Ativo)
-        </th>
-        <th></th>
-    </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cargo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Login)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Senha)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ativo)
+            </th>
+            <th></th>
+        </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nome)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Cargo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Login)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Senha)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Ativo)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cargo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Login)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Senha)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ativo)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            </td>
+        </tr>
+    }
 
-</table>*@
+    </table>*@

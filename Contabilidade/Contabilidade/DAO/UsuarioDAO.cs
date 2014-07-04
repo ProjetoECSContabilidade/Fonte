@@ -18,6 +18,7 @@ namespace Contabilidade.DAO
     public class UsuarioDAO
     {
         private ConexaoSQLServerContext db = new ConexaoSQLServerContext();
+        private SetorService setorService = new SetorService();
 
         public void saveUsuario(Usuario usuario){
             db.Usuario.Add(usuario);
@@ -43,5 +44,47 @@ namespace Contabilidade.DAO
         {
             return db.Usuario.ToList();
         }
+
+        public List<Usuario> selectUsuariosPorFiltro(string filtroNome, string filtroSetor, string filtroCargo)
+        {
+            var query = from u in db.Usuario
+                        select u;
+
+            int setorId = 0;
+
+            if (!String.IsNullOrEmpty(filtroSetor))
+            {
+                setorId = setorService.getSetorIdBySetorDesc(filtroSetor);
+            }
+
+            if (!String.IsNullOrEmpty(filtroNome))
+            {
+                query = query.Where(u => u.Nome.Contains(filtroNome));
+            }
+            if (setorId != null && setorId != 0)
+            {
+                query = query.Where(s => s.SetorId == setorId);
+            }
+            if (!String.IsNullOrEmpty(filtroCargo))
+            {
+                query = query.Where(u => u.Cargo.Contains(filtroCargo));
+            }
+
+            query.Select(u => new Usuario
+            {
+                Id = u.Id,
+                Login = u.Login,
+                Nome = u.Nome,
+                Cargo = u.Cargo,
+                SetorId = u.SetorId,
+                Email = u.Email,
+                Ativo = u.Ativo
+            });
+
+            return query.ToList();
+        }
+    
+    
     }
+
 }

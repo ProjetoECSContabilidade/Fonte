@@ -79,5 +79,14 @@ namespace Contabilidade.Service
             usuarioDAO.deleteUsuario(id);
         }
 
+        public List<UsuarioView> searchUsuarioComFiltro(string filtroNome, string filtroSetor, string filtroCargo)
+        {
+            List<UsuarioView> listaDeView = new List<UsuarioView>();
+            foreach (Usuario usu in usuarioDAO.selectUsuariosPorFiltro(filtroNome, filtroSetor, filtroCargo))
+            {
+                listaDeView.Add(transformUsuarioInUsuarioView(usu));
+            }
+            return listaDeView;
+        }
     }
 }
