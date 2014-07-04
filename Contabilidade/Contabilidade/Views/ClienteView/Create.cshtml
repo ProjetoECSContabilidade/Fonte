@@ -156,15 +156,24 @@
 
 
             <div class="tab-pane" id="tab2">
-                <p>
-                    @Html.ListBoxFor(m => m.SelectedCars, Model.AllCars, new { @class = "chosen-select", multiple = "multiple"})
-                    @Html.ListBoxFor(m => m.SelectedCars, Model.AllCars, new { @class = "chzn-select", data_placeholder = "Choose a Country..." })
-                    <script type="text/javascript">
+                @*<p>*@
+                    @*@Html.ListBoxFor(m => m.SelectedCars, Model.AllCars, new { @class = "chosen-select", multiple = "multiple"})*@
+
+                <select data-placeholder="Choose a Country" class="chosen-select" multiple tabindex="4">
+                    <option value=""></option>
+                    <option value="United States">United States</option>
+                    <option value="United Kingdom">United Kingdom</option>
+                    <option value="Afghanistan">Afghanistan</option>
+                </select>
+
+
+
+                    @*<script type="text/javascript">
                         $(".chosen").chosen({ max_selected_options: 2 });
                         $(".chosen-deselect").chosen({ allow_single_deselect: true });
                         $(".chosen").chosen().change();
                         $(".chosen").trigger('liszt:updated');
-                    </script>
+                    </script>*@
 
                     @*@Html.ListBox("Name", ViewBag.Setores as MultiSelectList,
               new { @class = "chzn-select" })*@
@@ -175,7 +184,7 @@
                     <textarea rows="3">DIME</textarea>*@
 
 
-                </p>
+                @*</p>*@
                 <div class="control-group">
                     @Html.Label("Responsável Fiscal", new { @class = "control-label" })
                     <div class="controls">

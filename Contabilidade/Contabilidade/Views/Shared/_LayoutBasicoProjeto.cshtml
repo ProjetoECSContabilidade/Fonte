@@ -41,6 +41,14 @@
     </div>
     @Scripts.Render("~/js")
     @RenderSection("Scripts", required: false)
+    @*<script type="text/javascript" src="@Url.Content("~/js")/>
+    @RenderSection("JavaScript", required: false)*@
+
+    <script type='text/javascript'>
+        $(function () {
+            $(".chosen-select").chosen();
+        });
+    </script>
 </body>
 </html>
 

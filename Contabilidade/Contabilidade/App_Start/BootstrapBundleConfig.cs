@@ -14,14 +14,17 @@ namespace BootstrapSupport
                 "~/Scripts/bootstrap.js",
                 "~/Scripts/jquery.validate.js",
                 "~/scripts/jquery.validate.unobtrusive.js",
-                "~/Scripts/jquery.validate.unobtrusive-custom-for-bootstrap.js"
+                "~/Scripts/jquery.validate.unobtrusive-custom-for-bootstrap.js",
+                "~/Scripts/chosen.jquery.js"
                 ));
 
             bundles.Add(new StyleBundle("~/content/css").Include(
                 "~/Content/bootstrap.css",
                 "~/Content/body.css",
                 "~/Content/bootstrap-responsive.css",
-                "~/Content/bootstrap-mvc-validation.css"
+                "~/Content/bootstrap-mvc-validation.css",
+                "~/Content/bootstrap-mvc-validation.css",
+                "~/Content/bootstrap-chosen.css"
                 ));
         }
     }
