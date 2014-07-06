@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Contabilidade.ViewModel;
+using System.Web.Mvc;
 
 namespace Contabilidade.Service
 {
@@ -19,7 +20,7 @@ namespace Contabilidade.Service
         private ObrigacaoDAO obrigacaoDAO = new ObrigacaoDAO();
         private SetorService setorService = new SetorService();
 
-        public List<ObrigacaoView> getAllObrigacoes()
+        public List<ObrigacaoView> getAllObrigacoesAsView()
         {
             List<ObrigacaoView> listaDeObrigacaoView = new List<ObrigacaoView>();
             List<Obrigacao> listaDeObrigacao = obrigacaoDAO.getAllObrigacoes();
@@ -86,6 +87,59 @@ namespace Contabilidade.Service
                 listaDeView.Add(transformObrigacaoInObrigacaoView(ob));
             }
             return listaDeView;
+        }
+
+        public List<Obrigacao> getAllObrigacoes()
+        {
+            return obrigacaoDAO.getAllObrigacoes();
+        }
+
+        public List<List<Obrigacao>> getObrigacoesSeparadasPorSetor() //@TODO refactor
+        {
+            List<Obrigacao> todasObrigacoesList = getAllObrigacoes();
+
+            List<Obrigacao> obrigacoesFiscaisList = new List<Obrigacao>();
+            List<Obrigacao> obrigacoesContabeisList = new List<Obrigacao>();
+            List<Obrigacao> obrigacoesRHList = new List<Obrigacao>();
+            
+            foreach(Obrigacao obg in todasObrigacoesList){
+                Setor setorDaObrigacao = setorService.findById(obg.SetorId);
+                //TODO TRANSFORMAR PARA CONSTANTES
+                if (setorDaObrigacao.Descricao.Equals("Fiscal"))
+                {
+                    obrigacoesFiscaisList.Add(obg);
+                }
+                else if (setorDaObrigacao.Descricao.Equals("Contábil"))
+                {
+                    obrigacoesContabeisList.Add(obg);
+                }
+                else if (setorDaObrigacao.Descricao.Equals("Recursos Humanos"))
+                {
+                    obrigacoesRHList.Add(obg);
+                }
+            }
+            List<List<Obrigacao>> obgSeparadaPorSetorList = new List<List<Obrigacao>>();
+
+            obgSeparadaPorSetorList.Add(obrigacoesFiscaisList);
+            obgSeparadaPorSetorList.Add(obrigacoesContabeisList);
+            obgSeparadaPorSetorList.Add(obrigacoesRHList);
+
+
+            return obgSeparadaPorSetorList;
+        }
+
+        public List<IEnumerable<SelectListItem>> transformObrigacoesSeparadasPorSetorEmSelectListItem(List<List<Obrigacao>> listaSeparadaPorSetor)
+        {
+            List<IEnumerable<SelectListItem>> listaReturn = new List<IEnumerable<SelectListItem>>();
+            for(int i=0; i<=2;i++){ // 0- fiscal 1-contabil 2-rh
+                List<Obrigacao> lista = listaSeparadaPorSetor[i];
+                List<SelectListItem> allObrigacoes = new List<SelectListItem>();
+                foreach(Obrigacao ob in lista){
+                    allObrigacoes.Add(new SelectListItem { Value = ob.Id.ToString(), Text = ob.Descricao });
+                }
+                listaReturn.Add(allObrigacoes);
+            }
+            return listaReturn;
         }
 
     }

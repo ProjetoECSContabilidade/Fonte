@@ -33,7 +33,7 @@ namespace Contabilidade.Controllers
             }
             else
             {
-                return View(obrigacaoService.getAllObrigacoes());
+                return View(obrigacaoService.getAllObrigacoesAsView());
             }
             
         }

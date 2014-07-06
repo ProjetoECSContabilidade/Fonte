@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Contabilidade.ViewModel;
+using System.Web.Mvc;
 
 namespace Contabilidade.Service
 {
@@ -17,6 +18,20 @@ namespace Contabilidade.Service
     public class ClienteService
     {
         private ClienteDAO clienteDAO = new ClienteDAO();
+        private ObrigacaoService obgService = new ObrigacaoService();
+        private UsuarioService usuarioService = new UsuarioService();
+
+
+        public ClienteView inicializaClienteView(ClienteView cv){
+            List<IEnumerable<SelectListItem>> obSeparadasPorSetorList = obgService.transformObrigacoesSeparadasPorSetorEmSelectListItem(obgService.getObrigacoesSeparadasPorSetor());
+
+            cv.AllObrigacoesFiscais = obSeparadasPorSetorList[0];
+            cv.AllObrigacoesContabeis = obSeparadasPorSetorList[1];
+            cv.AllObrigacoesRH = obSeparadasPorSetorList[2];
+            cv.AllUsuarios = usuarioService.getAllUsuariosAsList();
+            return cv;
+        }
+
         public Cliente findById(int id)
         {
             return clienteDAO.findById(id);

@@ -8,10 +8,21 @@
     <title>@ViewBag.Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="@Styles.Url("~/content/css")" rel="stylesheet" />
+    <link rel="stylesheet" href="chosen.css">
+    <link href="@Url.Content("~/Content/themes/base/jquery-ui.css")" rel="stylesheet" type="text/css" /> 
+    <style type="text/css" media="all">
+        /* fix rtl for demo */
+        .chosen-rtl .chosen-drop {
+            left: -9000px;
+        }
+    </style>
+
     @RenderSection("head", required: false)
     @Html.Partial("_html5shiv")
     @* favicons and touch icons go here *@
 </head>
+
+
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="navbar-inner">
@@ -41,14 +52,25 @@
     </div>
     @Scripts.Render("~/js")
     @RenderSection("Scripts", required: false)
-    @*<script type="text/javascript" src="@Url.Content("~/js")/>
-    @RenderSection("JavaScript", required: false)*@
-
-    <script type='text/javascript'>
+    <script src="~/Scripts/chosen.jquery.js" type="text/javascript"></script>
+    @*<script src="docsupport/prism.js" type="text/javascript" charset="utf-8"></script>*@
+    <script type="text/javascript">
+        var config = {
+            '.chosen-select': {},
+            '.chosen-select-deselect': { allow_single_deselect: true },
+            '.chosen-select-no-single': { disable_search_threshold: 10 },
+            '.chosen-select-no-results': { no_results_text: 'Oops, nothing found!' },
+            '.chosen-select-width': { width: "95%" }
+        }
+        for (var selector in config) {
+            $(selector).chosen(config[selector]);
+        }
         $(function () {
-            $(".chosen-select").chosen();
+            $("#tabs").tabs();
         });
     </script>
+    <script src="@Url.Content("~/Scripts/jquery-1.9.1.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery-ui-1.8.24.min.js")" type="text/javascript"></script>
 </body>
 </html>
 

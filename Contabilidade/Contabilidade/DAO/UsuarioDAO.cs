@@ -7,6 +7,7 @@ using Contabilidade.DAO;
 using Contabilidade.ViewModel;
 using Contabilidade.Service;
 using System.Data;
+using System.Web.Mvc;
 
 namespace Contabilidade.DAO
 {
@@ -83,8 +84,16 @@ namespace Contabilidade.DAO
 
             return query.ToList();
         }
-    
-    
+        
+        public IEnumerable<SelectListItem> getAllUsuariosAsList()
+        {
+            var query = db.Usuario.ToList().Select(u => new SelectListItem
+            {
+                Value = u.Id.ToString(),
+                Text = u.Nome,
+            });
+            return query.AsEnumerable();
+        }
     }
 
 }

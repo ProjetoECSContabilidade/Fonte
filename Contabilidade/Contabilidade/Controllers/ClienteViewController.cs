@@ -51,14 +51,12 @@ namespace Contabilidade.Controllers
         public ActionResult Create()
         {
             ClienteView cView = new ClienteView();
+            clienteService.inicializaClienteView(cView);
 
-            //var list = setorService.getAllSetoresAsList();
-            //ViewBag.Setores = new MultiSelectList(list, "Id", "Descricao");
-
-            //Assume some selected values returned from DB
-            cView.SelectedCars = new string[] { "1", "2" };
-            //Also the list of all cars
-            cView.AllCars = GetAllCars();
+            ////Assume some selected values returned from DB
+            //cView.SelectedCars = new string[] { "1", "2" };
+            ////Also the list of all cars
+            //cView.AllCars = GetAllCars();
 
             return View(cView);
         }

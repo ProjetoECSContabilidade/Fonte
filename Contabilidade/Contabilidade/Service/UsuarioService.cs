@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Contabilidade.ViewModel;
+using System.Web.Mvc;
 
 namespace Contabilidade.Service
 {
@@ -88,5 +89,10 @@ namespace Contabilidade.Service
             }
             return listaDeView;
         }
+        public IEnumerable<SelectListItem> getAllUsuariosAsList()
+        {
+            return usuarioDAO.getAllUsuariosAsList();
+        }
+
     }
 }
