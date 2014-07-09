@@ -1,4 +1,5 @@
 --SCRIPT DE CARGA INICIAL DO BANCO DE DADOS. (DESENVOLVIMENTO)
+
 --Apaga o banco para criar novamente
 --DROP DATABASE Contabilidde
 --GO
@@ -22,10 +23,26 @@ INSERT INTO Usuario (Nome,Email,Cargo,SetorId,Login,Senha,Ativo) VALUES ('Fabian
 select * from Usuario
 
 --insert de obrigação
-INSERT INTO Obrigacao (Descricao,DiaEntrega,DataValidade,SetorId) VALUES ('Folha de Pagamento', 1, '2014-05-27 00:00:00.000', 2)
-INSERT INTO Obrigacao (Descricao,DiaEntrega,DataValidade,SetorId) VALUES ('SPED FISCAL', 5, '2014-12-31 00:00:00.000', 3)
-INSERT INTO Obrigacao (Descricao,DiaEntrega,DataValidade,SetorId) VALUES ('GIA SP', 10, '2014-12-05 00:00:00.000', 3)
-INSERT INTO Obrigacao (Descricao,DiaEntrega,DataValidade,SetorId) VALUES ('FCONT', 10, '2014-12-31 00:00:00.000', 4)
+--FISCAL -1
+INSERT INTO Obrigacao (Descricao,DiaEntrega,DataValidade,SetorId) VALUES ('SPED FISCAL', 10, '2014-12-31 00:00:00.000', 1)
+INSERT INTO Obrigacao (Descricao,DiaEntrega,DataValidade,SetorId) VALUES ('EFD Contribuições', 10, '2014-12-31 00:00:00.000', 1)
+INSERT INTO Obrigacao (Descricao,DiaEntrega,DataValidade,SetorId) VALUES ('DIME', 10, '2014-12-31 00:00:00.000', 1)
+INSERT INTO Obrigacao (Descricao,DiaEntrega,DataValidade,SetorId) VALUES ('GIA SP', 15, '2014-12-31 00:00:00.000', 1)
+INSERT INTO Obrigacao (Descricao,DiaEntrega,DataValidade,SetorId) VALUES ('DAPI', 15, '2014-12-31 00:00:00.000', 1)
+INSERT INTO Obrigacao (Descricao,DiaEntrega,DataValidade,SetorId) VALUES ('SEF II', 15, '2014-12-31 00:00:00.000', 1)
+--CONTABIL -2
+INSERT INTO Obrigacao (Descricao,DiaEntrega,DataValidade,SetorId) VALUES ('SPED CONTÁBIL', 1, '2014-05-27 00:00:00.000', 2)
+INSERT INTO Obrigacao (Descricao,DiaEntrega,DataValidade,SetorId) VALUES ('Balanço', 1, '2014-12-31 00:00:00.000', 2)
+INSERT INTO Obrigacao (Descricao,DiaEntrega,DataValidade,SetorId) VALUES ('DIRF', 10, '2014-12-05 00:00:00.000', 2)
+INSERT INTO Obrigacao (Descricao,DiaEntrega,DataValidade,SetorId) VALUES ('Livro Diário', 10, '2014-12-31 00:00:00.000', 2)
+INSERT INTO Obrigacao (Descricao,DiaEntrega,DataValidade,SetorId) VALUES ('Livro Razão', 15, '2014-12-31 00:00:00.000', 2)
+INSERT INTO Obrigacao (Descricao,DiaEntrega,DataValidade,SetorId) VALUES ('GPS', 15, '2014-12-31 00:00:00.000', 2)
+--RH -3
+INSERT INTO Obrigacao (Descricao,DiaEntrega,DataValidade,SetorId) VALUES ('Folha de Pagamento', 15, '2014-12-31 00:00:00.000', 3)
+INSERT INTO Obrigacao (Descricao,DiaEntrega,DataValidade,SetorId) VALUES ('Comprovante de Rendimentos', 15, '2014-12-31 00:00:00.000', 3)
+INSERT INTO Obrigacao (Descricao,DiaEntrega,DataValidade,SetorId) VALUES ('Abertura de Empresa', 15, '2014-12-31 00:00:00.000', 3)
+
 select * from Obrigacao
+
 
 
