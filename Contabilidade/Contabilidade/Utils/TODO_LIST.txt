@@ -26,19 +26,16 @@ Estuda a apostila.
 
 
 Lucas Fazendo:
-	- Ver para coloar setorId como fk, se precisar.
-	- popular DAO, Service e arrumar as classes model e controller de Cliente, Etapa, OS,Relatorio.
+	- Excluir de cliente
+	- Testar o Editar cliente para ver se as alterações sao salvas com sucesso
+	- Arrumar tela/fluxos de OS
 
 
 
 	[Prioridade baixa]
 	- paginação
+	- Trocar setorId para Setor e fazer os Includes e blabla.
 
 
 
 
-
-
-
-[Lucas Feito]:
-- Telas de cadastro, editar, excluir, listagem de Setor. [DONE]

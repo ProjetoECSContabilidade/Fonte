@@ -67,15 +67,39 @@
                         <div class="control-group">
                             @Html.Label("Estado", new { @class = "control-label" })
                             <div class="controls">
-                                @Html.DropDownListFor(model => model.SetorEconomico, new SelectList(
+                                @Html.DropDownListFor(model => model.Estado, new SelectList(
                                                        new List<Object>{
-                                                           new { value = true , text = "SC"  },
-                                                           new { value = false , text = "PR"  },
-                                                           new { value = false , text = "RS"  },
+                                                           new { value = "SC" , text = "SC"  },
+                                                           new { value = "PR" , text = "PR"  },
+                                                           new { value = "RS" , text = "RS"  },
+                                                           new { value = "RO" , text = "RO"  },
+                                                           new { value = "AC" , text = "AC"  },
+                                                           new { value = "AM" , text = "AM"  },
+                                                           new { value = "RR" , text = "RR"  },
+                                                           new { value = "PA" , text = "PA"  },
+                                                           new { value = "AP" , text = "AP"  },
+                                                           new { value = "TO" , text = "TO"  },
+                                                           new { value = "MA" , text = "MA"  },
+                                                           new { value = "PI" , text = "PI"  },
+                                                           new { value = "CE" , text = "CE"  },
+                                                           new { value = "RN" , text = "RN"  },
+                                                           new { value = "PB" , text = "PB"  },
+                                                           new { value = "PE" , text = "PE"  },
+                                                           new { value = "AL" , text = "AL"  },
+                                                           new { value = "SE" , text = "SE"  },
+                                                           new { value = "BA" , text = "BA"  },
+                                                           new { value = "MG" , text = "MG"  },
+                                                           new { value = "ES" , text = "ES"  },
+                                                           new { value = "RJ" , text = "RJ"  },
+                                                           new { value = "SP" , text = "SP"  },
+                                                           new { value = "MS" , text = "MS"  },
+                                                           new { value = "MT" , text = "MT"  },
+                                                           new { value = "GO" , text = "GO"  },
+                                                           new { value = "DF" , text = "DF"  }
                                                        },
                                                        "value",
                                                        "text",
-                                                     true))
+                                                        true), "- Selecione um Estado -", new { @class = "chosen-select", style = "width:220px;" })
                                 @Html.ValidationMessageFor(model => model.Estado)
                             </div>
                         </div>
@@ -85,33 +109,15 @@
                             <div class="controls">
                                 @Html.DropDownListFor(model => model.SetorEconomico, new SelectList(
                                                        new List<Object>{
-                                                           new { value = true , text = "Comercio"  },
-                                                           new { value = false , text = "Industria"  },
+                                                           new { value = "Comercio" , text = "Comercio"  },
+                                                           new { value = "Industria" , text = "Industria"  },
                                                        },
                                                        "value",
                                                        "text",
-                                                     true))
+                                                     true), "- Selecione um Setor -", new { @class = "chosen-select", style = "width:220px;" })
                                 @Html.ValidationMessageFor(model => model.SetorEconomico)
                             </div>
                         </div>
-
-                        <div class="control-group">
-                            @Html.Label("Setor Econômico", new { @class = "control-label" })
-                            <div class="controls">
-                                @Html.DropDownListFor(model => model.SetorEconomico, new SelectList(
-                                  new List<Object>{
-                                       new { value = "Indústria" , text = "Industria"  },
-                                       new { value = "Comércio" , text = "Comercio"  },
-                                       new { value = "Cooperativa" , text = "Cooperativa"  },
-                                       new { value = "Distribuição" , text = "Distribuicao"  },
-                                    },
-                                  "value",
-                                  "text",
-                                   2))
-                                @Html.ValidationMessageFor(model => model.SetorEconomico)
-                            </div>
-                        </div>
-
 
                         <div class="control-group">
                             @Html.Label("Natureza PJ", new { @class = "control-label" })
@@ -124,7 +130,7 @@
                                       },
                                       "value",
                                       "text",
-                                       2))
+                                       true), "- Selecione uma Natureza -", new { @class = "chosen-select", style = "width:220px;" })
                                 @Html.ValidationMessageFor(model => model.Natureza)
                             </div>
                         </div>
@@ -140,7 +146,7 @@
                                       },
                                       "value",
                                       "text",
-                                       2))
+                                       true), "- Selecione um Regime -", new { @class = "chosen-select", style = "width:220px;" })
                                 @Html.ValidationMessageFor(model => model.RegimeApuracao)
                             </div>
                         </div>
@@ -148,14 +154,14 @@
                         <div class="control-group">
                             @Html.Label("ISS Retenção", new { @class = "control-label" })
                             <div class="controls">
-                                @Html.DropDownListFor(model => model.RegimeApuracao, new SelectList(
+                                @Html.DropDownListFor(model => model.ISSRetencao, new SelectList(
                                   new List<Object>{
-                                       new { value = "Não" , text = "Nao"  },
+                                       new { value = "Nao" , text = "Não"  },
                                        new { value = "Sim" , text = "Sim"  },
                                   },
                                   "value",
                                   "text",
-                                   2))
+                                   true), "- Selecione uma Retenção -", new { @class = "chosen-select", style = "width:220px;" })
                                 @Html.ValidationMessageFor(model => model.RegimeApuracao)
                             </div>
                         </div>
@@ -170,7 +176,7 @@
                                },
                               "value",
                               "text",
-                               2))
+                               true), "- Selecione uma Atividade -", new { @class = "chosen-select", style = "width:220px;" })
                                 @Html.ValidationMessageFor(model => model.AtividadeEconomica)
                             </div>
                         </div>
@@ -185,7 +191,7 @@
                                                        },
                                                        "value",
                                                        "text",
-                                                     true))
+                                                     true), new { @class = "chosen-select", style = "width:220px;" })
 
                                 @Html.ValidationMessageFor(model => model.Ativo)
                             </div>
@@ -200,7 +206,7 @@
                     <div class="control-group">
                         @Html.Label("Obrigações Fiscais", new { @class = "control-label" })
                         <div class="controls">
-                            @Html.DropDownListFor(m => m.SelectedObrigadoesFiscais, Model.AllObrigacoesFiscais, "-- Seleciona um Usuário --", new { @class = "chosen-select", multiple = "multiple", tabindex = "4", style = "width:350px;" })
+                            @Html.ListBoxFor(m => m.SelectedObrigadoesFiscais, Model.AllObrigacoesFiscais, new { @class = "chosen-select", multiple = "multiple", tabindex = "4", style = "width:350px;" })
                         </div>
                     </div>
                     <div class="control-group">
@@ -219,7 +225,7 @@
                     <div class="control-group">
                         @Html.Label("Responsável Contabil", new { @class = "control-label" })
                         <div class="controls">
-                            @Html.DropDownListFor(model => model.ResponsavelFiscalId, new SelectList(Model.AllUsuarios, "Value", "Text"), "-- Seleciona um Usuário --", new { @class = "chosen-select", style = "width:350px;" })
+                            @Html.DropDownListFor(model => model.ResponsavelContabilId, new SelectList(Model.AllUsuarios, "Value", "Text"), "-- Seleciona um Usuário --", new { @class = "chosen-select", style = "width:350px;" })
                         </div>
                     </div>
 
@@ -232,7 +238,7 @@
                     <div class="control-group">
                         @Html.Label("Responsável RH", new { @class = "control-label" })
                         <div class="controls">
-                            @Html.DropDownListFor(model => model.ResponsavelFiscalId, new SelectList(Model.AllUsuarios, "Value", "Text"), "-- Seleciona um Usuário --", new { @class = "chosen-select", style = "width:350px;" })
+                            @Html.DropDownListFor(model => model.ResponsavelRHId, new SelectList(Model.AllUsuarios, "Value", "Text"), "-- Seleciona um Usuário --", new { @class = "chosen-select", style = "width:350px;" })
                         </div>
                     </div>
 

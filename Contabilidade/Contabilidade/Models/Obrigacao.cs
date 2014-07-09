@@ -14,8 +14,8 @@ namespace Contabilidade.Models
         public int Id { get; set; }
 
         [Required]
-        [MinLength(5, ErrorMessage = "O tamanho mínimo da Descrição são 5 caracteres.")]
-        [StringLength(500, ErrorMessage = "O tamanho máximo são 500 caracteres.")]
+        [MinLength(3, ErrorMessage = "O tamanho mínimo da Descrição são 3 caracteres.")]
+        //[StringLength(500, ErrorMessage = "O tamanho máximo são 500 caracteres.")]
         public string Descricao { get; set; }
 
         [Range(1, 31, ErrorMessage = "Informe um dia válido"), Required]
@@ -25,6 +25,8 @@ namespace Contabilidade.Models
 
         [Required]
         public int SetorId { get; set; }
+
+        public virtual ICollection<Cliente> ListaDeClientes { get; set; }
 
 
         public Obrigacao(int id, string descricao, int diaEntrega, Nullable<System.DateTime> dataValidade, int setorId)

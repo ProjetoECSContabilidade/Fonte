@@ -8,6 +8,7 @@ using Contabilidade.ViewModel;
 using Contabilidade.Service;
 using System.Data;
 using System.Web.Mvc;
+using System.Data.Entity;
 
 namespace Contabilidade.DAO
 {

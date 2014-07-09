@@ -11,3 +11,11 @@ Ctrl+K+U = descomenta
 Ctrl+D, Q = QuickInspect
 
 Ctrl + , = abre classe ou arquivo
+
+
+
+=========== DATA MIGRATION =============
+Testar datamigration com os comandos:
+
+Add-Migration NomeDaMigration
+Update-Database

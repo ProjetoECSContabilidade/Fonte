@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using Contabilidade.ViewModel;
 using System.Web.Mvc;
+using System.Collections;
 
 namespace Contabilidade.Service
 {
@@ -20,10 +21,11 @@ namespace Contabilidade.Service
         private ClienteDAO clienteDAO = new ClienteDAO();
         private ObrigacaoService obgService = new ObrigacaoService();
         private UsuarioService usuarioService = new UsuarioService();
+        private ConexaoSQLServerContext db = new ConexaoSQLServerContext();
 
 
         public ClienteView inicializaClienteView(ClienteView cv){
-            List<IEnumerable<SelectListItem>> obSeparadasPorSetorList = obgService.transformObrigacoesSeparadasPorSetorEmSelectListItem(obgService.getObrigacoesSeparadasPorSetor());
+            List<IEnumerable<SelectListItem>> obSeparadasPorSetorList = obgService.transformObrigacoesSeparadasPorSetorEmSelectListItem(obgService.getObrigacoesSeparadasPorSetor(null));
 
             cv.AllObrigacoesFiscais = obSeparadasPorSetorList[0];
             cv.AllObrigacoesContabeis = obSeparadasPorSetorList[1];
@@ -53,9 +55,41 @@ namespace Contabilidade.Service
 
             return listaDeClienteView;
         }
-        private Cliente transformClienteViewInCliente(ClienteView clienteView)
+        private Cliente transformClienteViewInCliente(ClienteView cView)
         {
             Cliente cliente = new Cliente();
+        
+            cliente.Municipio = cView.Municipio;
+            cliente.ISSRetencao = cView.ISSRetencao;
+            cliente.Natureza = cView.Natureza;
+
+            //pega as obrigacoes pelos ids que estao nos arrays de string de cView
+            ArrayList ids = new ArrayList();
+            foreach(string id in cView.SelectedObrigadoesFiscais){
+                ids.Add(Convert.ToInt32(id));
+            }
+            foreach(string id in cView.SelectedObrigadoesContabeis){
+                ids.Add(Convert.ToInt32(id));
+            }
+            foreach(string id in cView.SelectedObrigadoesRH){
+                ids.Add(Convert.ToInt32(id));
+            }
+
+            ICollection<Obrigacao> obrigacoesList = obgService.getObrigacoesById(ids);
+
+            //para nao salvar as obrigacoes, e sim referencias as que ja existem no banco.
+            cliente.Obrigacoes = obrigacoesList.Select(obrigacao => db.Obrigacao.FirstOrDefault(x=>x.Id == obrigacao.Id)).ToList();
+
+            cliente.RazaoSocial = cView.RazaoSocial;
+            cliente.RegimeApuracao = cView.RegimeApuracao;
+            cliente.ResponsavelContabil = usuarioService.findById(cView.ResponsavelContabilId);
+            cliente.ResponsavelFiscal = usuarioService.findById(cView.ResponsavelFiscalId);
+            cliente.ResponsavelRH = usuarioService.findById(cView.ResponsavelRHId);
+            cliente.SetorEconomico = cView.SetorEconomico;
+            cliente.AtividadeEconomica = cView.AtividadeEconomica;
+            cliente.Ativo = cView.Ativo;
+            cliente.Cnpj = cView.Cnpj;
+            cliente.Estado = cView.Estado;
 
             return cliente;
         }
@@ -63,7 +97,40 @@ namespace Contabilidade.Service
         public ClienteView transformClienteInClienteView(Cliente cliente)
         {
             ClienteView cView = new ClienteView(cliente);
-            return cView;
+            cView.ResponsavelRHId = cView.ResponsavelRH.Id;
+            cView.ResponsavelFiscalId = cView.ResponsavelFiscal.Id;
+            cView.ResponsavelContabilId = cView.ResponsavelContabil.Id;
+
+            List<List<Obrigacao>> obSeparadasPorSetorList = obgService.getObrigacoesSeparadasPorSetor(cliente.Obrigacoes.Cast<Obrigacao>().ToList());
+            if (obSeparadasPorSetorList[0].Count > 0)
+            {
+                var fiscalSelected = new List<string>();
+                foreach (Obrigacao ob in obSeparadasPorSetorList[0])
+                {
+                    fiscalSelected.Add(ob.Id.ToString());
+                }
+                cView.SelectedObrigadoesFiscais = fiscalSelected.ToArray();
+            }
+            if (obSeparadasPorSetorList[1].Count > 0)
+            {
+                var contabilSelected = new List<string>();
+                foreach (Obrigacao ob in obSeparadasPorSetorList[1])
+                {
+                    contabilSelected.Add(ob.Id.ToString());
+                }
+                cView.SelectedObrigadoesContabeis = contabilSelected.ToArray();
+            }
+            if (obSeparadasPorSetorList[2].Count > 0)
+            {
+                var rhSelected = new List<string>();
+                foreach (Obrigacao ob in obSeparadasPorSetorList[2])
+                {
+                    rhSelected.Add(ob.Id.ToString());
+                }
+                cView.SelectedObrigadoesRH = rhSelected.ToArray();
+            }
+
+            return inicializaClienteView(cView);
         }
 
         public ClienteView getClienteViewByClienteId(int id)

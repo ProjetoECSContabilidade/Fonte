@@ -53,27 +53,7 @@ namespace Contabilidade.Controllers
             ClienteView cView = new ClienteView();
             clienteService.inicializaClienteView(cView);
 
-            ////Assume some selected values returned from DB
-            //cView.SelectedCars = new string[] { "1", "2" };
-            ////Also the list of all cars
-            //cView.AllCars = GetAllCars();
-
             return View(cView);
-        }
-        private IEnumerable<SelectListItem> GetAllCars()
-        {
-            List<SelectListItem> allCars = new List<SelectListItem>();
-            //Add a few cars to make a list of cars
-            allCars.Add(new SelectListItem { Value = "1", Text = "BMW M3 Coupe" });
-            allCars.Add(new SelectListItem { Value = "2", Text = "Aston Martin DB9" });
-            allCars.Add(new SelectListItem { Value = "3", Text = "Lamborghini Aventador" });
-            allCars.Add(new SelectListItem { Value = "4", Text = "Maserati Quattroporte" });
-            allCars.Add(new SelectListItem { Value = "5", Text = "Audi R8" });
-            allCars.Add(new SelectListItem { Value = "6", Text = "Mercedes SLS" });
-            allCars.Add(new SelectListItem { Value = "7", Text = "Pagani Zonda R" });
-            allCars.Add(new SelectListItem { Value = "8", Text = "Nissan GTR" });
-
-            return allCars.AsEnumerable();
         }
 
         //
@@ -97,12 +77,12 @@ namespace Contabilidade.Controllers
 
         public ActionResult Edit(int id = 0)
         {
-            ClienteView cliente = clienteService.findViewById(id);
-            if (cliente == null)
+            ClienteView clienteView = clienteService.findViewById(id);
+            if (clienteView == null)
             {
                 return HttpNotFound();
             }
-            return View(cliente);
+            return View("Create", clienteView);
         }
 
         //

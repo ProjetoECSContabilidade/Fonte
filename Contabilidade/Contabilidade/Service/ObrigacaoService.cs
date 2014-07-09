@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using Contabilidade.ViewModel;
 using System.Web.Mvc;
+using System.Collections;
 
 namespace Contabilidade.Service
 {
@@ -94,9 +95,21 @@ namespace Contabilidade.Service
             return obrigacaoDAO.getAllObrigacoes();
         }
 
-        public List<List<Obrigacao>> getObrigacoesSeparadasPorSetor() //@TODO refactor
+
+        ///<summary>
+        /// Se listaDeObrigacoes for passado null, carrega todas as obrigações
+        /// 0-Fiscal 1-Contabil 2-RH
+        ///</summary>
+        public List<List<Obrigacao>> getObrigacoesSeparadasPorSetor(List<Obrigacao> listaDeObrigacoes) //@TODO refactor
         {
-            List<Obrigacao> todasObrigacoesList = getAllObrigacoes();
+            List<Obrigacao> todasObrigacoesList;
+            if (listaDeObrigacoes == null || listaDeObrigacoes.Count() == 0)
+            {
+                todasObrigacoesList = getAllObrigacoes();
+            }else{
+                todasObrigacoesList = listaDeObrigacoes;
+            }
+            
 
             List<Obrigacao> obrigacoesFiscaisList = new List<Obrigacao>();
             List<Obrigacao> obrigacoesContabeisList = new List<Obrigacao>();
@@ -128,10 +141,13 @@ namespace Contabilidade.Service
             return obgSeparadaPorSetorList;
         }
 
+        ///<summary>
+        /// 0-Fiscal 1-Contabil 2-RH
+        ///</summary>
         public List<IEnumerable<SelectListItem>> transformObrigacoesSeparadasPorSetorEmSelectListItem(List<List<Obrigacao>> listaSeparadaPorSetor)
         {
             List<IEnumerable<SelectListItem>> listaReturn = new List<IEnumerable<SelectListItem>>();
-            for(int i=0; i<=2;i++){ // 0- fiscal 1-contabil 2-rh
+            for(int i=0; i<=2;i++){ // 0-Fiscal 1-Contabil 2-RH
                 List<Obrigacao> lista = listaSeparadaPorSetor[i];
                 List<SelectListItem> allObrigacoes = new List<SelectListItem>();
                 foreach(Obrigacao ob in lista){
@@ -142,5 +158,10 @@ namespace Contabilidade.Service
             return listaReturn;
         }
 
+
+        public ICollection<Obrigacao> getObrigacoesById(ArrayList ids)
+        {
+            return obrigacaoDAO.findObrigacoesById(ids);
+        }
     }
 }

@@ -7,6 +7,8 @@ using Contabilidade.DAO;
 using Contabilidade.ViewModel;
 using Contabilidade.Service;
 using System.Data;
+using System.Collections;
+using System.Data.Entity;
 
 namespace Contabilidade.DAO
 {
@@ -29,7 +31,7 @@ namespace Contabilidade.DAO
         public Obrigacao findById(int id)
         {
             return db.Obrigacao.Find(id);
-        }
+        }   
 
         public void updateObrigacao(Obrigacao obrigacao)
         {
@@ -78,6 +80,22 @@ namespace Contabilidade.DAO
                 SetorId = o.SetorId
             });
 
+            return query.ToList();
+        }
+
+        public ICollection<Obrigacao> findObrigacoesById(ArrayList ids)
+        {
+            //var query = db.Obrigacao.Where(o => ids.Contains(o.Id.ToString()));
+            var query = from o in db.Obrigacao.AsEnumerable()
+                              where ids.Contains(o.Id)
+                              select new Obrigacao
+                                {   
+                                    Id = o.Id,
+                                    Descricao = o.Descricao,
+                                    DiaEntrega = o.DiaEntrega,
+                                    DataValidade = o.DataValidade,
+                                    SetorId = o.SetorId
+                                };
             return query.ToList();
         }
 

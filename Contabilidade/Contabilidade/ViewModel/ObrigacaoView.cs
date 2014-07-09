@@ -15,8 +15,7 @@ namespace Contabilidade.ViewModel
         public int Id { get; set; }
 
         [Required]
-        [MinLength(5, ErrorMessage = "O tamanho mínimo da Descrição são 5 caracteres.")]
-        [StringLength(500, ErrorMessage = "O tamanho máximo são 500 caracteres.")]
+        [MinLength(3, ErrorMessage = "O tamanho mínimo da Descrição são 3 caracteres.")]
         public string Descricao { get; set; }
 
         [Range(1, 31, ErrorMessage = "Informe um dia válido"), Required]

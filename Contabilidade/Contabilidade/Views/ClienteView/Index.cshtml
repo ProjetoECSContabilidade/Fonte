@@ -6,8 +6,7 @@
     Layout = "~/Views/Shared/_LayoutBasicoProjeto.cshtml";
 }
 
-
-<h4><small>Listagem de </small>@Model.GetLabel() </h4>
+<h4><small>Listagem de </small>Cliente </h4>
 
 <table class="table table-striped">
     <caption></caption>
@@ -75,56 +74,6 @@
     }
 </table>
 
-
-
 <p>
     @Html.ActionLink("Incluir", "Create", null, new { @class = "btn" })
 </p>
-
-
-@*<table>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.RazaoSocial)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Cnpj)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Municipio)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Estado)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SetorEconomico)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.RazaoSocial)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Cnpj)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Municipio)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Estado)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SetorEconomico)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
-
-</table>*@
