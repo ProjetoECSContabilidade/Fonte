@@ -29,12 +29,15 @@
             <div class="accordion-inner">
                 @using (Html.BeginForm())
                 {
-                    <p>
+                    <p><p>
                         Busca por: @Html.TextBox("SearchDesc", null, new { placeholder = "Descrição" })
                         @Html.TextBox("SearchSetor", null, new { placeholder = "Setor" })
                         @Html.TextBox("SearchDia", null, new { placeholder = "Dia da Entrega" })
-                        <input type="submit" value="Buscar" />
+                        <button type="submit" class="btn">Buscar</button>
+                        @*@Html.ActionLink("Buscar", "Busca", null, new { @class = "btn" })*@
+                        @*  <input type="submit" value="Buscar" />*@
                     </p>
+                </P>
                 }
                 @*<form class="navbar-form pull-left">
                         <input type="text" class="span2">

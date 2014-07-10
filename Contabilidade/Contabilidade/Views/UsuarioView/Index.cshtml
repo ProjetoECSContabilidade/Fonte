@@ -17,12 +17,16 @@
             <div class="accordion-inner">
                 @using (Html.BeginForm())
                 {
+                <div>
                     <p>
-                        Busca por: @Html.TextBox("SearchNome", null, new { placeholder = "Nome" })
-                        @Html.TextBox("SearchSetor", null, new { placeholder = "Setor" })
-                        @Html.TextBox("SearchCargo", null, new { placeholder = "Cargo" })
-                        <input type="submit" value="Buscar" />
-                    </p>
+                Busca por: @Html.TextBox("searchNome", null, new { placeholder = "Nome" })
+                @Html.TextBox("searchSetor", null, new { placeholder = "Setor" })
+                @Html.TextBox("searchCargo", null, new { placeholder = "Cargo" })
+
+                 <button type="submit" class="btn">Buscar</button>
+                 @*  <input type="submit" value="Buscar" />*@
+                </p>
+                </div>
                 }
             </div>
         </div>

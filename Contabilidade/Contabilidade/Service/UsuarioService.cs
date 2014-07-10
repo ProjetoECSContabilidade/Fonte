@@ -89,10 +89,18 @@ namespace Contabilidade.Service
             }
             return listaDeView;
         }
+
         public IEnumerable<SelectListItem> getAllUsuariosAsList()
         {
             return usuarioDAO.getAllUsuariosAsList();
         }
 
+
+
+        public int getUsuarioIdByUsuarioNome(string nome)
+        {
+            return usuarioDAO.getUsuarioIdByUsuarioNome(nome);
+        }
+        }
+
     }
-}
