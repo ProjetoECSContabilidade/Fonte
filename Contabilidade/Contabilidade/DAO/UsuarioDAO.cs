@@ -95,6 +95,15 @@ namespace Contabilidade.DAO
             });
             return query.AsEnumerable();
         }
+
+        public int getUsuarioIdByNomeUsuario(string desc)
+        {
+            var query = from u in db.Usuario
+                        where u.Nome.Equals(desc)
+                        select u.Id;
+
+            return query.FirstOrDefault();
+        }
     }
 
 }

@@ -99,7 +99,7 @@ namespace Contabilidade.Service
 
         public int getUsuarioIdByUsuarioNome(string nome)
         {
-            return usuarioDAO.getUsuarioIdByUsuarioNome(nome);
+            return usuarioDAO.getUsuarioIdByNomeUsuario(nome);
         }
         }
 

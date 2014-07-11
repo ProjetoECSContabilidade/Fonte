@@ -27,6 +27,7 @@ Estuda a apostila.
 
 Lucas Fazendo:
 	- Excluir de cliente
+	- validar se quando salva o cliente nao esta incluindo o usuario.
 	- Testar o Editar cliente para ver se as alterações sao salvas com sucesso
 	- Arrumar tela/fluxos de OS
 
