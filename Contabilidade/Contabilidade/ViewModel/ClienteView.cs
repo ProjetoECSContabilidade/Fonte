@@ -27,11 +27,11 @@ namespace Contabilidade.ViewModel
         public Usuario ResponsavelContabil { get; set; }
         public Usuario ResponsavelRH { get; set; }
 
+        //campos exclusivos da view
         public int ResponsavelFiscalId { get; set; }
         public int ResponsavelContabilId { get; set; }
         public int ResponsavelRHId { get; set; }
 
-        //campos exclusivos da view
         public IEnumerable<SelectListItem> AllObrigacoesFiscais { get; set; }
         public string[] SelectedObrigadoesFiscais { get; set; }
         public IEnumerable<SelectListItem> AllObrigacoesContabeis { get; set; }

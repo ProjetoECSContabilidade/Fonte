@@ -1,90 +1,271 @@
 ﻿@model Contabilidade.ViewModel.ClienteView
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_LayoutBasicoProjeto.cshtml";
 }
 
-<h2>Delete</h2>
+<style type="text/css" media="all">
+    body {
+        background-color: #eef;
+    }
 
-<h3>Are you sure you want to delete this?</h3>
-<fieldset>
-    <legend>Cliente</legend>
+    #tabs {
+        width: 95%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 10px;
+    }
+</style>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.RazaoSocial)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.RazaoSocial)
-    </div>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Cnpj)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Cnpj)
-    </div>
+<h3><small>Deseja mesmo deletar este </small>Cliente</h3>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Municipio)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Municipio)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Estado)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Estado)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.SetorEconomico)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.SetorEconomico)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Natureza)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Natureza)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.RegimeApuracao)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.RegimeApuracao)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.ISSRetencao)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.ISSRetencao)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.AtividadeEconomica)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.AtividadeEconomica)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Ativo)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Ativo)
-    </div>
-</fieldset>
-@using (Html.BeginForm()) {
+@using (Html.BeginForm())
+{
     @Html.AntiForgeryToken()
-    <p>
-        <input type="submit" value="Delete" /> |
-        @Html.ActionLink("Back to List", "Index")
-    </p>
+    @Html.ValidationSummary(true)
+
+    <div id="tabs">
+        <!-- Only required for left/right tabs -->
+        @*<ul class="nav nav-tabs">
+                <li class="active"><a href="#tabCliente" data-toggle="tab">Cliente</a></li>
+                <li><a href="#tabPerfil" data-toggle="tab">Perfil</a></li>
+            </ul>*@
+        <ul>
+            <li class="active"><a href="#tabCliente">Cliente</a></li>
+            <li><a href="#tabPerfil">Perfil</a></li>
+        </ul>
+        <div class="tab-content">
+            <div id="tabCliente">
+                <p>
+                    <fieldset class="form-horizontal">
+                        <div class="control-group">
+                            @Html.Label("Razão Social", new { @class = "control-label" })
+                            <div class="controls">
+                                @Html.TextBoxFor(model => model.RazaoSocial, new { @class = "input-xlarge", disabled = "disabled" })
+                                @Html.ValidationMessageFor(model => model.RazaoSocial)
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            @Html.Label("CNPJ", new { @class = "control-label" })
+                            <div class="controls">
+                                @Html.TextBoxFor(model => model.Cnpj, new { @class = "input-xlarge", disabled = "disabled" })
+                                @Html.ValidationMessageFor(model => model.Cnpj)
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            @Html.Label("Município", new { @class = "control-label" })
+                            <div class="controls">
+                                @Html.TextBoxFor(model => model.Municipio, new { @class = "input-xlarge", disabled = "disabled" })
+                                @Html.ValidationMessageFor(model => model.Municipio)
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            @Html.Label("Estado", new { @class = "control-label" })
+                            <div class="controls">
+                                @Html.DropDownListFor(model => model.Estado, new SelectList(
+                                                       new List<Object>{
+                                                           new { value = "SC" , text = "SC"  },
+                                                           new { value = "PR" , text = "PR"  },
+                                                           new { value = "RS" , text = "RS"  },
+                                                           new { value = "RO" , text = "RO"  },
+                                                           new { value = "AC" , text = "AC"  },
+                                                           new { value = "AM" , text = "AM"  },
+                                                           new { value = "RR" , text = "RR"  },
+                                                           new { value = "PA" , text = "PA"  },
+                                                           new { value = "AP" , text = "AP"  },
+                                                           new { value = "TO" , text = "TO"  },
+                                                           new { value = "MA" , text = "MA"  },
+                                                           new { value = "PI" , text = "PI"  },
+                                                           new { value = "CE" , text = "CE"  },
+                                                           new { value = "RN" , text = "RN"  },
+                                                           new { value = "PB" , text = "PB"  },
+                                                           new { value = "PE" , text = "PE"  },
+                                                           new { value = "AL" , text = "AL"  },
+                                                           new { value = "SE" , text = "SE"  },
+                                                           new { value = "BA" , text = "BA"  },
+                                                           new { value = "MG" , text = "MG"  },
+                                                           new { value = "ES" , text = "ES"  },
+                                                           new { value = "RJ" , text = "RJ"  },
+                                                           new { value = "SP" , text = "SP"  },
+                                                           new { value = "MS" , text = "MS"  },
+                                                           new { value = "MT" , text = "MT"  },
+                                                           new { value = "GO" , text = "GO"  },
+                                                           new { value = "DF" , text = "DF"  }
+                                                       },
+                                                       "value",
+                                                       "text",
+                                 true), "- Selecione um Estado -", new { @class = "chosen-select", style = "width:220px;", disabled = "disabled" })
+                                @Html.ValidationMessageFor(model => model.Estado)
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            @Html.Label("Setor Econômico", new { @class = "control-label" })
+                            <div class="controls">
+                                @Html.DropDownListFor(model => model.SetorEconomico, new SelectList(
+                                                       new List<Object>{
+                                                           new { value = "Comercio" , text = "Comercio"  },
+                                                           new { value = "Industria" , text = "Industria"  },
+                                                       },
+                                                       "value",
+                                                       "text",
+                                                     true), "- Selecione um Setor -", new { @class = "chosen-select", style = "width:220px;", disabled = "disabled" })
+                                @Html.ValidationMessageFor(model => model.SetorEconomico)
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            @Html.Label("Natureza PJ", new { @class = "control-label" })
+                            <div class="controls">
+                                @Html.DropDownListFor(model => model.Natureza, new SelectList(
+                                      new List<Object>{
+                                           new { value = "Sociedade Empresária Geral" , text = "Sociedade Empresária Geral"  },
+                                           new { value = "Sociedade Cooperativa" , text = "Sociedade Cooperativa"  },
+                                           new { value = "PIS/PASEP sobre Folha de Pagto" , text = "PIS/PASEP sobre Folha de Pagto"  },
+                                      },
+                                      "value",
+                                      "text",
+                                       true), "- Selecione uma Natureza -", new { @class = "chosen-select", style = "width:220px;", disabled = "disabled" })
+                                @Html.ValidationMessageFor(model => model.Natureza)
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            @Html.Label("Regime Apuração", new { @class = "control-label" })
+                            <div class="controls">
+                                @Html.DropDownListFor(model => model.RegimeApuracao, new SelectList(
+                                      new List<Object>{
+                                           new { value = "Cumulativo" , text = "Cumulativo"  },
+                                           new { value = "Não-Cumulativo" , text = "Não-Cumulativo"  },
+                                           new { value = "Cumulativo e Não-Cumulativo" , text = "Cumulativo e Não-Cumulativo"  },
+                                      },
+                                      "value",
+                                      "text",
+                                       true), "- Selecione um Regime -", new { @class = "chosen-select", style = "width:220px;", disabled = "disabled" })
+                                @Html.ValidationMessageFor(model => model.RegimeApuracao)
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            @Html.Label("ISS Retenção", new { @class = "control-label" })
+                            <div class="controls">
+                                @Html.DropDownListFor(model => model.ISSRetencao, new SelectList(
+                                  new List<Object>{
+                                       new { value = "Nao" , text = "Não"  },
+                                       new { value = "Sim" , text = "Sim"  },
+                                  },
+                                  "value",
+                                  "text",
+                                   true), "- Selecione uma Retenção -", new { @class = "chosen-select", style = "width:220px;", disabled = "disabled" })
+                                @Html.ValidationMessageFor(model => model.RegimeApuracao)
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            @Html.Label("Atividade Economica", new { @class = "control-label" })
+                            <div class="controls">
+                                @Html.DropDownListFor(model => model.AtividadeEconomica, new SelectList(new List<Object>{new { value = "Indústria" , text = "Industria"  },
+                               new { value = "Agricultura" , text = "Agricultura"  },
+                               new { value = "Comércio" , text = "Comercio"  },
+                               new { value = "Saúde" , text = "Saude"  },
+                               },
+                              "value",
+                              "text",
+                               true), "- Selecione uma Atividade -", new { @class = "chosen-select", style = "width:220px;", disabled = "disabled" })
+                                @Html.ValidationMessageFor(model => model.AtividadeEconomica)
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            @Html.Label("Ativo", new { @class = "control-label" })
+                            <div class="controls">
+                                @Html.DropDownListFor(model => model.Ativo, new SelectList(
+                                                       new List<Object>{
+                                                           new { value = true , text = "Sim"  },
+                                                           new { value = false , text = "Não"  },
+                                                       },
+                                                       "value",
+                                                       "text",
+                                                     true), new { @class = "chosen-select", style = "width:220px;", disabled = "disabled" })
+
+                                @Html.ValidationMessageFor(model => model.Ativo)
+                            </div>
+                        </div>
+
+                    </fieldset>
+            </div> @*FIM DA TAB1 - CLIENTE*@
+
+            <div id="tabPerfil">
+                <fieldset class="form-horizontal">
+
+                    <div class="control-group">
+                        @Html.Label("Obrigações Fiscais", new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.ListBoxFor(m => m.SelectedObrigadoesFiscais, Model.AllObrigacoesFiscais, new { @class = "chosen-select", multiple = "multiple", tabindex = "4", style = "width:350px;", disabled = "disabled" })
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        @Html.Label("Responsável Fiscal", new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.DropDownListFor(model => model.ResponsavelFiscalId, new SelectList(Model.AllUsuarios, "Value", "Text"), "-- Seleciona um Usuário --", new { @class = "chosen-select", style = "width:350px;", disabled = "disabled" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        @Html.Label("Obrigações Contabeis", new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.ListBoxFor(m => m.SelectedObrigadoesContabeis, Model.AllObrigacoesContabeis, new { @class = "chosen-select", multiple = "multiple", tabindex = "4", style = "width:350px;", disabled = "disabled" })
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        @Html.Label("Responsável Contabil", new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.DropDownListFor(model => model.ResponsavelContabilId, new SelectList(Model.AllUsuarios, "Value", "Text"), "-- Seleciona um Usuário --", new { @class = "chosen-select", style = "width:350px;", disabled = "disabled" })
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        @Html.Label("Obrigações RH", new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.ListBoxFor(m => m.SelectedObrigadoesRH, Model.AllObrigacoesRH, new { @class = "chosen-select", multiple = "multiple", tabindex = "4", style = "width:350px;", disabled = "disabled" })
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        @Html.Label("Responsável RH", new { @class = "control-label" })
+                        <div class="controls">
+                            @Html.DropDownListFor(model => model.ResponsavelRHId, new SelectList(Model.AllUsuarios, "Value", "Text"), "-- Seleciona um Usuário --", new { @class = "chosen-select", style = "width:350px;", disabled = "disabled" })
+                        </div>
+                    </div>
+
+                </fieldset>
+            </div>@*FIM DA TAB2 - Perfil*@
+
+        </div>
+    </div>
+
+
+    <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Excluir</button>
+        @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn " })
+    </div>
 }
+
+<div>
+    @Html.ActionLink("Voltar para a Listagem", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<script type="text/javascript">
+    $(function () {
+        $("#tabs").tabs();
+    });
+</script>
+

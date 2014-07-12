@@ -21,51 +21,30 @@ namespace Contabilidade.Controllers
     {
         private ConexaoSQLServerContext db = new ConexaoSQLServerContext();
         private OrdemDeServicoService osService = new OrdemDeServicoService();
+        private ClienteService clienteService = new ClienteService();
+        private UsuarioService usuarioService = new UsuarioService();
+        private SetorService setorService = new SetorService();
 
         //
         // GET: /OrdemDeServico/
 
-        public ActionResult Index()
+        public ActionResult Index(string searchIdResponsavel, string searchIdSetor, string searchIdCliente)
         {
-            DateTime MyDateTime = Convert.ToDateTime("01/05/2014");
-            DateTime MyDateTime2 = Convert.ToDateTime("25/06/2014");
-            DateTime MyDateTime3 = Convert.ToDateTime("11/07/2014");
-            //MyDateTime = DateTime.Now;
-            //MyDateTime = Convert.ToDateTime("01/05/2014");
-            List<OrdemDeServicoView> listaDeOrdemDeServicoView = new List<OrdemDeServicoView>();
-
-            OrdemDeServicoView os1 = new OrdemDeServicoView
+            
+            if (String.IsNullOrEmpty(searchIdResponsavel) || String.IsNullOrEmpty(searchIdSetor) || String.IsNullOrEmpty(searchIdCliente))
             {
-                Gcliente = "Dunzer Contabilidade",
-                Gresponsavel = "Rubia",
-                DataEntrega = MyDateTime,
-                Status = "Concluido",
-                GStatus = true
-            };
+                ViewBag.AllSetores = setorService.getAllSetoresAsList();
+                ViewBag.AllUsuarios = usuarioService.getAllUsuariosAsList();
+                ViewBag.AllClientes = clienteService.getAllClientesAsList();
 
-            OrdemDeServicoView os2 = new OrdemDeServicoView
+                return View(osService.getAllOrdensDeServico());
+            }
+            else
             {
-                Gcliente = "Dunzer Contabilidade",
-                Gresponsavel = "Rubia",
-                DataEntrega = MyDateTime2,
-                Status = "Não Concluido",
-                GStatus = false
-            };
-
-            OrdemDeServicoView os3 = new OrdemDeServicoView
-            {
-                Gcliente = "Romaço",
-                Gresponsavel = "Sandro",
-                DataEntrega = MyDateTime3,
-                Status = "Não Concluido",
-                GStatus = false
-            };
-
-            listaDeOrdemDeServicoView.Add(os1);
-            listaDeOrdemDeServicoView.Add(os2);
-            listaDeOrdemDeServicoView.Add(os3);
-
-            return View(listaDeOrdemDeServicoView);
+                //TODO IMPLEMENTAR FILTROS
+                return View();
+            }
+            
         }
 
         //
@@ -82,17 +61,17 @@ namespace Contabilidade.Controllers
             return View(ordemdeservico);
         }
 
-        //
-        // GET: /OrdemDeServico/Create
-
+        
+        // GET: /Cliente/Create
         public ActionResult Create()
         {
-            return View();
+            OrdemDeServicoView osView = new OrdemDeServicoView();
+            osService.inicializaOSView(osView);
+
+            return View(osView);
         }
 
-        //
         // POST: /OrdemDeServico/Create
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(OrdemDeServicoView ordemdeservicoView)
@@ -116,12 +95,10 @@ namespace Contabilidade.Controllers
             {
                 return HttpNotFound();
             }
-            return View(osView);
+            return View("Create", osView);
         }
 
-        //
         // POST: /OrdemDeServico/Edit/5
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(OrdemDeServicoView osView)

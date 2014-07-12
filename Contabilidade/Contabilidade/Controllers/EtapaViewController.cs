@@ -24,33 +24,33 @@ namespace Contabilidade.Controllers
 
         public ActionResult Index()
         {
-            DateTime MyDateTime  = new DateTime();
-            //MyDateTime = DateTime.Now;
-            MyDateTime = Convert.ToDateTime("01/05/2014");
-            List<Etapa> listaDeEtapa = new List<Etapa>();
+            //DateTime MyDateTime  = new DateTime();
+            ////MyDateTime = DateTime.Now;
+            //MyDateTime = Convert.ToDateTime("01/05/2014");
+            //List<Etapa> listaDeEtapa = new List<Etapa>();
 
-            Etapa etapa1 = new Etapa{
-                ObrigacaoString = "DIME",
-                StatusString = "Concluido",
-                DataEntrega = MyDateTime,
-                ResponsavelString = "Rubia",
-                Concluido = true
-            };
+            //Etapa etapa1 = new Etapa{
+            //    ObrigacaoString = "DIME",
+            //    StatusString = "Concluido",
+            //    DataEntrega = MyDateTime,
+            //    ResponsavelString = "Rubia",
+            //    Concluido = true
+            //};
 
-            Etapa etapa2 = new Etapa
-            {
-                ObrigacaoString = "SPED CONTABIL",
-                StatusString = "Aguardando Cliente",
-                DataEntrega = MyDateTime,
-                ResponsavelString = "Sandro",
-                Concluido = false
-            };
+            //Etapa etapa2 = new Etapa
+            //{
+            //    ObrigacaoString = "SPED CONTABIL",
+            //    StatusString = "Aguardando Cliente",
+            //    DataEntrega = MyDateTime,
+            //    ResponsavelString = "Sandro",
+            //    Concluido = false
+            //};
 
-            listaDeEtapa.Add(etapa1);
-            listaDeEtapa.Add(etapa2);
+            //listaDeEtapa.Add(etapa1);
+            //listaDeEtapa.Add(etapa2);
 
 
-            return View(listaDeEtapa);
+            return View();
         }
 
         //

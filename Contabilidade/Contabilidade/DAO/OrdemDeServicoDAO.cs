@@ -41,5 +41,15 @@ namespace Contabilidade.DAO
             db.SaveChanges();
         }
 
+        public List<OrdemDeServico> getAllOS()
+        {
+            return db.OrdemDeServico
+                .Include(x => x.Responsavel)
+                .Include(x => x.Setor)
+                .Include(x => x.Cliente)
+                .Include(x => x.Etapas)
+                .ToList();
+        }
+
     }
 }

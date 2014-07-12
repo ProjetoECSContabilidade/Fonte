@@ -17,11 +17,16 @@ namespace Contabilidade.Service
     public class OrdemDeServicoService
     {
         private OrdemDeServicoDAO osDAO = new OrdemDeServicoDAO();
+        private UsuarioService usuarioService = new UsuarioService();
+        private ClienteService clienteService = new ClienteService();
+        private SetorService setorService = new SetorService();
 
 
         private OrdemDeServico transformOrdemDeServicoViewInOrdemDeServico(OrdemDeServicoView osView)
         {
-            OrdemDeServico os = new OrdemDeServico(osView.Id, osView.Responsavel, osView.Setor, osView.Cliente, osView.Etapas, osView.Status, osView.DataConclusao, osView.DataEntrega);
+            OrdemDeServico os = new OrdemDeServico(osView.Id, osView.Responsavel,
+                osView.Setor, osView.Cliente, osView.Etapas,
+                osView.Status, osView.DataConclusao, osView.DataEntrega);
 
             return os;
         }
@@ -59,6 +64,28 @@ namespace Contabilidade.Service
         public void deleteOrdemDeServico(int id)
         {
             osDAO.deleteOrdemDeServico(id);
+        }
+
+        public List<OrdemDeServicoView> getAllOrdensDeServico()
+        {
+            List<OrdemDeServicoView> listaDeOSView = new List<OrdemDeServicoView>();
+            List<OrdemDeServico> listaDeOS = osDAO.getAllOS();
+
+            foreach (OrdemDeServico os in listaDeOS)
+            {
+                listaDeOSView.Add(transformOrdemDeServicoInOrdemDeServicoView(os));
+            }
+
+            return listaDeOSView;
+        }
+        
+        public OrdemDeServicoView inicializaOSView(OrdemDeServicoView osView)
+        {
+            //osView.AllUsuarios = usuarioService.getAllUsuariosAsList();
+            //osView.AllClientes = clienteService.getAllClientesAsList();
+            //osView.AllSetores = setorService.getAllSetoresAsList();
+
+            return osView;
         }
     }
 }

@@ -8,6 +8,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
+using System.Data.Objects.DataClasses;
+using System.Data.Objects;
+using System.Reflection;
 
 namespace Contabilidade.DAO
 {
@@ -42,8 +45,10 @@ namespace Contabilidade.DAO
                  * linka os objetos na memoria aos objetos relacionados do banco
                  */
                 cliente.Obrigacoes = cliente.Obrigacoes.Select(obrigacao => db.Obrigacao.FirstOrDefault(x => x.Id == obrigacao.Id)).ToList();
-                //para o usuario nao precisou por é 1 pra n (one to many)
-                //cliente.ResponsavelContabil = db.Usuario.Select(usuario => db.Usuario.FirstOrDefault(x => x.Id == cliente.ResponsavelContabil.Id)).FirstOrDefault();
+                //codigo abaixo relaciona o usuario do banco ao responsavel selecionado.
+                cliente.ResponsavelContabil = db.Usuario.Select(usuario => db.Usuario.FirstOrDefault(x => x.Id == cliente.ResponsavelContabil.Id)).FirstOrDefault();
+                cliente.ResponsavelFiscal = db.Usuario.Select(usuario => db.Usuario.FirstOrDefault(x => x.Id == cliente.ResponsavelFiscal.Id)).FirstOrDefault();
+                cliente.ResponsavelRH = db.Usuario.Select(usuario => db.Usuario.FirstOrDefault(x => x.Id == cliente.ResponsavelRH.Id)).FirstOrDefault();
 
                 db.Cliente.Add(cliente);
                 db.SaveChanges();
@@ -67,10 +72,47 @@ namespace Contabilidade.DAO
 
         public void updateCliente(Cliente cliente)
         {
-            Cliente clienteSalvar = db.Cliente.Where(x => x.Id == cliente.Id).First();
-            clienteSalvar.Obrigacoes = cliente.Obrigacoes.Select(obrigacao => db.Obrigacao.FirstOrDefault(x => x.Id == obrigacao.Id)).ToList();
+            ////get current entry from db (db is context)
+            //var clienteDoBD = db.Entry<Models.Cliente>(cliente);
 
-            db.Entry(clienteSalvar).State = EntityState.Modified;
+            ////change item state to modified
+            //clienteDoBD.State = System.Data.EntityState.Modified;
+
+            ////load existing items for ManyToMany collection
+            //clienteDoBD.Collection(c => c.Obrigacoes).Load();
+
+            ////clear Student items          
+            //cliente.Obrigacoes.Clear();
+
+            ////add Toner items
+            //foreach (var obrigacao in cliente.Obrigacoes)
+            //{
+            //    var obg = db.Obrigacao.Find(obrigacao.Id);
+            //    cliente.Obrigacoes.Add(obg);
+            //}
+
+            Cliente clienteSalvar = db.Cliente.Where(x => x.Id == cliente.Id).First();
+            clienteSalvar.AtividadeEconomica = cliente.AtividadeEconomica;
+            clienteSalvar.Ativo = cliente.Ativo;
+            clienteSalvar.Cnpj = cliente.Cnpj;
+            clienteSalvar.Estado = cliente.Estado;
+            clienteSalvar.ISSRetencao = cliente.ISSRetencao;
+            clienteSalvar.Municipio = cliente.Municipio;
+            clienteSalvar.Natureza = cliente.Natureza;
+            clienteSalvar.RazaoSocial = cliente.RazaoSocial;
+            clienteSalvar.RegimeApuracao = cliente.RegimeApuracao;
+            clienteSalvar.SetorEconomico = cliente.SetorEconomico;
+            clienteSalvar.Obrigacoes =  null;
+            //clienteSalvar.Obrigacoes = clienteSalvar.Obrigacoes.Select(obrigacao => db.Obrigacao.FirstOrDefault(x => x.Id == obrigacao.Id)).ToList();
+            //clienteSalvar.Obrigacoes.Clear();
+            //db.SaveChanges();
+
+            //clienteSalvar.Obrigacoes = cliente.Obrigacoes.Select(obrigacao => db.Obrigacao.FirstOrDefault(x => x.Id == obrigacao.Id)).ToList();
+            //codigo abaixo relaciona o usuario do banco ao responsavel selecionado.
+            clienteSalvar.ResponsavelContabil = db.Usuario.Select(usuario => db.Usuario.FirstOrDefault(x => x.Id == cliente.ResponsavelContabil.Id)).FirstOrDefault();
+            clienteSalvar.ResponsavelFiscal = db.Usuario.Select(usuario => db.Usuario.FirstOrDefault(x => x.Id == cliente.ResponsavelFiscal.Id)).FirstOrDefault();
+            clienteSalvar.ResponsavelRH = db.Usuario.Select(usuario => db.Usuario.FirstOrDefault(x => x.Id == cliente.ResponsavelRH.Id)).FirstOrDefault();
+
             db.SaveChanges();
         }
 
@@ -95,6 +137,16 @@ namespace Contabilidade.DAO
                 .Include(x => x.ResponsavelFiscal)
                 .Include(x => x.ResponsavelContabil)
                 .ToList();
+        }
+
+        public IEnumerable<SelectListItem> getAllClientesAsList()
+        {
+            var query = db.Cliente.ToList().Select(c => new SelectListItem
+            {
+                Value = c.Id.ToString(),
+                Text = c.RazaoSocial,
+            });
+            return query.AsEnumerable();
         }
     }
 }

@@ -58,7 +58,8 @@ namespace Contabilidade.Service
         private Cliente transformClienteViewInCliente(ClienteView cView)
         {
             Cliente cliente = new Cliente();
-        
+
+            cliente.Id = cView.Id;
             cliente.Municipio = cView.Municipio;
             cliente.ISSRetencao = cView.ISSRetencao;
             cliente.Natureza = cView.Natureza;
@@ -131,6 +132,11 @@ namespace Contabilidade.Service
             }
 
             return inicializaClienteView(cView);
+        }
+
+        public IEnumerable<SelectListItem> getAllClientesAsList()
+        {
+            return clienteDAO.getAllClientesAsList();
         }
 
         public ClienteView getClienteViewByClienteId(int id)

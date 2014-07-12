@@ -26,6 +26,9 @@ namespace Contabilidade.Models
         public Usuario ResponsavelContabil { get; set; }
         public Usuario ResponsavelRH { get; set; }
 
+        //ChaveEstrangeira
+        public virtual ICollection<Usuario> Usuarios { get; set; }
+
         public Cliente(int id, string razaoSocial, string cnpj, string municipio, string estado, string setorEconomico, 
             string natureza, string regimaApuracao, string issRetencao, string atividadeEconomica, bool ativo, ICollection<Obrigacao> obrigacoes, 
             Usuario responsavelFiscal, Usuario responsavelContabil, Usuario responseRH)

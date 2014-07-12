@@ -20,17 +20,7 @@ namespace Contabilidade.Models
         public int Status { get; set; }
         public string Descricao { get; set; }
 
-
-
-        //APAGAR
-        [NotMapped]
-        public String ObrigacaoString { get; set; }
-        [NotMapped]
-        public String ResponsavelString { get; set; }
-        [NotMapped]
-        public String StatusString { get; set; }
-        [NotMapped]
-        public bool Concluido { get; set; }
+        public virtual ICollection<OrdemDeServico> ListaDeOS { get; set; }
 
     }
 }

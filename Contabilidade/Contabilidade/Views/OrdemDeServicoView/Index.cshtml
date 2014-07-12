@@ -6,25 +6,32 @@
     Layout = "~/Views/Shared/_LayoutBasicoProjeto.cshtml";
 }
 
-<h4><small>Listagem de </small>@Model.GetLabel() </h4>
+<h4><small>Listagem de </small>Ordem de Serviço </h4>
 
+<div class="panel-group" id="accordion">
+    <div class="accordion-group">
+        <div class="accordion-heading">
+            <a class="accordion-toggle btn" data-toggle="collapse" data-parent="questions"
+               href="#who"><b>Buscar</b></a>
+        </div>
+        <div id="who" class="accordion-body collapse">
+            <div class="accordion-inner">
+                @using (Html.BeginForm())
+                {
+                    <div>
+                        <p>
+                            Busca por: @Html.DropDownList("searchIdResponsavel", new SelectList(@ViewBag.AllUsuarios, "Value", "Text"), "- Responsavel -")
+                            @Html.DropDownList("searchIdSetor", new SelectList(@ViewBag.AllSetores, "Value", "Text"), "- Setor -")
+                            @Html.DropDownList("searchIdCliente", new SelectList(@ViewBag.AllClientes, "Value", "Text"), "- Cliente -")
 
-<form class="form-actions">
-    Busca: 
-    <select class="selectpicker">
-        <option>Usuário</option>
-        <option>Rubia</option>
-        <option>Sandro</option>
-    </select>
-    <select class="selectpicker">
-        <option>Setor</option>
-        <option>Rubia</option>
-        <option>Sandro</option>
-    </select>
-    <input type="datetime" class="form-search" placeholder="-- Data Inicial --">
-    <input type="datetime" class="form-search" placeholder="-- Data Final --">
-    <button class="btn btn-primary" type="button">Buscar</button>
-</form>
+                            <button type="submit" class="btn">Buscar</button>
+                        </p>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
 
     <table class="table table-striped">
         <caption></caption>
@@ -35,6 +42,9 @@
                 </th>
                 <th>
                     Responsavel
+                </th>
+                <th>
+                    Setor
                 </th>
                 <th>
                     Data de Entrega
@@ -51,16 +61,19 @@
             ViewData[index.ToString()] = os;
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => os.Gcliente)
+                    @Html.DisplayFor(modelItem => os.Cliente.RazaoSocial)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => os.Gresponsavel)
+                    @Html.DisplayFor(modelItem => os.Responsavel.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => os.Setor.Descricao)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => os.DataEntrega)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => os.GStatus)
+                    @Html.DisplayFor(modelItem => os.Status)
                 </td>
 
                 <td>
@@ -72,8 +85,8 @@
                         <ul class="dropdown-menu">
                             @{
                                 @Html.TryPartial("_actions", os)
-            var routevalues = os.GetIdValue();
-            <li>@Html.ActionLink("Editar", "Edit", routevalues)</li>
+                                var routevalues = os.GetIdValue();
+                                <li>@Html.ActionLink("Editar", "Edit", routevalues)</li>
                                 <li class="divider"></li>
                                 <li>@Html.ActionLink("Excluir", "Delete", routevalues)</li>
 

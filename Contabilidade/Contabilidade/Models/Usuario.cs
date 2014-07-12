@@ -32,6 +32,10 @@ namespace Contabilidade.Models
         [DefaultValue(true)]
         public bool Ativo { get; set; }
 
+        //Chave Estrangeira
+        public virtual Cliente Cliente { get; set; }
+
+
 
         public Usuario()
         {
