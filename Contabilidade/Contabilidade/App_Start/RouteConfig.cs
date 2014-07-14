@@ -19,8 +19,10 @@ namespace Contabilidade
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Login", action = "Login", id = UrlParameter.Optional }
             );
+
+            routes.MapNavigationRoute<LoginController>("Login", r => r.Login());
 
             routes.MapNavigationRoute<UsuarioViewController>("Usuario", r => r.Start())
                 .AddChildRoute<UsuarioViewController>("Listagem", r => r.Index("", "", ""))

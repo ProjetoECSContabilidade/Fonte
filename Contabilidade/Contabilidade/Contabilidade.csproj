@@ -151,6 +151,7 @@
     <Compile Include="Controllers\EtapaViewController.cs" />
     <Compile Include="Controllers\ExampleLayoutsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ObrigacaoViewController.cs" />
     <Compile Include="Controllers\OrdemDeServicoViewController.cs" />
     <Compile Include="Controllers\RelatorioOSViewController.cs" />
@@ -166,6 +167,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Job\CronJobOS.cs" />
+    <Compile Include="Models\Login.cs" />
+    <Compile Include="Repositories\UsuarioRepositorio.cs" />
     <Compile Include="Service\OrdemDeServicoService.cs" />
     <Compile Include="Service\EtapaService.cs" />
     <Compile Include="Service\ClienteService.cs" />
@@ -359,6 +362,7 @@
     <Content Include="Views\OrdemDeServicoView\Edit.cshtml" />
     <Content Include="Views\OrdemDeServicoView\Delete.cshtml" />
     <Content Include="Views\RelatorioOSView\Create.cshtml" />
+    <Content Include="Views\Login\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

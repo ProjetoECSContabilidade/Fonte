@@ -1,0 +1,27 @@
+﻿@model Contabilidade.Models.Login
+@using BootstrapSupport
+@*@model dynamic*@
+
+@{
+    ViewBag.Title = "Logar";
+    Layout = "~/Views/shared/_BootstrapLayout.empty.cshtml";
+}
+
+<form class="form-signin">
+    <h2 class="form-signin-heading">Login</h2>
+    <input id="usuario" type="text" class="input-block-level" placeholder="Usuario">
+    <input id="senha" type="password" class="input-block-level" placeholder="Senha">
+    @*@Html.TextBoxFor(model => model.Usuario, new { @class = "input-xlarge" })
+    @Html.TextBoxFor(model => model.Senha, new { @class = "input-xlarge", type = "password" })*@
+    <label class="checkbox">
+        <input type="checkbox" value="remember-me"> Lembrar senha
+    </label>
+    @*<button class="btn btn-large btn-primary" type="submit">Logar</button>*@
+    @Html.ActionLink("Logar", "Logar", "Home",null, new { @class = "btn btn-large btn-primary" })
+    @*@Html.ActionLink("Logar", "Logar", "Login",
+        new {
+                usuario = "rubia.cv",
+                senha = "ecs2014",
+            }, new { @class = "btn btn-large btn-primary" })*@
+    <img src="\Content\images\dunzer-logo.png" class="img-rounded">
+</form>

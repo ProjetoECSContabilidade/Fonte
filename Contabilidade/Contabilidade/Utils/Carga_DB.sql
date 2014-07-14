@@ -1,5 +1,3 @@
-
-
 --SCRIPT DE CARGA INICIAL DO BANCO DE DADOS. (DESENVOLVIMENTO)
 
 --Apaga o banco para criar novamente
@@ -17,7 +15,7 @@ INSERT INTO Setor (Descricao) VALUES ('Gerencia')
 select * from Setor
 
 --insert usuarios
-INSERT INTO Usuario (Nome,Email,Cargo,SetorId,Login,Senha,Ativo) VALUES ('Rubia Vieira','rubia@outlook.com', 'Coordenador', 2, 'rubia.cv', 'ecs2014', 1)
+INSERT INTO Usuario (Nome,Email,Cargo,SetorId,Login,Senha,Ativo) VALUES ('Rubia Vieira','rubia@outlook.com', 'Coordenador', 2, 'rubia', 'rubia', 1)
 INSERT INTO Usuario (Nome,Email,Cargo,SetorId,Login,Senha,Ativo) VALUES ('Elisabeth Dvorak','elisabeth.dvorak@thomsonreuters.com', 'Analista Contábil', 4, 'elisabeth', 'q1w2e3r4', 1)
 INSERT INTO Usuario (Nome,Email,Cargo,SetorId,Login,Senha,Ativo) VALUES ('Jessica Amorim','jessica.am@ibest.com', 'Analista Contábil', 4, 'jessi.a', 'etchalele', 1)
 INSERT INTO Usuario (Nome,Email,Cargo,SetorId,Login,Senha,Ativo) VALUES ('Lucas','lucas@gmail.com', 'Gerente', 1, 'lucas.ger', 'lord421', 1)
@@ -48,8 +46,6 @@ select * from Obrigacao
 --------------------------------------------------------
 --------------------------------------------------------
 --------------------------------------------------------
-
-
 --insert de clientes
 INSERT INTO Cliente (RazaoSocial,Cnpj,Municipio,Estado,SetorEconomico,Natureza,
 RegimeApuracao,ISSRetencao,AtividadeEconomica,Ativo,ResponsavelFiscal_Id,ResponsavelContabil_Id,ResponsavelRH_Id)
@@ -58,6 +54,8 @@ VALUES
 INSERT INTO ObrigacaoClientes (Obrigacao_Id, Cliente_Id) VALUES (1,1)
 INSERT INTO ObrigacaoClientes (Obrigacao_Id, Cliente_Id) VALUES (7,1)
 INSERT INTO ObrigacaoClientes (Obrigacao_Id, Cliente_Id) VALUES (13,1)
+
+
 
 INSERT INTO Cliente (RazaoSocial,Cnpj,Municipio,Estado,SetorEconomico,Natureza,
 RegimeApuracao,ISSRetencao,AtividadeEconomica,Ativo,ResponsavelFiscal_Id,ResponsavelContabil_Id,ResponsavelRH_Id)
@@ -92,3 +90,4 @@ select * from Etapa
 select * from EtapaOrdemDeServicoes
 
 
+select * from OrdemDeServico

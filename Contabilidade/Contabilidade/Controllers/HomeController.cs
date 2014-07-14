@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Models;
+using Contabilidade.Controllers;
 
 namespace BootstrapMvcSample.Controllers
 { 
@@ -11,10 +12,14 @@ namespace BootstrapMvcSample.Controllers
     {
         //private static List<HomeInputModel> _models = ModelIntializer.CreateHomeInputModels();
         public ActionResult Index()
-        {
-           
-            //var homeInputModels = _models;                                      
+        {                                     
             return View("Index");
+        }
+
+        public ActionResult Logar()
+        {
+            LoginController lc = new LoginController();
+            return lc.Logar("rubia", "rubia");
         }
 
         public ActionResult AddJobCache()
