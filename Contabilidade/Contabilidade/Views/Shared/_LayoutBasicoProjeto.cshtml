@@ -41,6 +41,9 @@
             </div>
         </div>
     </div>
+    <div align="right">
+        Logado como: @HttpContext.Current.User.Identity.Name  (@Html.ActionLink("Sair", "LogOut", "Login"))         |
+    </div>
     <div class="container">
         @Html.Partial("_alerts")
         @Html.Partial("_validationSummary")

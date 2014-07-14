@@ -27,5 +27,12 @@ namespace Contabilidade.Controllers
         {
             return View();
         }
+
+
+        public ActionResult LogOut()
+        {
+            UsuarioRepositorio.Deslogar();
+            return View("Login");
+        }
     }
 }

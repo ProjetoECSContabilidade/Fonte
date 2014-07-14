@@ -49,6 +49,7 @@ namespace Contabilidade.Service
             if (!temEtapaAtiva)
             {
                 osView.StatusTela = 0;
+                osView.Status = true;
             }
 
             return osView;
