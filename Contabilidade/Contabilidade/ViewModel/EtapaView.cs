@@ -14,22 +14,22 @@ namespace Contabilidade.ViewModel
         [NotMapped]
         public int ObrigacaoId { get; set; }
         public Obrigacao Obrigacao { get; set; }
-        [DataType(DataType.Date), Required]
-        public DateTime DataEntrega { get; set; }
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public DateTime? DataEntrega { get; set; }
         public int Status { get; set; }
         public string Descricao { get; set; }
 
+        public virtual int StatusTela { get; set; }
 
-
-        //APAGAR
-        [NotMapped]
-        public String ObrigacaoString { get; set; }
-        [NotMapped]
-        public String ResponsavelString { get; set; }
-        [NotMapped]
-        public String StatusString { get; set; }
-        [NotMapped]
-        public bool Concluido { get; set; }
-
+        public EtapaView(Etapa etapa)
+        {
+            this.Id = etapa.Id;
+            this.Obrigacao = etapa.Obrigacao;
+            this.DataEntrega = etapa.DataEntrega;
+            this.Status = etapa.Status;
+            this.Descricao = etapa.Descricao;
+        }
     }
 }

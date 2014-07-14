@@ -34,7 +34,43 @@ namespace Contabilidade.Service
         public OrdemDeServicoView transformOrdemDeServicoInOrdemDeServicoView(OrdemDeServico os)
         {
             OrdemDeServicoView osView = new OrdemDeServicoView(os);
+            DateTime dataEntrega = (DateTime)osView.DataEntrega;
+            osView.StatusTela = DefineStatusSemaforoTela(dataEntrega);
+            bool temEtapaAtiva = true;
+
+            //valida se as etaptas estao ativas
+            foreach (Etapa etapa in osView.Etapas)
+            {
+                if (etapa.Status.Equals(1))
+                {
+                    temEtapaAtiva = false;
+                }
+            }
+            if (!temEtapaAtiva)
+            {
+                osView.StatusTela = 0;
+            }
+
             return osView;
+        }
+
+        public int DefineStatusSemaforoTela(DateTime dataEntrega)
+        {
+            int statusTela = 0;
+            if (dataEntrega < DateTime.Now)
+            {
+                statusTela = 2;
+
+            }
+            else if (dataEntrega > DateTime.Now && dataEntrega.AddDays(7) < DateTime.Now)
+            {
+                statusTela = 1;
+            }
+            else
+            {
+                statusTela = 3;
+            }
+            return statusTela;
         }
 
         public OrdemDeServicoView getOrdemDeServicoViewByOrdemDeServicoId(int id)

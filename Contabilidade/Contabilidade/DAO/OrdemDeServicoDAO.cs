@@ -20,14 +20,27 @@ namespace Contabilidade.DAO
 
         public OrdemDeServico findById(int id)
         {
-            return db.OrdemDeServico.Find(id);
+            return db.OrdemDeServico
+                .Where(os => os.Id == id)
+                .Include(x => x.Responsavel)
+                .Include(x => x.Setor)
+                .Include(x => x.Cliente)
+                .Include(x => x.Etapas)
+                .FirstOrDefault();
         }
 
         public void saveOrdemDeServico(OrdemDeServico os)
         {
+            //linka registro do banco.
+            os.Setor = db.Setor.Select(setor => db.Setor.FirstOrDefault(x => x.Id == os.Setor.Id)).FirstOrDefault();
+            os.Cliente = db.Cliente.Select(cliente => db.Cliente.FirstOrDefault(x => x.Id == os.Cliente.Id)).FirstOrDefault();
+            os.Responsavel = db.Usuario.Select(resp => db.Usuario.FirstOrDefault(x => x.Id == os.Responsavel.Id)).FirstOrDefault();
+
             db.OrdemDeServico.Add(os);
             db.SaveChanges();
         }
+
+        
 
         public void updateOrdemDeServico(OrdemDeServico os)
         {
@@ -44,6 +57,17 @@ namespace Contabilidade.DAO
         public List<OrdemDeServico> getAllOS()
         {
             return db.OrdemDeServico
+                .Include(x => x.Responsavel)
+                .Include(x => x.Setor)
+                .Include(x => x.Cliente)
+                .Include(x => x.Etapas)
+                .ToList();
+        }
+
+        public List<OrdemDeServico> getOSByClienteId(int id)
+        {
+            return db.OrdemDeServico
+                .Where(os => os.Cliente.Id == id)
                 .Include(x => x.Responsavel)
                 .Include(x => x.Setor)
                 .Include(x => x.Cliente)

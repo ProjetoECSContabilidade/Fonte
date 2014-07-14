@@ -120,8 +120,6 @@ namespace Contabilidade.DAO
         {
             Cliente clienteExcluir = db.Cliente.Where(x => x.Id == id).First();
             db.Set<Cliente>().Remove(clienteExcluir);
-
-            //db.Cliente.Remove(findById(id));
             db.SaveChanges();
         }
 
@@ -136,6 +134,14 @@ namespace Contabilidade.DAO
                 .Include(x => x.ResponsavelRH)
                 .Include(x => x.ResponsavelFiscal)
                 .Include(x => x.ResponsavelContabil)
+                .ToList();
+        }
+
+        public List<Cliente> getAtivos()
+        {
+            return db.Cliente
+                .Where(c => c.Ativo == true)
+                .Include(c => c.Obrigacoes)
                 .ToList();
         }
 

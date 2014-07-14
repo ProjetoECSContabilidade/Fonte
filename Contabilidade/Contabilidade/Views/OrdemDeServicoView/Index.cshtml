@@ -38,6 +38,9 @@
         <thead>
             <tr>
                 <th>
+                    Status
+                </th>
+                <th>
                     Cliente
                 </th>
                 <th>
@@ -60,6 +63,38 @@
         {
             ViewData[index.ToString()] = os;
             <tr>
+                @if (os.StatusTela.Equals(1))
+                {
+                <td>
+                    <img src="\Content\images\icones_semaforo\semaforo-amarelo.png" class="img-rounded">
+                </td>
+                }
+                else
+                {
+                    if (os.StatusTela.Equals(2))
+                    {
+                        <td>
+                            <img width="35" height="35"  src="\Content\images\icones_semaforo\semaforo-verde.png" class="img-rounded">
+                        </td>
+                    }else
+                        if (os.StatusTela.Equals(3))
+                        {
+                            <td>
+                                <img src="\Content\images\icones_semaforo\semaforo-verde.png" class="img-rounded">
+                            </td>
+                        }
+                        else
+                        {
+                            if (os.StatusTela.Equals(0))
+                            {
+                                <td>
+                                    <img src="\Content\images\icones_semaforo\semaforo-cinza.png" class="img-rounded">
+                                </td>
+                            }   
+                        }
+                }
+                             
+                
                 <td>
                     @Html.DisplayFor(modelItem => os.Cliente.RazaoSocial)
                 </td>
@@ -88,6 +123,8 @@
                                 var routevalues = os.GetIdValue();
                                 <li>@Html.ActionLink("Editar", "Edit", routevalues)</li>
                                 <li class="divider"></li>
+                                <li>@Html.ActionLink("Listar Etapas", "ListarEtapas", routevalues)</li>
+                                <li class="divider"></li>
                                 <li>@Html.ActionLink("Excluir", "Delete", routevalues)</li>
 
                             }
@@ -100,4 +137,5 @@
     </table>
     <p>
         @Html.ActionLink("Incluir", "Create", null, new { @class = "btn" })
+        @Html.ActionLink("IniciarJobCriacao", "IniciaJobCriacao", null, new { @class = "btn" })
     </p>

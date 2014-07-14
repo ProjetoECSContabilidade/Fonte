@@ -38,9 +38,9 @@ namespace Contabilidade
                 .AddChildRoute<ClienteViewController>("Listagem", r => r.Index())
                 .AddChildRoute<ClienteViewController>("Incluir", r => r.Create());
 
-            routes.MapNavigationRoute<EtapaViewController>("Etapa", r => r.Start())
-                .AddChildRoute<EtapaViewController>("Listagem", r => r.Index())
-                .AddChildRoute<EtapaViewController>("Incluir", r => r.Create());
+            //routes.MapNavigationRoute<EtapaViewController>("Etapa", r => r.Start())
+            //    .AddChildRoute<EtapaViewController>("Listagem", r => r.Index())
+            //    .AddChildRoute<EtapaViewController>("Incluir", r => r.Create());
 
             routes.MapNavigationRoute<OrdemDeServicoViewController>("Ordem de Serviço", r => r.Start())
                 .AddChildRoute<OrdemDeServicoViewController>("Listagem", r => r.Index("","",""))

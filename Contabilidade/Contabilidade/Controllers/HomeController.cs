@@ -16,6 +16,11 @@ namespace BootstrapMvcSample.Controllers
             //var homeInputModels = _models;                                      
             return View("Index");
         }
+
+        public ActionResult AddJobCache()
+        {
+            return null;
+        }
         /*
         [HttpPost]
         public ActionResult Create(HomeInputModel model)

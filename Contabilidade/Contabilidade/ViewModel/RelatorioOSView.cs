@@ -10,9 +10,9 @@ namespace Contabilidade.ViewModel
     public class RelatorioOSView
     {
         [DataType(DataType.Date)]
-        public DateTime DataInicio { get; set; }
+        public DateTime? DataInicio { get; set; }
         [DataType(DataType.Date)]
-        public DateTime DataFim { get; set; }
+        public DateTime? DataFim { get; set; }
 
         public Setor Setor { get; set; }
 

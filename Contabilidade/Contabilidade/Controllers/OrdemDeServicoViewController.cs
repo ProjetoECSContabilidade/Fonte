@@ -8,6 +8,8 @@ using System.Web.Mvc;
 using Contabilidade.Models;
 using Contabilidade.ViewModel;
 using Contabilidade.Service;
+using Contabilidade.Job;
+using System.Web.Routing;
 
 namespace Contabilidade.Controllers
 {
@@ -47,9 +49,7 @@ namespace Contabilidade.Controllers
             
         }
 
-        //
         // GET: /OrdemDeServico/Details/5
-
         public ActionResult Details(int id = 0)
         {
             OrdemDeServicoView ordemdeservico = osService.findViewById(id);
@@ -133,6 +133,21 @@ namespace Contabilidade.Controllers
         {
             osService.deleteOrdemDeServico(id);
             return RedirectToAction("Index");
+        }
+
+        public ActionResult IniciaJobCriacao()
+        {
+            CronJobOS job = new CronJobOS();
+            job.Execute();
+
+            return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult ListarEtapas(int id=0)
+        {
+            return RedirectToAction("ListarEtapas", new RouteValueDictionary(
+                new { controller = "etapaview", action = "Main", Id = id }));
+            //return RedirectToAction("ListarEtapas", "etapaView", id);
         }
 
         protected override void Dispose(bool disposing)

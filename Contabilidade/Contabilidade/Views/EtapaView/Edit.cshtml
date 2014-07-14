@@ -1,0 +1,64 @@
+﻿@model Contabilidade.ViewModel.EtapaView
+@using BootstrapSupport
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_LayoutBasicoProjeto.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset class="form-horizontal">
+        <legend><small>Editar </small>Etapa</legend>
+
+        <div class="control-group">
+            @Html.Label("Obrigação", new { @class = "control-label" })
+            <div class="controls">
+                @Html.TextBoxFor(model => model.Obrigacao.Descricao, new { @class = "input-xlarge", disabled = "disabled" })
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.Label("Data Entrega", new { @class = "control-label" })
+            <div class="controls">
+                @Html.EditorFor(model => model.DataEntrega, new { @class = "input-xlarge" })
+                @Html.ValidationMessageFor(model => model.DataEntrega)
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.Label("Concluido", new { @class = "control-label" })
+            <div class="controls">
+                @Html.DropDownListFor(model => model.Status, new SelectList(
+                  new List<Object>{
+                       new { value = 0 , text = "Não"  },
+                       new { value = 1 , text = "Sim"  },
+                    },
+                  "value",
+                  "text",
+                   true))
+                @Html.ValidationMessageFor(model => model.Status)
+            </div>
+        </div>
+
+        <div class="control-group">
+            @Html.Label("Descricao", new { @class = "control-label" })
+            <div class="controls">
+                @Html.TextAreaFor(model => model.Descricao, 3, 25, new { @class = "input-xlarge" })
+                @Html.ValidationMessageFor(model => model.Descricao)
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Salvar</button>
+            @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn " })
+        </div>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Voltar para a Listagem", "Index")
+</div>

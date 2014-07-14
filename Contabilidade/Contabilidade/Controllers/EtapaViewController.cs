@@ -6,6 +6,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Contabilidade.Models;
+using Contabilidade.Service;
+using Contabilidade.ViewModel;
 
 namespace Contabilidade.Controllers
 {
@@ -18,77 +20,20 @@ namespace Contabilidade.Controllers
     public class EtapaViewController : Controller
     {
         private ConexaoSQLServerContext db = new ConexaoSQLServerContext();
+        private EtapaService etapaService = new EtapaService();
 
         //
         // GET: /Etapa/
 
         public ActionResult Index()
         {
-            //DateTime MyDateTime  = new DateTime();
-            ////MyDateTime = DateTime.Now;
-            //MyDateTime = Convert.ToDateTime("01/05/2014");
-            //List<Etapa> listaDeEtapa = new List<Etapa>();
-
-            //Etapa etapa1 = new Etapa{
-            //    ObrigacaoString = "DIME",
-            //    StatusString = "Concluido",
-            //    DataEntrega = MyDateTime,
-            //    ResponsavelString = "Rubia",
-            //    Concluido = true
-            //};
-
-            //Etapa etapa2 = new Etapa
-            //{
-            //    ObrigacaoString = "SPED CONTABIL",
-            //    StatusString = "Aguardando Cliente",
-            //    DataEntrega = MyDateTime,
-            //    ResponsavelString = "Sandro",
-            //    Concluido = false
-            //};
-
-            //listaDeEtapa.Add(etapa1);
-            //listaDeEtapa.Add(etapa2);
-
-
-            return View();
+            return ListarEtapas(1);
         }
 
-        //
-        // GET: /Etapa/Details/5
-
-        public ActionResult Details(int id = 0)
+        public ActionResult ListarEtapas(int id)
         {
-            Etapa etapa = db.Etapa.Find(id);
-            if (etapa == null)
-            {
-                return HttpNotFound();
-            }
-            return View(etapa);
-        }
-
-        //
-        // GET: /Etapa/Create
-
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        //
-        // POST: /Etapa/Create
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(Etapa etapa)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Etapa.Add(etapa);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(etapa);
+            ViewBag.IdDaOS = id;
+            return View("Index", etapaService.getEtapasByOSId(id));
         }
 
         //
@@ -96,7 +41,7 @@ namespace Contabilidade.Controllers
 
         public ActionResult Edit(int id = 0)
         {
-            Etapa etapa = db.Etapa.Find(id);
+            EtapaView etapa = etapaService.findViewById(id);
             if (etapa == null)
             {
                 return HttpNotFound();

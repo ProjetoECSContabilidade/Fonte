@@ -39,12 +39,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Common.Logging">
+      <HintPath>..\packages\Common.Logging.2.1.2\lib\net40\Common.Logging.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Web.Mvc">
       <HintPath>..\packages\Mvc4Futures.4.0.20710.0\lib\net40\Microsoft.Web.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="MVC Foolproof Validation">
       <HintPath>..\packages\foolproof.0.9.4517\lib\MVC Foolproof Validation.dll</HintPath>
+    </Reference>
+    <Reference Include="Quartz">
+      <HintPath>..\packages\Quartz.2.2.3\lib\net40\Quartz.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -138,6 +144,7 @@
     <Compile Include="BootstrapSupport\HtmlHelpers\GlyphIcons.cs" />
     <Compile Include="BootstrapSupport\HtmlHelpers\Paging.cs" />
     <Compile Include="BootstrapSupport\ViewHelperExtensions.cs" />
+    <Compile Include="CallJob.cs" />
     <Compile Include="Controllers\BootstrapBaseController.cs" />
     <Compile Include="Controllers\ClienteViewController.cs" />
     <Compile Include="Controllers\CrudController.cs" />
@@ -158,6 +165,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Job\CronJobOS.cs" />
     <Compile Include="Service\OrdemDeServicoService.cs" />
     <Compile Include="Service\EtapaService.cs" />
     <Compile Include="Service\ClienteService.cs" />
@@ -199,6 +207,10 @@
     <Content Include="Content\images\dunzer-logo.png" />
     <Content Include="Content\images\glyphicons-halflings-white.png" />
     <Content Include="Content\images\glyphicons-halflings.png" />
+    <Content Include="Content\images\icones_semaforo\semaforo-amarelo.png" />
+    <Content Include="Content\images\icones_semaforo\semaforo-cinza.png" />
+    <Content Include="Content\images\icones_semaforo\semaforo-verde.png" />
+    <Content Include="Content\images\icones_semaforo\semaforo-vermelho.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -262,6 +274,9 @@
     <Content Include="Scripts\html5shiv.js" />
     <Content Include="Content\bootstrap-chosen.scss" />
     <Content Include="Content\bootstrap-chosen.less" />
+    <None Include="job_scheduling_data_2_0.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
@@ -333,17 +348,17 @@
     <Content Include="Views\ClienteView\Edit.cshtml" />
     <Content Include="Views\ClienteView\Delete.cshtml" />
     <Content Include="Views\ClienteView\CreatePrint.cshtml" />
-    <Content Include="Views\Etapa\Index.cshtml" />
-    <Content Include="Views\Etapa\Details.cshtml" />
-    <Content Include="Views\Etapa\Create.cshtml" />
-    <Content Include="Views\Etapa\Edit.cshtml" />
-    <Content Include="Views\Etapa\Delete.cshtml" />
+    <Content Include="Views\EtapaView\Index.cshtml" />
+    <Content Include="Views\EtapaView\Details.cshtml" />
+    <Content Include="Views\EtapaView\Create.cshtml" />
+    <Content Include="Views\EtapaView\Edit.cshtml" />
+    <Content Include="Views\EtapaView\Delete.cshtml" />
     <Content Include="Views\OrdemDeServicoView\Index.cshtml" />
     <Content Include="Views\OrdemDeServicoView\Details.cshtml" />
     <Content Include="Views\OrdemDeServicoView\Create.cshtml" />
     <Content Include="Views\OrdemDeServicoView\Edit.cshtml" />
     <Content Include="Views\OrdemDeServicoView\Delete.cshtml" />
-    <Content Include="Views\RelatorioOS\Create.cshtml" />
+    <Content Include="Views\RelatorioOSView\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

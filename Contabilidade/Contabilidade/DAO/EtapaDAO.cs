@@ -20,7 +20,10 @@ namespace Contabilidade.DAO
 
         public Etapa findById(int id)
         {
-            return db.Etapa.Find(id);
+            return db.Etapa
+                .Where(e => e.Id == id)
+                //.Include(x => x.Obrigacao)_
+                .FirstOrDefault();
         }
 
         public void saveEtapa(Etapa etapa)
